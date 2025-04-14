@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  :root {
+    --clr-1: #90a29f;
+    --clr-2: #657171;
+    --clr-3: #f8ffff;
+    --clr-4: #a29790;
+    --clr-5: #716a65;
+
+    --color-dark-blue: hsl(225, 100%, 14%);
+    --color-blue2: hsl(225, 100%, 75%);
+    --color-blue3: hsl(225, 100%, 87%);
+    --color-light: hsl(225, 100%, 85%);
+
+    /* light mode */
+    --color-blue1: hsl(240, 100%, 20%);
+    --color-red: #AC3931;
+    --color-shade-black: #001514;
+    --color-shade-white: #efefef;
+    --color-shade-grey: #dddddd;
+    --color-my-brown: hsl(0, 100%, 23%);
+    --color-yellow-green: hsl(137, 100%, 25%);
+    --color-green-hover: hsl(137, 100%, 35%);
+
+    --color-bg: var(--color-shade-white);
+    --color-bg-sider: var(--color-shade-grey);
+    --color-text: var(--color-shade-black);
+    --color-primary: var(--color-blue1);
+    --color-primary-hover: hsl(240, 95%, 30%);
+    --color-secondary: var(--color-my-brown);
+    --color-secondary-hover: var(--color-red);
+    /* light mode */
+}
+
+.dark {
+    --color-shade-black: #252525;
+    --color-black: #001514;
+
+    --color-bg-table: var(--color-shade-black);
+    --color-bg: var(--color-black);
+    --color-bg-sider: var(--color-shade-black);
+    --color-text: var(--color-shade-grey);
+    /*gpt colors*/
+
+}
+}
+@layer base {
+  html{
+    @apply font-[sans] text-base;
+  }
+  
+}

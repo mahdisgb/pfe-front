@@ -1,0 +1,70 @@
+.login-form{
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    right: 44px;
+}
+
+
+.login-container{
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+
+.login-button{
+    border-radius: 20px;
+    width: 17rem;
+    margin-right: 15px;
+}
+
+.login-Field{
+    width: 20rem;
+}
+#basic_username{
+    width: 20rem;
+}
+
+
+
+
+.login-title{
+
+    color: black;
+    display: flex;
+    align-self: center;
+ 
+    margin-bottom: 4rem;
+    font-size: 21px;
+    font-family: inherit;
+  
+    border-radius: 15px;
+}
+
+
+
+@media  screen and (max-width: 800px)  {
+
+    .WelcomeTag{
+     
+       font-size: 0px;
+       width: 124px;
+    }
+    .login-title{
+
+        margin-bottom: 0rem;
+    }
+    .login-form{
+        right: 0px;
+        position: relative;
+        top: 40px;
+    }
+
+    }
+
+
+

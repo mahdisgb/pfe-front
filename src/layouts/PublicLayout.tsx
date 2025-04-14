@@ -15,7 +15,7 @@ const PrivateLayout: FC<PropsWithChildren> = ({
       action="*"
       fallback={<Page403 />}
     >
-        <Header title={resource?.meta?.label?.trim()}/>
+        <Header />
         <div className="h-[80.3vh] flex flex-col">
           <main className="flex flex-grow ">
            <Sider showsider={showsider}/>

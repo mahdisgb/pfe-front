@@ -222,7 +222,7 @@ export const CoursesPage = () =>{
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <main className="max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row">
           {/* Mobile filter button */}
           <div className="lg:hidden mb-4">
@@ -320,7 +320,7 @@ export const CoursesPage = () =>{
             
             {/* Courses grid */}
             {courses.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6">
                 {courses.map(course => (
                   <CourseCard key={course.id} course={course} />
                 ))}

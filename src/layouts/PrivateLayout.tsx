@@ -8,7 +8,7 @@ const PublicLayout: FC<PropsWithChildren> = ({ children }: PropsWithChildren) =>
      return (
           <div className="min-h-screen flex">
                <main className="flex flex-col flex-grow">
-                    <Header title="Login" />
+                    <Header />
                     {children}
                     <Footer />
                </main>

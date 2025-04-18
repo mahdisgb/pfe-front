@@ -68,6 +68,7 @@ import {
   SendOutlined,
   ArrowLeftOutlined
 } from "@ant-design/icons";
+import { useOne } from '@refinedev/core';
 
 const { Title, Text, Paragraph } = Typography;
 const { TextArea } = Input;
@@ -77,7 +78,11 @@ const { Panel } = Collapse;
 
 const CourseDetail = () => {
   const { id } = useParams();
-  const course = getCourseById(id || "");
+  const {data:course}= useOne({
+    resource:"courses",
+    id:id
+  })
+  // const course = getCourseById(id || "");
   const [messageText, setMessageText] = useState("");
   const [chatMessages, setChatMessages] = useState<{sender: string, text: string}[]>([]);
   const chatRef = useRef<HTMLDivElement>(null);
@@ -105,20 +110,20 @@ const CourseDetail = () => {
     setMessageText("");
     
     // Simulate professor response after a delay
-    setTimeout(() => {
-      setChatMessages(prev => [
-        ...prev, 
-        { 
-          sender: course.professor.name, 
-          text: `Thanks for your question! I'll get back to you soon.` 
-        }
-      ]);
+    // setTimeout(() => {
+    //   setChatMessages(prev => [
+    //     ...prev, 
+    //     { 
+    //       sender: course.professor.name, 
+    //       text: `Thanks for your question! I'll get back to you soon.` 
+    //     }
+    //   ]);
       
-      // Scroll to bottom of chat
-      if (chatRef.current) {
-        chatRef.current.scrollTop = chatRef.current.scrollHeight;
-      }
-    }, 1000);
+    //   // Scroll to bottom of chat
+    //   if (chatRef.current) {
+    //     chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    //   }
+    // }, 1000);
   };
 
   const handleDownload = (materialName: string) => {
@@ -131,11 +136,11 @@ const CourseDetail = () => {
       {/* Hero Section with Course Image and basic info */}
       <div className="relative h-[300px] md:h-[400px] mb-8 rounded-b-lg overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          {/* <img 
             src={course.image} 
             alt={course.title} 
             className="w-full h-full object-cover"
-          />
+          /> */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30" />
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
@@ -143,19 +148,19 @@ const CourseDetail = () => {
             <ArrowLeftOutlined className="mr-2" />
             Back to Courses
           </Link>
-          <Title level={1} className="text-white mb-2">{course.title}</Title>
+          <Title level={1} className="text-white mb-2">{course.data.title}</Title>
           <Space className="flex flex-wrap items-center gap-4 mb-4">
             <Tag color="blue" className="flex items-center px-2 py-1">
               <UserOutlined className="mr-1" />
-              {course.studentsEnrolled.toLocaleString()} enrolled
+              {/* {course.studentsEnrolled.toLocaleString()} enrolled */}
             </Tag>
             <Tag color="blue" className="flex items-center px-2 py-1">
               <ClockCircleOutlined className="mr-1" />
-              {course.estimatedTime}
+              {/* {course.estimatedTime} */}
             </Tag>
             <Tag color="blue" className="flex items-center px-2 py-1">
               <BookOutlined className="mr-1" />
-              {course.lessons.length} lessons
+              {/* {course.lessons.length} lessons */}
             </Tag>
           </Space>
         </div>
@@ -168,14 +173,14 @@ const CourseDetail = () => {
             {/* Course Description */}
             <div className="mb-8">
               <Title level={2}>About This Course</Title>
-              <Paragraph className="text-gray-600">{course.description}</Paragraph>
+              <Paragraph className="text-gray-600">{course.data.description}</Paragraph>
             </div>
 
             {/* Course Lessons */}
             <div className="mb-8">
               <Title level={2}>Course Content</Title>
               <Collapse accordion className="w-full bg-white">
-                {course.lessons.map((lesson:any, index:any) => (
+                {/* {course.lessons.map((lesson:any, index:any) => (
                   <Panel 
                     key={lesson.id} 
                     header={
@@ -193,7 +198,7 @@ const CourseDetail = () => {
                       <Button type="link">Preview Lesson</Button>
                     </div>
                   </Panel>
-                ))}
+                ))} */}
               </Collapse>
             </div>
 
@@ -201,14 +206,14 @@ const CourseDetail = () => {
             <div className="mb-8">
               <Title level={2}>Frequently Asked Questions</Title>
               <Collapse accordion className="w-full bg-white">
-                {course.faqs.map((faq:any, index:any) => (
+                {/* {course.faqs.map((faq:any, index:any) => (
                   <Panel 
                     key={`faq-${index}`} 
                     header={faq.question}
                   >
                     <Paragraph className="text-gray-600">{faq.answer}</Paragraph>
                   </Panel>
-                ))}
+                ))} */}
               </Collapse>
             </div>
           </div>
@@ -218,17 +223,17 @@ const CourseDetail = () => {
             {/* Professor Card */}
             <Card className="mb-6">
               <div className="flex items-center space-x-4 mb-4">
-                <Avatar 
+                {/* <Avatar 
                   size={48} 
                   src={course.professor.avatar} 
                   alt={course.professor.name}
-                />
+                /> */}
                 <div>
                   <Title level={4} className="!mb-0">Your Instructor</Title>
-                  <Text type="secondary">{course.professor.name}</Text>
+                  {/* <Text type="secondary">{course.professor.name}</Text> */}
                 </div>
               </div>
-              <Paragraph className="text-gray-600">{course.professor.bio}</Paragraph>
+              {/* <Paragraph className="text-gray-600">{course.professor.bio}</Paragraph> */}
             </Card>
 
             {/* Tabs for Chat and Materials */}
@@ -245,7 +250,7 @@ const CourseDetail = () => {
                 >
                   <Title level={4}>Ask a Question</Title>
                   <Paragraph type="secondary">
-                    Send a message to {course.professor.name}
+                    {/* Send a message to {course.professor.name} */}
                   </Paragraph>
                   <div className="space-y-4">
                     {/* Chat Messages Area */}
@@ -318,7 +323,7 @@ const CourseDetail = () => {
                     Download resources for this course
                   </Paragraph>
                   <List
-                    dataSource={course.materials}
+                    // dataSource={course.materials}
                     renderItem={(material:any) => (
                       <List.Item>
                         <Button 

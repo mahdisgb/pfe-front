@@ -4,3 +4,5 @@ export * from "./login";
 export * from "./home";
 export * from "./courses";
 export * from "./course";
+export * from "./profile";
+export * from "./coursePlayer";

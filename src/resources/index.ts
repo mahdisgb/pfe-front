@@ -10,4 +10,21 @@ export const resources: IResourceItem[] = [
       label: "Home",
     },
   },
+  {
+    name: "categories",
+    list: "/categories",
+    meta: {
+      canDelete: true,
+      canAccessUser: [],
+      label: "Home",
+    },
+  },{
+    name: "courses",
+    list: "/courses",
+    meta: {
+      canDelete: true,
+      canAccessUser: [],
+      label: "Home",
+    },
+  },
 ];

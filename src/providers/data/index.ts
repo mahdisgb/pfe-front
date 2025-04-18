@@ -28,17 +28,17 @@ export const dataProvider = (
     const query: {
       _start?: number;
       _end?: number;
-      Pagesize?: number;
-      Page?: number;
+      // Pagesize?: number;
+      // Page?: number;
       _sort?: string;
       _order?: string;
     } = {};
 
     if (mode === "server") {
-      // query._start = (current - 1) * pageSize;
-      // query._end = current * pageSize;
-      query.Pagesize = pageSize;
-      query.Page = current;
+      query._start = (current - 1) * pageSize;
+      query._end = current * pageSize;
+      // query.Pagesize = pageSize;
+      // query.Page = current;
     }
 
     const generatedSort = generateSort(sorters);
@@ -111,7 +111,8 @@ export const dataProvider = (
   },
 
   getOne: async ({ resource, id, meta }) => {
-    const url = `${apiUrl}/${resource}?${meta?.id}=${id}`;
+    // const url = `${apiUrl}/${resource}?${meta?.id}=${id}`;
+    const url = `${apiUrl}/${resource}/${id}`;
     const { headers, method } = meta ?? {};
 
     const requestMethod = (method as MethodTypes) ?? "get";

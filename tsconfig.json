@@ -20,7 +20,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "playerjs.js"],
   "references": [
     {
       "path": "./tsconfig.node.json"

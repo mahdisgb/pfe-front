@@ -25,9 +25,13 @@ import {
   Page403,
   Page404,
   CoursesPage,
-  CoursePage
+  CoursePage,
+  CoursePlayer
 } from "./pages";
 import HomePageLayout from "./layouts/HomePageLayout";
+import { ProfilePage } from "./pages/profile";
+import { StudentProfile } from "./pages/profile/student";
+import { ProfessorProfile } from "./pages/profile/professor";
 
 function App() {
   const { i18nProvider } = i18nProviderContext();
@@ -62,20 +66,22 @@ function App() {
               </Authenticated>
             }
           >
-            {/* <Route index element={<Home />} /> */}
             <Route path="*" element={<Page403 />} />
           </Route>
           {/* public */}
           <Route
             element={
               <HomePageLayout>
-              <Outlet />
+                <Outlet />
               </HomePageLayout>
             }
           >
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/course/:id" element={<CoursePage />} />
+            <Route path="/profile/:id" element={<ProfilePage />} />
+            <Route path="/courseplayer/:id" element={<CoursePlayer />} />
+
           </Route>
           <Route
             path="/login"

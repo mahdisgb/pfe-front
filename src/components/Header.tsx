@@ -8,7 +8,7 @@ import { UserOutlined } from '@ant-design/icons';
 const Header = () => {
      const go = useGo();
      const { mutate: logout } = useLogout();
-     const loggedin = localStorage.getItem("refine_user");
+     const user = JSON.parse(localStorage.getItem("refine_user")!);
      const { Search } = Input;
      const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
 
@@ -34,15 +34,20 @@ const Header = () => {
                               onSearch={onSearch}
                               style={{ width: 304 }}
                          />
-                         <UserOutlined style={{ fontSize: '24px', color: 'white' }} />
-                         {!loggedin ?
+                         {user ? (
+                              <Link to={`/profile/${user.id}`}>
+                                   <UserOutlined style={{ fontSize: '24px', color: 'white' }} />
+                              </Link>
+                         ) : null}
+                         {!user ?
                               <Button onClick={() => go({ to: "/login" })}>
                                    Register now
                               </Button> : null}
-                         <Button onClick={() => logout()}>
-                              logout
-                         </Button>
-
+                         {user ? (
+                              <Button onClick={() => logout()}>
+                                   Logout
+                              </Button>
+                         ) : null}
                     </div>
                </nav>
           </header>

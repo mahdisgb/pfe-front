@@ -4,7 +4,7 @@ import { Refine, AuthProvider } from "@refinedev/core";
 export const authProvider: AuthProvider = {
   register: async (data) => {
     const res = await axiosInstance
-        .post("api/auth/register",data)
+        .post("auth/register",data)
         .then((res) => res.data);
         if (res) {
           localStorage.setItem("refine_user", JSON.stringify(res.data.user));
@@ -23,7 +23,7 @@ export const authProvider: AuthProvider = {
   },
   login: async (data) => {
     const res = await axiosInstance
-    .post("api/auth/login",data)
+    .post("auth/login",data)
     .then((res) => res.data);
     if (res) {
       localStorage.setItem("refine_user", JSON.stringify(res.data.user));

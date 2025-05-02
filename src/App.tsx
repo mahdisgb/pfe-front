@@ -16,7 +16,7 @@ import { accessControlProvider } from "./providers/accesscontrol";
 import { authProvider } from "./providers/auth";
 import i18nProviderContext from "./providers/i18n";
 
-import { resources } from "./resources";
+import { useResources } from "./resources";
 import PrivateLayout from "./layouts/PrivateLayout";
 
 import {
@@ -35,7 +35,7 @@ import { ProfessorProfile } from "./pages/profile/professor";
 
 function App() {
   const { i18nProvider } = i18nProviderContext();
-
+  const resources = useResources();
   return (
     <BrowserRouter>
       <Refine

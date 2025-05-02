@@ -1,30 +1,39 @@
-import type { IResourceItem } from "@refinedev/core";
+import { useTranslate, type IResourceItem } from "@refinedev/core";
 
-export const resources: IResourceItem[] = [
-  {
-    name: "home",
-    list: "/",
-    meta: {
-      canDelete: true,
-      canAccessUser: [],
-      label: "Home",
+export const useResources = (): IResourceItem[] => {
+  const translate  = useTranslate();
+
+ const resources = [
+    {
+      name: "home",
+      list: "/",
+      meta: {
+        label: "Home",
+      },
     },
-  },
-  {
-    name: "categories",
-    list: "/categories",
-    meta: {
-      canDelete: true,
-      canAccessUser: [],
-      label: "Home",
+    {
+      name: "categories",
+      list: "/categories",
+      meta: {
+        label: "Categories",
+      },
     },
-  },{
-    name: "courses",
-    list: "/courses",
-    meta: {
-      canDelete: true,
-      canAccessUser: [],
-      label: "Home",
+    {
+      name: "courses",
+      list: "/courses",
+      meta: {
+        label: "Courses",
+      },
     },
-  },
-];
+    {
+      name: "lessons",
+      list: "/lessons",
+      meta: {
+        label: "Lessons",
+      },
+    },
+    
+
+  ]
+  return resources
+}

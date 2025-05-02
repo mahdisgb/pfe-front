@@ -13,100 +13,7 @@ import {
 } from 'lucide-react';
 import { useList } from '@refinedev/core';
 
-// Mock course data
-const courseData = [
-  {
-    id: 1,
-    title: "Introduction to Web Development",
-    instructor: "Prof. Sarah Johnson",
-    category: "Development",
-    level: "Beginner",
-    rating: 4.8,
-    duration: "8 weeks",
-    students: 2453,
-    price: 49.99,
-    image: "/api/placeholder/280/160",
-    tags: ["HTML", "CSS", "JavaScript"]
-  },
-  {
-    id: 2,
-    title: "Advanced React Patterns",
-    instructor: "David Chen",
-    category: "Development",
-    level: "Advanced",
-    rating: 4.9,
-    duration: "10 weeks",
-    students: 1872,
-    price: 79.99,
-    image: "/api/placeholder/280/160",
-    tags: ["React", "JavaScript", "Frontend"]
-  },
-  {
-    id: 3,
-    title: "Data Science Fundamentals",
-    instructor: "Dr. Emily Rodriguez",
-    category: "Data Science",
-    level: "Intermediate",
-    rating: 4.7,
-    duration: "12 weeks",
-    students: 3214,
-    price: 69.99,
-    image: "/api/placeholder/280/160",
-    tags: ["Python", "Statistics", "ML"]
-  },
-  {
-    id: 4,
-    title: "UI/UX Design Principles",
-    instructor: "Michael Torres",
-    category: "Design",
-    level: "Beginner",
-    rating: 4.6,
-    duration: "6 weeks",
-    students: 1653,
-    price: 59.99,
-    image: "/api/placeholder/280/160",
-    tags: ["Figma", "UX Research", "Design"]
-  },
-  {
-    id: 5,
-    title: "Machine Learning Applications",
-    instructor: "Dr. Alan Turing",
-    category: "Data Science",
-    level: "Advanced",
-    rating: 4.9,
-    duration: "14 weeks",
-    students: 1286,
-    price: 89.99,
-    image: "/api/placeholder/280/160",
-    tags: ["Python", "TensorFlow", "ML"]
-  },
-  {
-    id: 6,
-    title: "Digital Marketing Strategies",
-    instructor: "Jessica White",
-    category: "Marketing",
-    level: "Intermediate",
-    rating: 4.5,
-    duration: "8 weeks",
-    students: 2187,
-    price: 54.99,
-    image: "/api/placeholder/280/160",
-    tags: ["SEO", "Social Media", "Analytics"]
-  }
-];
 
-// const categories = ["All Categories", "Development", "Data Science", "Design", "Marketing", "Business"];
-const levels = ["All Levels", "Beginner", "Intermediate", "Advanced"];
-const durations = ["Any Duration", "1-4 weeks", "5-8 weeks", "9-12 weeks", "12+ weeks"];
-const ratings = ["Any Rating", "4.5 & above", "4.0 & above", "3.5 & above"];
-
-const priceRanges = [
-  { label: "Any Price", min: 0, max: Infinity },
-  { label: "Under $50", min: 0, max: 50 },
-  { label: "$50 - $100", min: 50, max: 100 },
-  { label: "$100 - $200", min: 100, max: 200 },
-  { label: "Over $200", min: 200, max: Infinity }
-];
 
 export const CoursesPage = () => {
   // const [courses, setCourses] = useState();
@@ -126,82 +33,6 @@ export const CoursesPage = () => {
   const{data:courses} = useList({
     resource:"courses"
   })
-  useEffect(() => {
-    let filteredResults = courseData;
-    
-    // Apply search filter
-    if (searchTerm) {
-      filteredResults = filteredResults.filter(course => 
-        course.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        course.instructor.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        course.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-    }
-    
-    // Apply category filter
-    if (selectedCategory !== "All Categories") {
-      filteredResults = filteredResults.filter(course => 
-        course.category === selectedCategory
-      );
-    }
-    
-    // Apply level filter
-    if (selectedLevel !== "All Levels") {
-      filteredResults = filteredResults.filter(course => 
-        course.level === selectedLevel
-      );
-    }
-    
-    // Apply duration filter
-    if (selectedDuration !== "Any Duration") {
-      if (selectedDuration === "1-4 weeks") {
-        filteredResults = filteredResults.filter(course => 
-          parseInt(course.duration) <= 4
-        );
-      } else if (selectedDuration === "5-8 weeks") {
-        filteredResults = filteredResults.filter(course => 
-          parseInt(course.duration) >= 5 && parseInt(course.duration) <= 8
-        );
-      } else if (selectedDuration === "9-12 weeks") {
-        filteredResults = filteredResults.filter(course => 
-          parseInt(course.duration) >= 9 && parseInt(course.duration) <= 12
-        );
-      } else if (selectedDuration === "12+ weeks") {
-        filteredResults = filteredResults.filter(course => 
-          parseInt(course.duration) > 12
-        );
-      }
-    }
-    
-    // Apply rating filter
-    if (selectedRating !== "Any Rating") {
-      const minRating = parseFloat(selectedRating.split(" ")[0]);
-      filteredResults = filteredResults.filter(course => 
-        course.rating >= minRating
-      );
-    }
-
-    // Apply price range filter
-    if (selectedPriceRange !== "Any Price") {
-      const range = priceRanges.find(r => r.label === selectedPriceRange);
-      if (range) {
-        filteredResults = filteredResults.filter(course => 
-          course.price >= range.min && course.price <= range.max
-        );
-      }
-    }
-    
-    // setCourses(filteredResults);
-
-    // Update active filters
-    const newActiveFilters = [];
-    if (selectedCategory !== "All Categories") newActiveFilters.push(selectedCategory);
-    if (selectedLevel !== "All Levels") newActiveFilters.push(selectedLevel);
-    if (selectedDuration !== "Any Duration") newActiveFilters.push(selectedDuration);
-    if (selectedRating !== "Any Rating") newActiveFilters.push(selectedRating);
-    if (selectedPriceRange !== "Any Price") newActiveFilters.push(selectedPriceRange);
-    setActiveFilters(newActiveFilters);
-  }, [searchTerm, selectedCategory, selectedLevel, selectedDuration, selectedRating, selectedPriceRange]);
 
   const FilterSection = ({ title, options, selected, setSelected, icon: Icon }: any) => (
     <div className="mb-6">
@@ -227,18 +58,11 @@ export const CoursesPage = () => {
     </div>
   );
 
-  const resetFilters = () => {
-    setSearchTerm("");
-    setSelectedCategory("All Categories");
-    setSelectedLevel("All Levels");
-    setSelectedDuration("Any Duration");
-    setSelectedRating("Any Rating");
-    setSelectedPriceRange("Any Price");
-  };
+  
 
   // Course card component
   const CourseCard = ({ course }:any) => (
-    <Link to={"/course/1"}>
+    <Link to={`/course/${course.id}`}>
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
       {/* <img 
         src={course.image} 
@@ -294,7 +118,7 @@ export const CoursesPage = () => {
             </button>
           </div>
 
-          {activeFilters.length > 0 && (
+          {/* {activeFilters.length > 0 && (
             <div className="mb-4 flex flex-wrap gap-2">
               {activeFilters.map((filter) => (
                 <div
@@ -323,14 +147,14 @@ export const CoursesPage = () => {
                 Clear all
               </button>
             </div>
-          )}
+          )} */}
  
           <div className={`lg:w-64 lg:pr-8 ${showMobileFilters ? 'block' : 'hidden'} lg:block`}>
             <div className="sticky top-4 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-gray-800">Filters</h2>
                 <button
-                  onClick={resetFilters}
+                  // onClick={resetFilters}
                   className="text-sm text-gray-600 hover:text-gray-900"
                 >
                   Reset all
@@ -358,40 +182,13 @@ export const CoursesPage = () => {
                   setSelected={setSelectedCategory} 
                   icon={Tag}
                 />
-                {/* <FilterSection 
-                  title="Level" 
-                  options={levels} 
-                  selected={selectedLevel} 
-                  setSelected={setSelectedLevel} 
-                  icon={GraduationCap}
-                />
-                <FilterSection 
-                  title="Duration" 
-                  options={durations} 
-                  selected={selectedDuration} 
-                  setSelected={setSelectedDuration} 
-                  icon={Clock}
-                />
-                <FilterSection 
-                  title="Rating" 
-                  options={ratings} 
-                  selected={selectedRating} 
-                  setSelected={setSelectedRating} 
-                  icon={Star}
-                />
-                <FilterSection 
-                  title="Price Range" 
-                  options={priceRanges.map(r => r.label)} 
-                  selected={selectedPriceRange} 
-                  setSelected={setSelectedPriceRange} 
-                  icon={DollarSign}
-                /> */}
+             
               </div>
             </div>
           </div>
           
           <div className="flex-1">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+            {/* <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
               <h2 className="text-2xl font-bold text-gray-800">Browse Courses</h2>
               <div className="flex items-center w-full sm:w-auto">
                 <span className="text-gray-600 mr-2 whitespace-nowrap">Sort by:</span>
@@ -403,7 +200,7 @@ export const CoursesPage = () => {
                   <option>Price: Low to High</option>
                 </select>
               </div>
-            </div>
+            </div> */}
             
             <p className="text-gray-600 mb-6">Showing {courses?.data?.length} courses</p>
             
@@ -420,7 +217,7 @@ export const CoursesPage = () => {
               </div>
             )}
              
-            <div className="mt-8 flex justify-center">
+            {/* <div className="mt-8 flex justify-center">
               <nav className="flex items-center space-x-1">
                 <button className="px-3 py-2 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">Previous</button>
                 <button className="px-3 py-2 rounded-md bg-blue-600 text-white">1</button>
@@ -430,7 +227,7 @@ export const CoursesPage = () => {
                 <button className="px-3 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">8</button>
                 <button className="px-3 py-2 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">Next</button>
               </nav>
-            </div>
+            </div> */}
           </div>
         </div>
       </main>

@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import ReactPlayer from 'react-player';
+import { useList, useOne } from '@refinedev/core';
+import { useParams } from 'react-router-dom';
+import { VideoPlayer } from '@/components/VideoPlayer';
 
 declare global {
   interface Window {
@@ -105,56 +108,51 @@ const CourseSidebar = () => {
 
 
 export const CoursePlayer = () => {
-  const [currentLesson, setCurrentLesson] = useState(3);
+  const [currentLesson, setCurrentLesson] = useState(0);
   const [progress, setProgress] = useState(77);
-  
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = '../playerjs.js';
-    script.async = true;
-    document.body.appendChild(script);
+  const[currentVideo,setCurrentVideo]=useState("");
+  const { id } = useParams();
 
-    script.onload = () => {
-      // Main player
-      const mainPlayer = new window.Playerjs({
-        id: 'main-player',
-        file: '/simplescreenrecorder-2025-04-14_22.37.48.mkv',
-        width: '100%',
-        height: '100%',
-        autoplay: true,
-        muted: true,
-        controls:true
-      });
+  const {data:lessons,isFetched:lessonsFetched} = useList({
+    resource:"lessons/course/",
+    pagination:{
+      mode:"client"
+    },
+    filters:[{
+      field:"courseId",
+      operator:"eq",
+      value:id,
+    }]
+  })
+  useEffect(()=>{
+    if(lessonsFetched && lessons){
+      setCurrentLesson(lessons?.data[0]?.id)
+    }
+  },[lessons])
+  const {data: lesson,isLoading:vidLoading}=useOne({
+    resource:"lessons/",
+    id:currentLesson
+  })
+  useEffect(()=>{
+    if(lesson){
+      setCurrentVideo(lesson?.data?.videoUrl)
+    }
+  },[currentLesson])
+ 
 
-      // Instructor player
-      const instructorPlayer = new window.Playerjs({
-        id: 'player',
-        file: '/simplescreenrecorder-2025-04-14_22.37.48.mkv',
-        width: '100%',
-        height: '100%',
-        autoplay: true,
-        muted: true
-      });
-    };
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  const lessons = [
-    { id: 1, title: "المقدمة" },
-    { id: 2, title: "الوحدة: العملية" },
-    { id: 3, title: "الوحدة : التجارة الإلكترونية" },
-    { id: 4, title: "الوحدة : المتاجر الإلكترونية" },
-    { id: 5, title: "الوحدة : خبايا البحث عن منتجات" },
-    { id: 6, title: "الوحدة: ابدأ في تحقيق الارباح في دول الخليج" },
-    { id: 7, title: "الوحدة : إدارة المخزون" },
-    { id: 8, title: "الوحدة: أساسيات اعلانات الفيسبوك" },
-    { id: 9, title: "الوحدة: التسويق والبيع" },
-    { id: 10, title: "الوحدة : مؤشرات الأداء الرئيسية للدفع (COD KPIs) عند التسليم" }
-  ];
-  const menuItems : MenuProps['items']= lessons.map((lesson) => ({
+  // const lessons = [
+  //   { id: 1, title: "المقدمة" },
+  //   { id: 2, title: "الوحدة: العملية" },
+  //   { id: 3, title: "الوحدة : التجارة الإلكترونية" },
+  //   { id: 4, title: "الوحدة : المتاجر الإلكترونية" },
+  //   { id: 5, title: "الوحدة : خبايا البحث عن منتجات" },
+  //   { id: 6, title: "الوحدة: ابدأ في تحقيق الارباح في دول الخليج" },
+  //   { id: 7, title: "الوحدة : إدارة المخزون" },
+  //   { id: 8, title: "الوحدة: أساسيات اعلانات الفيسبوك" },
+  //   { id: 9, title: "الوحدة: التسويق والبيع" },
+  //   { id: 10, title: "الوحدة : مؤشرات الأداء الرئيسية للدفع (COD KPIs) عند التسليم" }
+  // ];
+  const menuItems : MenuProps['items']= lessons?.data.map((lesson) => ({
     key: lesson.id,
     onClick: () => setCurrentLesson(lesson.id),
     style: {
@@ -191,7 +189,7 @@ export const CoursePlayer = () => {
   
     <div className="flex flex-col h-screen bg-gray-900 text-white">
       {/* Header with tabs */}
-      <div className="bg-gray-900 px-4 py-2 border-b border-gray-700 flex items-center">
+      {/* <div className="bg-gray-900 px-4 py-2 border-b border-gray-700 flex items-center">
         <div className="flex items-center space-x-2 mr-4">
           <button className="text-gray-400 hover:text-white">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -222,7 +220,7 @@ export const CoursePlayer = () => {
             23
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* Main content */}
       <div className="flex flex-1 overflow-hidden">
@@ -269,7 +267,7 @@ export const CoursePlayer = () => {
           <Menu
             theme="dark"
             mode="inline"
-            selectedKeys={[currentLesson.toString()]}
+            selectedKeys={[currentLesson?.toString()]}
             style={{ background: '#111827' }}
             items={menuItems}
           />
@@ -286,18 +284,14 @@ export const CoursePlayer = () => {
           {/* Video content */}
           <div className="flex-1 relative">
             {/* Video player */}
-            <div className="absolute inset-0">
-              <div id="main-player"></div>
-            </div>
-
+            {!vidLoading ? 
+           <VideoPlayer url={currentVideo}/>
+           :null}
             {/* Instructor video overlay */}
-            {/* <div className="absolute bottom-16 right-6 w-64 h-36 rounded-lg overflow-hidden shadow-lg">
-              <div id='player'></div>
-            </div> */}
           </div>
 
           {/* Video controls */}
-          {/* <div className="bg-gray-900 p-2 flex items-center">
+           {/* <div className="bg-gray-900 p-2 flex items-center">
             <button className="text-gray-400 hover:text-white mr-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
@@ -324,7 +318,7 @@ export const CoursePlayer = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
               </svg>
             </button>
-          </div> */}
+          </div>  */}
         </div>
       </div>
     </div>

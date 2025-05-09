@@ -64,11 +64,11 @@ export const CoursesPage = () => {
   const CourseCard = ({ course }:any) => (
     <Link to={`/course/${course.id}`}>
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      {/* <img 
-        src={course.image} 
+      {course.thumbnail && <img 
+        src={course.thumbnail} 
         alt={course.title} 
         className="w-full h-40 object-cover"
-      /> */}
+      />} 
       <div className="p-4">
         <div className="flex justify-between items-start mb-2">
           <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-md">
@@ -79,10 +79,12 @@ export const CoursesPage = () => {
           </div>
         </div>
         <h3 className="font-bold text-lg mb-1 line-clamp-2">{course.title}</h3>
-        <p className="text-gray-600 text-sm mb-2">Professor name</p>
+        <p className="text-gray-600 text-sm mb-2">{course.professor.firstName} {course.professor.lastName} </p>
         <div className="flex items-center text-sm text-gray-500 mb-3">
-          <span className="mr-3 block">course duration if times</span>
-          <span>number of  students enrolled</span>
+          <span className="mr-3 block">{course.description}</span>
+        </div>
+        <div className="flex items-center text-sm text-gray-500 mb-3">
+          <span className="mr-3 block">{course.lessonCount} lessons</span>
         </div>
         <div className="flex flex-wrap gap-1 mb-3">
             <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">

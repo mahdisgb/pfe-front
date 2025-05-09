@@ -176,67 +176,37 @@ export const CoursePlayer = () => {
 
 ));
   return (
-    // <div className="flex min-h-screen bg-gray-100">
-    //   <CourseSidebar />
-    //   <div className="flex-1">
-    //     <div className="max-w-6xl mx-auto p-6">
-    //       <Coursereplay/>
-    //     </div>
-    //   </div>
-    // </div>
+      <div className="h-screen flex gap-4 pl-2 overflow-hidden">
 
-  
-  
-    <div className="flex flex-col h-screen bg-gray-900 text-white">
-      {/* Header with tabs */}
-      {/* <div className="bg-gray-900 px-4 py-2 border-b border-gray-700 flex items-center">
-        <div className="flex items-center space-x-2 mr-4">
-          <button className="text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button className="text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-          </button>
-          <button className="text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </button>
-          <button className="text-gray-400 hover:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-          </button>
-        </div>
-        <div className="flex-1 px-2 text-xs text-gray-400 truncate">
-          lmofidclub.com/path-player?courseid=start&unit=...
-        </div>
-        <div className="flex items-center space-x-2">
-          <button className="w-6 h-6 rounded-full bg-purple-700 text-white flex items-center justify-center text-xs">
-            23
-          </button>
-        </div>
-      </div> */}
+        {/* Main content area */}
+        <div className="flex-1 flex flex-col ">
+          {/* Video navigation */}
+          <div className="flex justify-between items-center p-4  text-gray-400">
+            <div>الفيديو الموالي</div>
+            <div>الفيديو الذي قبل</div>
+          </div>
 
-      {/* Main content */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Left sidebar */}
+          {/* Video content */}
+          <div className="flex-1 relative">
+            {/* Video player */}
+            {!vidLoading ? 
+           <VideoPlayer url={currentVideo}/>
+           :null}
+          </div>
+
+        </div>
         <Layout.Sider 
           width={384} 
-          theme="dark" 
-          style={{ background: '#111827', borderRight: '1px solid #374151' }}
+        style={{backgroundColor:"#ddd"}}
+        
         >
           {/* Course title */}
-          <div className="p-4 border-b border-gray-700">
-            <div className="flex items-center text-gray-400 mb-4">
+          <div className="p-4 border-b ">
+            <div className="flex items-center mb-4">
               <LeftOutlined className="h-4 w-4" />
               <span className="mr-2">العودة الى صفحة الدورة</span>
             </div>
-            <Typography.Title level={4} style={{ color: '#fff', textAlign: 'right' }}>
+            <Typography.Title level={4} style={{ textAlign: 'right' }}>
               المفيد في التجارة الالكترونية - 100% مجانا
             </Typography.Title>
             <Progress 
@@ -257,7 +227,6 @@ export const CoursePlayer = () => {
             ]}
             style={{ 
               margin: '16px',
-              backgroundColor: '#1F2937'
             }}
           />
 
@@ -265,63 +234,12 @@ export const CoursePlayer = () => {
          
 
           <Menu
-            theme="dark"
             mode="inline"
             selectedKeys={[currentLesson?.toString()]}
-            style={{ background: '#111827' }}
             items={menuItems}
           />
         </Layout.Sider>
-
-        {/* Main content area */}
-        <div className="flex-1 flex flex-col bg-black">
-          {/* Video navigation */}
-          <div className="flex justify-between items-center p-4 bg-gray-900 text-gray-400">
-            <div>الفيديو الموالي</div>
-            <div>الفيديو الذي قبل</div>
-          </div>
-
-          {/* Video content */}
-          <div className="flex-1 relative">
-            {/* Video player */}
-            {!vidLoading ? 
-           <VideoPlayer url={currentVideo}/>
-           :null}
-            {/* Instructor video overlay */}
-          </div>
-
-          {/* Video controls */}
-           {/* <div className="bg-gray-900 p-2 flex items-center">
-            <button className="text-gray-400 hover:text-white mr-2">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-            <div className="flex-1 mx-4 relative h-1 bg-gray-700 rounded-full">
-              <div className="absolute top-0 left-0 h-1 bg-blue-500 rounded-full" style={{ width: '30%' }}></div>
-              <div className="absolute top-0 left-0 h-4 w-4 bg-white rounded-full -mt-1.5" style={{ left: '30%' }}></div>
-            </div>
-            <div className="text-gray-400 mx-2 text-xs">00:00 / 00:00</div>
-            <button className="text-gray-400 hover:text-white mx-1">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </button>
-            <button className="text-gray-400 hover:text-white mx-1">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.897-7.898m-3.813 0a9 9 0 000 12.728" />
-              </svg>
-            </button>
-            <button className="text-gray-400 hover:text-white mx-1">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
-              </svg>
-            </button>
-          </div>  */}
-        </div>
       </div>
-    </div>
   );
 };
 

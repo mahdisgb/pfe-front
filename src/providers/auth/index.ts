@@ -67,11 +67,12 @@ export const authProvider: AuthProvider = {
     console.error(error);
     return { error };
   },
-  getIdentity: async () => ({
-    id: 1,
-    name: "Jane Doe",
-    avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-  }),
+  getIdentity: async () => {
+    const user = localStorage.getItem("refine_user")
+    if(user){
+      return JSON.parse(user)
+    }
+  },
   updatePassword: async (params) => {
     if (params.password) {
       //we can update password here

@@ -42,6 +42,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useList, useOne } from "@refinedev/core";
+import dayjs from "dayjs";
 
 const { Title, Text, Paragraph } = Typography;
 const { TextArea } = Input;
@@ -56,6 +57,7 @@ export const CourseDetail = () => {
     resource:"courses",
     id:id
   })
+  
   const {data:lessons} = useList({
     resource:"lessons/course/",
     pagination:{
@@ -67,6 +69,10 @@ export const CourseDetail = () => {
       value:id,
     }]
   })
+  const {data:professor} = useOne({
+    resource:"auth/user",
+    id:course?.data?.professor.id
+  })
   console.log(lessons)
   const [messageText, setMessageText] = useState("");
   const [chatMessages, setChatMessages] = useState<{sender: string, text: string}[]>([]);
@@ -76,7 +82,7 @@ export const CourseDetail = () => {
   if (!course) {
     return (
       <div className="container mx-auto py-12 px-4 text-center">
-        <Title level={2}>Course not found</Title>
+        <Title level={3}>Course not found</Title>
         <Paragraph className="mb-6">The course you're looking for doesn't exist or has been removed.</Paragraph>
         <Link to="/courses">
           <Button icon={<ArrowLeftOutlined />}>
@@ -93,37 +99,27 @@ export const CourseDetail = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white xl:w-[70vw] lg:w-[77vw] md:w-[85vw] w-[95vw] mx-auto">
       {contextHolder}
       {/* Hero Section with Course Image and basic info */}
       <div className="relative h-[300px] md:h-[400px] mb-8 rounded-b-lg overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            // src={course?.image} 
+            src={course?.data?.thumbnail} 
             // alt={course?.title} 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30" />
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
-          <Link to="/course?s" className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors">
+          <Link to="/courses" className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors">
             <ArrowLeftOutlined className="mr-2" />
-            Back to Course?s
+            Back to Courses
           </Link>
           {/* <Title level={1} className="text-white mb-2">{course?.title}</Title> */}
           <Space className="flex flex-wrap items-center gap-4 mb-4">
-            <Tag color="blue" className="flex items-center px-2 py-1">
-              <UserOutlined className="mr-1" />
-              {/* {course?.studentsEnrolled.toLocaleString()} enrolled */}
-            </Tag>
-            <Tag color="blue" className="flex items-center px-2 py-1">
-              <ClockCircleOutlined className="mr-1" />
-              {/* {course?.estimatedTime} */}
-            </Tag>
-            <Tag color="blue" className="flex items-center px-2 py-1">
-              <BookOutlined className="mr-1" />
-              {/* {course?.lessons.length} lessons */}
-            </Tag>
+           
+          <Title level={1} style={{color:"white"}}>{course?.data?.title}</Title>
           </Space>
         </div>
       </div>
@@ -134,13 +130,13 @@ export const CourseDetail = () => {
           <div className="lg:col-span-2">
             {/* Course? Description */}
             <div className="mb-8">
-              <Title level={2}>About This Course?</Title>
-              {/* <Paragraph className="text-gray-600">{course?.description}</Paragraph> */}
+              <Title level={3}>About This Course</Title>
+              <Paragraph className="text-gray-600">{course?.data?.description}</Paragraph>
             </div>
 
             {/* Course? Lessons */}
             <div className="mb-8">
-              <Title level={2}>Course? Content</Title>
+              <Title level={3}>Course Content</Title>
               <Collapse accordion className="w-full bg-white">
                  {lessons?.data?.map((lesson:any, index:any) => (
                    <Panel 
@@ -156,9 +152,8 @@ export const CourseDetail = () => {
                     <div className="flex items-center justify-between">
                       <Tag color="blue" className="flex items-center">
                         <ClockCircleOutlined className="mr-1" />
-                        {lesson.duration}
+                        {dayjs(lesson.duration * 1000).format("HH:mm:ss")}
                       </Tag>
-                      <Button type="link">Preview Lesson</Button>
                     </div>
                     </Link>
                   </Panel>
@@ -168,7 +163,7 @@ export const CourseDetail = () => {
 
             {/* FAQs */}
             <div className="mb-8">
-              <Title level={2}>Frequently Asked Questions</Title>
+              <Title level={3}>Frequently Asked Questions</Title>
               <Collapse accordion className="w-full bg-white">
                 {/* {course?.faqs.map((faq:any, index:any) => (
                   <Panel 

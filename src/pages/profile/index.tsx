@@ -1,6 +1,6 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { StudentProfile } from './student';
-import { ProfessorProfile } from './professor';
+import { ProfessorCoursesPage } from './professor/ProfessorCoursesPage';
 
 export const ProfilePage = () => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ export const ProfilePage = () => {
   if (user.role.includes('student')) {
     return <StudentProfile />;
   } else if (user.role.includes('professor')) {
-    return <ProfessorProfile />;
+    return <ProfessorCoursesPage />;
   } else {
     // Handle unknown roles
     return (

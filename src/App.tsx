@@ -31,8 +31,10 @@ import {
 import HomePageLayout from "./layouts/HomePageLayout";
 import { ProfilePage } from "./pages/profile";
 import { StudentProfile } from "./pages/profile/student";
-import { ProfessorProfile } from "./pages/profile/professor";
-
+import { ProfessorCoursesPage } from "./pages/profile/professor/ProfessorCoursesPage";
+import { ProfessorLessonsPage } from "./pages/profile/professor/ProfessorLessonsPage";
+import ProfessorPageLayout from "./layouts/ProfessorPageLayout";
+import Enrollment from "./pages/enrollment.tsx";
 function App() {
   const { i18nProvider } = i18nProviderContext();
   const resources = useResources();
@@ -66,8 +68,23 @@ function App() {
               </Authenticated>
             }
           >
+              <Route path="/" element={<Home />} />
+            <Route path="/courses" element={<CoursesPage />} />
+            <Route path="/course/:id" element={<CoursePage />} />
+            {/* <Route path="/profile/:id" element={<ProfilePage />} /> */}
+            <Route path="/profile" 
+            element={
+              <ProfessorPageLayout>
+                <Outlet />
+              </ProfessorPageLayout>
+            }>
+            <Route path="courses" element={<ProfessorCoursesPage />} />
+              <Route path="lessons" element={<ProfessorLessonsPage />} />
+            </Route>
+            <Route path="/courseplayer/:id" element={<CoursePlayer />} />
             <Route path="*" element={<Page403 />} />
           </Route>
+          <Route path="/enrollment/:courseId" element={<Enrollment />} />
           {/* public */}
           <Route
             element={
@@ -79,7 +96,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/course/:id" element={<CoursePage />} />
-            <Route path="/profile/:id" element={<ProfilePage />} />
+            {/* <Route path="/profile/:id" element={<ProfilePage />} /> */}
+            <Route path="/profile/courses" element={<ProfessorCoursesPage />} />
+            <Route path="/profile/lessons" element={<ProfessorLessonsPage />} />
             <Route path="/courseplayer/:id" element={<CoursePlayer />} />
 
           </Route>

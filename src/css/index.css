@@ -46,6 +46,10 @@
     /*gpt colors*/
 
 }
+#main-player{
+  /* height: 20px !important; */
+}
+
 }
 @layer base {
   html{

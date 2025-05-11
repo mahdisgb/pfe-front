@@ -63,77 +63,28 @@ import {
 import { Link, useNavigate, useLocation } from "react-router-dom"
 
 import "./SideBar.css"
-import { Blocks, Building, Building2, CompassIcon, Fuel, FuelIcon, Hotel, LocateIcon, Plane, PlaneIcon, PlaneTakeoff, Server, Stamp, TicketCheck, User2Icon } from "lucide-react"
 
 export default function SideBar() {
   const [collapsed, setCollapsed] = useState(false)
   const { Sider } = Layout
-  const navigate = useNavigate()
   const location = useLocation()
-
+  const navigate = useNavigate()
   type MenuItem = Required<MenuProps>["items"][number]
 
 
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken()
-
-//   function getItem(
-//     label: React.ReactNode,
-//     key?: React.Key | null,
-//     icon?: React.ReactNode,
-//     children?: MenuItem[],
-//     user?: IAppUser,
-//     theme?: "light"
-//   ): MenuItem {
-//     return {
-//       key,
-//       icon,
-//       children,
-//       user,
-//       label,
-//       theme,
-//     } as MenuItem
-//   }
-
   const items = [
-   
-    {
-      key: 'infield-manifest',
-      icon: <FileTextOutlined />,
-      label: 'Infield Manifest',
-      onClick: () => navigate("/skystay/infield-manifest"),
-      roles:["Admin", "Administrator", "HR", "AviationManager", "AviationTeam", "DepartmentAssistant"]
-    },
-     {
-      key: 'aviation-operations',
-      icon: <RocketOutlined />,
-      label: 'Aviation Operations',
-      children: [
-        
-        {
-          key: 'journey-management',
-          icon: <CarOutlined />,
-          label: 'Journey Management',
-          children: [
-            {
-              key: 'journey-requests',
-              icon: <FileAddOutlined />,
-              label: 'Journey Request',
-              onClick: () => navigate("/skystay/journeys/assistant"),
-              roles:["Admin", "Administrator", "HR", "AviationManager", "AviationTeam", "DepartmentAssistant"]
-            },
-          ]
-        },
-      ]
-    },
-    
-
     {
         key: 'courses',
         // icon: <FileTextOutlined />,
-        label: 'Courses',
-        // onClick: () => navigate("/skystay/infield-manifest"),
+        label: "Courses",
+        onClick: () => navigate("/profile/courses"),
+        // roles:["Admin", "Administrator", "HR", "AviationManager", "AviationTeam", "DepartmentAssistant"]
+      },
+      {
+        key: 'lessons',
+        // icon: <FileTextOutlined />,
+        label: "Lessons",
+        onClick: () => navigate("/profile/lessons"),
         // roles:["Admin", "Administrator", "HR", "AviationManager", "AviationTeam", "DepartmentAssistant"]
       },
   ]

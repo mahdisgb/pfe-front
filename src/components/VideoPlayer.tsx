@@ -36,7 +36,7 @@ export const VideoPlayer = ({url}:VideoPlayerProps)=>{
           document.body.removeChild(script);
         };
       }, [url]);
-      return  <div className="absolute inset-0">
+      return  <div className="absolute inset-0 h-fit">
       <div id="main-player"></div>
     </div>
 }

@@ -39,7 +39,7 @@ import {
   SendOutlined,
   ArrowLeftOutlined
 } from "@ant-design/icons";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useList, useOne } from "@refinedev/core";
 import dayjs from "dayjs";
@@ -57,7 +57,7 @@ export const CourseDetail = () => {
     resource:"courses",
     id:id
   })
-  
+  const navigate = useNavigate()
   const {data:lessons} = useList({
     resource:"lessons/course/",
     pagination:{
@@ -117,9 +117,15 @@ export const CourseDetail = () => {
             Back to Courses
           </Link>
           {/* <Title level={1} className="text-white mb-2">{course?.title}</Title> */}
-          <Space className="flex flex-wrap items-center gap-4 mb-4">
+          <Space className="flex justify-between items-center">
            
           <Title level={1} style={{color:"white"}}>{course?.data?.title}</Title>
+          <Button
+          size="large"
+          type="primary"
+          onClick={()=>navigate(`/enrollment/${course?.data?.id}`)}>
+            Enroll
+          </Button>
           </Space>
         </div>
       </div>

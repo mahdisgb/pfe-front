@@ -5,7 +5,7 @@ import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import ReactPlayer from 'react-player';
 import { useList, useOne } from '@refinedev/core';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { VideoPlayer } from '@/components/VideoPlayer';
 
 declare global {
@@ -13,7 +13,7 @@ declare global {
     Playerjs: any;
   }
 }
-
+const {Sider} = Layout;
 export const Coursereplay = () => {
   return (
     <div className="relative w-full aspect-video bg-black">
@@ -108,7 +108,7 @@ const CourseSidebar = () => {
 
 
 export const CoursePlayer = () => {
-  const [currentLesson, setCurrentLesson] = useState(0);
+  const [currentLesson, setCurrentLesson] = useState(null);
   const [progress, setProgress] = useState(77);
   const[currentVideo,setCurrentVideo]=useState("");
   const { id } = useParams();
@@ -130,8 +130,8 @@ export const CoursePlayer = () => {
     }
   },[lessons])
   const {data: lesson,isLoading:vidLoading}=useOne({
-    resource:"lessons/",
-    id:currentLesson
+    resource:"lessons",
+    id:currentLesson,
   })
   useEffect(()=>{
     if(lesson){
@@ -155,71 +155,54 @@ export const CoursePlayer = () => {
   const menuItems : MenuProps['items']= lessons?.data.map((lesson) => ({
     key: lesson.id,
     onClick: () => setCurrentLesson(lesson.id),
-    style: {
-      textAlign: 'right', 
-      margin: 0,
-      borderBottom: '1px solid #374151'
-    },
     label: (
       <div className="flex items-center">
-        <div className="flex-1 text-right">{lesson.title}</div>
-        <div className="mr-4 text-gray-400">{lesson.id}.</div>
+        <div className="flex-1">{lesson.title}</div>
+        {/* <div className="mr-4 text-gray-400">{lesson.id}.</div> */}
       </div>
     ),
-    children:[
-        {
-            key:"aa",
-            label:"why"
-        }
-    ]
   }
 
 ));
   return (
       <div className="h-screen flex gap-4 pl-2 overflow-hidden">
 
-        {/* Main content area */}
-        <div className="flex-1 flex flex-col ">
-          {/* Video navigation */}
-          <div className="flex justify-between items-center p-4  text-gray-400">
-            <div>الفيديو الموالي</div>
-            <div>الفيديو الذي قبل</div>
-          </div>
-
-          {/* Video content */}
-          <div className="flex-1 relative">
-            {/* Video player */}
+        <div className="flex-1 flex flex-col py-8 px-4 ">
+          <div className="relative flex-1">
             {!vidLoading ? 
            <VideoPlayer url={currentVideo}/>
            :null}
           </div>
-
+              <div className="bg-[#ddd] h-fit p-4 rounded-lg w-full">
+                {lesson?.data?.description}
+              </div>
         </div>
-        <Layout.Sider 
+        <Sider 
           width={384} 
         style={{backgroundColor:"#ddd"}}
         
         >
           {/* Course title */}
           <div className="p-4 border-b ">
+            <Link to={`/course/${id}`}>
             <div className="flex items-center mb-4">
               <LeftOutlined className="h-4 w-4" />
-              <span className="mr-2">العودة الى صفحة الدورة</span>
+              <span className="mr-2">Back to course</span>
             </div>
+            </Link>
             <Typography.Title level={4} style={{ textAlign: 'right' }}>
-              المفيد في التجارة الالكترونية - 100% مجانا
+              {lesson?.data?.title}
             </Typography.Title>
-            <Progress 
+            {/* <Progress 
               percent={progress}
               strokeColor="#3B82F6"
               trailColor="#374151"
               showInfo={false}
               className="mt-4"
-            />
+            /> */}
           </div>
 
-          {/* Course navigation */}
-          <Segmented
+          {/* <Segmented
             block
             options={[
               { label: 'مسار', value: 'path' },
@@ -228,17 +211,15 @@ export const CoursePlayer = () => {
             style={{ 
               margin: '16px',
             }}
-          />
+          /> */}
 
-          {/* Lessons list */}
-         
 
           <Menu
-            mode="inline"
+            // mode="inline"
             selectedKeys={[currentLesson?.toString()]}
             items={menuItems}
           />
-        </Layout.Sider>
+        </Sider>
       </div>
   );
 };

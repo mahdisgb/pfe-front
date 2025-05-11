@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Search, 
   Filter, 
@@ -11,7 +11,8 @@ import {
   GraduationCap,
   Tag
 } from 'lucide-react';
-import { useList } from '@refinedev/core';
+import { useCreate, useGetIdentity, useList } from '@refinedev/core';
+import { Button, message } from 'antd';
 
 
 
@@ -25,7 +26,7 @@ export const CoursesPage = () => {
   const [selectedPriceRange, setSelectedPriceRange] = useState("Any Price");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  
+  const navigate=useNavigate();
   const{data:categories,isFetched}= useList({
     resource:"categories"
   });
@@ -58,18 +59,19 @@ export const CoursesPage = () => {
     </div>
   );
 
-  
 
   // Course card component
   const CourseCard = ({ course }:any) => (
-    <Link to={`/course/${course.id}`}>
+   
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      {course.thumbnail && <img 
+         {course.thumbnail && <img 
         src={course.thumbnail} 
         alt={course.title} 
         className="w-full h-40 object-cover"
       />} 
       <div className="p-4">
+       <Link to={`/course/${course.id}`}>
+
         <div className="flex justify-between items-start mb-2">
           <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-md">
            {course.category.name}
@@ -91,15 +93,19 @@ export const CoursesPage = () => {
               tags
             </span>
         </div>
+        </Link>
         <div className="flex justify-between items-center">
           <span className="font-bold text-lg">${course.price}</span>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+          
+          <Button 
+            onClick={()=>navigate(`/enrollment/${course.id}`)}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
             Enroll
-          </button>
+          </Button>
         </div>
       </div>
     </div>
-    </Link>
+   
 
   );
 

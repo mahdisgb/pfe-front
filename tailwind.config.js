@@ -7,13 +7,18 @@ export default {
   theme: {
     extend: {
       colors:{
-        "primary": "#4251B3",
-        "secondary":"hsl(225, 100%, 75%)",
+        // "primary": "#4251B3",
+        // "secondary":"hsl(225, 100%, 75%)",
         "clr-1": "#90a29f",
         "clr-2": "#657171",
         "clr-3": "#f8ffff",
         "clr-4": "#a29790",
         "clr-5": "#716a65",
+
+        'primary-hover' :'#126e68',
+        'primary' : '#155C4C',
+        "modify" : "#FDA130",
+        "delete" : "#FF0000",
 
         "background": "var(--color-bg)",
         "background-sider": "var(--color-bg-sider)",

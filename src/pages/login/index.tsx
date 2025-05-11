@@ -48,7 +48,7 @@ export const Login = () => {
           <Form
             form={loginForm}
             layout="vertical"
-            initialValues={{ email: "stud@a.co", password: "password" }}
+            initialValues={{ email: "a@3.co", password: "password" }}
           >
             <Form.Item
               name="email"

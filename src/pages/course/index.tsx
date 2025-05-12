@@ -41,7 +41,7 @@ import {
 } from "@ant-design/icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useRef, useState } from "react";
-import { useList, useOne } from "@refinedev/core";
+import { useGetIdentity, useList, useOne } from "@refinedev/core";
 import dayjs from "dayjs";
 
 const { Title, Text, Paragraph } = Typography;
@@ -51,8 +51,12 @@ const { TabPane } = Tabs;
 const { Panel } = Collapse;
 
 export const CourseDetail = () => {
+  const{data:user}=useGetIdentity<any>()
   const { id } = useParams();
-  console.log(id)
+  const{data:isEnrolled}=useOne({
+    resource:`course-subscriptions/check`,
+    id:`${user?.id}/${id}`
+  })
   const {data:course} = useOne({
     resource:"courses",
     id:id
@@ -69,16 +73,16 @@ export const CourseDetail = () => {
       value:id,
     }]
   })
-  const {data:professor} = useOne({
-    resource:"auth/user",
-    id:course?.data?.professor.id
-  })
-  console.log(lessons)
+  // const {data:professor} = useOne({
+  //   resource:"auth/user",
+  //   id:course?.data?.professor.id
+  // })
   const [messageText, setMessageText] = useState("");
   const [chatMessages, setChatMessages] = useState<{sender: string, text: string}[]>([]);
   const chatRef = useRef<HTMLDivElement>(null);
   const [messageApi, contextHolder] = message.useMessage();
-
+ 
+  console.log(isEnrolled)
   if (!course) {
     return (
       <div className="container mx-auto py-12 px-4 text-center">
@@ -120,12 +124,13 @@ export const CourseDetail = () => {
           <Space className="flex justify-between items-center">
            
           <Title level={1} style={{color:"white"}}>{course?.data?.title}</Title>
+          {isEnrolled?.data.hasAccess ? null:
           <Button
           size="large"
           type="primary"
           onClick={()=>navigate(`/enrollment/${course?.data?.id}`)}>
             Enroll
-          </Button>
+          </Button>}
           </Space>
         </div>
       </div>

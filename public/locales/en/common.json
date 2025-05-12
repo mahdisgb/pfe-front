@@ -1,5 +1,160 @@
 {
-    "page":{
+    "pages":{
         
+    },
+    "common": {
+        "welcome": "Welcome to Wajihani",
+        "goHome": "Go Home",
+        "backToCourses": "Back to Courses",
+        "enroll": "Enroll",
+        "aboutCourse": "About This Course",
+        "courseContent": "Course Content",
+        "faq": "Frequently Asked Questions",
+        "yourInstructor": "Your Instructor",
+        "copyright": "Copyright ©2024",
+        "register": "Register now",
+        "logout": "Logout",
+        "whoAreWe": "Who are we",
+        "ourServices": "Our services"
+    },
+    "courses": {
+        "filters": {
+            "title": "Filters",
+            "resetAll": "Reset all",
+            "searchPlaceholder": "Search courses...",
+            "category": "Category",
+            "sortBy": "Sort by",
+            "sortOptions": {
+                "mostPopular": "Most Popular",
+                "highestRated": "Highest Rated",
+                "newest": "Newest",
+                "priceHighToLow": "Price: High to Low",
+                "priceLowToHigh": "Price: Low to High"
+            }
+        },
+        "results": {
+            "showing": "Showing {{count}} courses",
+            "noCourses": "No courses found",
+            "noCoursesDescription": "Try adjusting your filters or search terms"
+        }
+    },
+    "course": {
+        "notFound": {
+            "title": "Course not found",
+            "description": "The course you're looking for doesn't exist or has been removed."
+        },
+        "download": {
+            "success": "{{materialName}} is being downloaded."
+        },
+        "player": {
+            "play": "Play",
+            "pause": "Pause",
+            "volume": "Volume",
+            "settings": "Settings",
+            "fullscreen": "Fullscreen"
+        }
+    },
+    "footer": {
+        "company": {
+            "title": "Company",
+            "aboutUs": "About Us",
+            "careers": "Careers",
+            "blog": "Blog",
+            "press": "Press"
+        },
+        "resources": {
+            "title": "Resources",
+            "helpCenter": "Help Center",
+            "contactUs": "Contact Us",
+            "termsOfService": "Terms of Service",
+            "privacyPolicy": "Privacy Policy"
+        },
+        "subscribe": {
+            "title": "Subscribe",
+            "description": "Get the latest updates and offers",
+            "emailPlaceholder": "Your email",
+            "button": "Subscribe"
+        },
+        "copyright": "© 2025 EduLearn Academy. All rights reserved."
+    },
+    "navigation": {
+        "home": "Home",
+        "categories": "Categories",
+        "courses": "Courses",
+        "lessons": "Lessons"
+    },
+    "errors": {
+        "404": "404",
+        "403": "403"
+    },
+    "auth": {
+        "login": "Login",
+        "register": "Register",
+        "forgotPassword": "Forgot Password",
+        "resetPassword": "Reset Password"
+    },
+    "profile": {
+        "student": {
+            "title": "Student Profile",
+            "enrolledCourses": "Enrolled Courses",
+            "achievements": "Achievements",
+            "history": "History",
+            "completedOn": "Completed on",
+            "grade": "Grade: {{grade}}%"
+        },
+        "professor": {
+            "title": "Professor Dashboard",
+            "courses": "Courses",
+            "lessons": "Lessons",
+            "createNewLesson": "Create New Lesson",
+            "editLesson": "Edit Lesson",
+            "filterByCourse": "Filter by course",
+            "selectLessonToEdit": "Please select a lesson to edit",
+            "deleteLesson": {
+                "title": "Delete Lesson",
+                "confirm": "Are you sure you want to delete this lesson?",
+                "success": "Lesson deleted successfully",
+                "error": "Failed to delete lesson"
+            },
+            "toggleActive": {
+                "success": "Course active status toggled successfully",
+                "error": "Failed to toggle lesson active status"
+            }
+        },
+        "admin": {
+            "title": "Admin Dashboard",
+            "settings": "Settings",
+            "requests": "Requests",
+            "processRequest": "Process Request",
+            "selectRequestToProcess": "Please select a request to process",
+            "cancel": "Cancel",
+            "submit": "Submit"
+        }
+    },
+    "forms": {
+        "course": {
+            "title": "Enter course title",
+            "description": "Enter course description",
+            "category": "Select category",
+            "price": "Enter course price (in DZD)",
+            "thumbnail": "Select Image"
+        },
+        "lesson": {
+            "title": "Enter lesson title",
+            "description": "Enter lesson description",
+            "course": "Select course",
+            "thumbnail": "Select Image",
+            "video": "Select Video"
+        }
+    },
+    "search": {
+        "placeholder": "Search courses and lessons...",
+        "noResults": "No results found",
+        "courses": "Courses",
+        "lessons": "Lessons"
+    },
+    "modal": {
+        "cancel": "Cancel",
+        "save": "Save"
     }
 }

@@ -108,7 +108,7 @@ const CourseSidebar = () => {
 
 
 export const CoursePlayer = () => {
-  const [currentLesson, setCurrentLesson] = useState(null);
+  const [currentLesson, setCurrentLesson] = useState<any>();
   const [progress, setProgress] = useState(77);
   const[currentVideo,setCurrentVideo]=useState("");
   const { id } = useParams();
@@ -152,7 +152,7 @@ export const CoursePlayer = () => {
   //   { id: 9, title: "الوحدة: التسويق والبيع" },
   //   { id: 10, title: "الوحدة : مؤشرات الأداء الرئيسية للدفع (COD KPIs) عند التسليم" }
   // ];
-  const menuItems : MenuProps['items']= lessons?.data.map((lesson) => ({
+  const menuItems : any= lessons?.data.map((lesson) => ({
     key: lesson.id,
     onClick: () => setCurrentLesson(lesson.id),
     label: (

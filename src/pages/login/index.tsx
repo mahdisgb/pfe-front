@@ -26,8 +26,11 @@ export const Login = () => {
       }
     } else {
       try {
+        const values2 = await loginForm.validateFields();
+        console.log(values2);
         const values = await registerForm.validateFields();
-        await register({ ...values, role: userType });
+        console.log(values);
+        await register({ ...values2, role: userType });
       } catch (error: any) {
         message.error(error);
       }
@@ -48,7 +51,7 @@ export const Login = () => {
           <Form
             form={loginForm}
             layout="vertical"
-            initialValues={{ email: "a@3.co", password: "password" }}
+            initialValues={{ email: "admin@a.co", password: "password" }}
           >
             <Form.Item
               name="email"

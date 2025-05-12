@@ -166,7 +166,7 @@ export const ProfessorLessonsPage = () => {
   return (
      
    <>
-    <Row style={{marginBottom:"20px"}} gutter={16}>
+    <Row style={{marginBottom:"20px"}}  justify={"end"} gutter={16}>
       <Col >
         <Button
         onClick={()=>setCreateModal(true)}
@@ -216,42 +216,7 @@ export const ProfessorLessonsPage = () => {
     }}
     selectedLessonId={selectedLessonId}
     />}
-    {/* {activePage !== 'content' && (
-          <div className="h-full flex items-center justify-center">
-            <p className="text-xl text-youtube-text">
-              {activePage.charAt(0).toUpperCase() + activePage.slice(1)} page would be displayed here
-            </p>
-          </div>
-        )} */}
-      {/*  <div className=' w-full flex items-center justify-center'>
-        <div className="flex flex-col gap-4">
-           <Card 
-          style={{
-            // width:"500px",
-            // height:"500px",
-            display:"flex"
-            ,alignItems:"center",
-            justifyContent:"center"
-          }}
-          styles={{body:{
-            padding:0
-          }}}>
-          
-      <Dragger height={300} {...props}>
-    <p className="ant-upload-drag-icon">
-      <InboxOutlined />
-    </p>
-    <p className="ant-upload-text">Click or drag file to this area to upload</p>
-    <p className="ant-upload-hint">
-      Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-      banned files.
-    </p>
-  </Dragger>
-      </Card> 
-    </div>
-        </div>*/}
   </>
-
   )
 }
  

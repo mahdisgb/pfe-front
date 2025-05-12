@@ -41,7 +41,7 @@ const Enrollment = () => {
   const { courseId } = useParams();
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
-  const {data:user}=useGetIdentity();
+  const {data:user}=useGetIdentity<any>();
 
   const [form] = Form.useForm<PaymentFormValues>();
   const {data:course}=useOne({
@@ -73,7 +73,7 @@ const Enrollment = () => {
           })
       // Simulate payment processing
       message.success(`Successfully enrolled in ${course?.data?.title}`);
-    //   navigate(`/course/${courseId}`);
+      navigate(`/course/${courseId}`);
     } catch (error) {
       message.error("Enrollment failed. Please try again.");
     } finally {

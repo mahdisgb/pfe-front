@@ -1,5 +1,5 @@
 import { Layout, Menu } from 'antd';
-import { useGetIdentity } from '@refinedev/core';
+import { useGetIdentity, useTranslation } from '@refinedev/core';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   BookOutlined, 
@@ -22,6 +22,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
   const { data: user } = useGetIdentity<any>();
   const navigate = useNavigate();
   const location = useLocation();
+  const { translate: t } = useTranslation();
 
   const getMenuItems = () => {
     const commonItems = [
@@ -84,9 +85,9 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       }
     ];
 
-    if (user?.role?.includes('admin')) {
+    if (user?.roles?.includes('admin')) {
       return [...commonItems, ...adminItems];
-    } else if (user?.role?.includes('professor')) {
+    } else if (user?.roles?.includes('professor')) {
       return [...commonItems, ...professorItems];
     } else {
       return [...commonItems, ...studentItems];
@@ -108,6 +109,11 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       </Sider>
       <Layout>
         <Content style={{ margin: '24px 16px', padding: 24,  }}>
+          <div className="text-center mb-8">
+            {/* <h1 className="text-2xl font-bold text-gray-900">
+              {t('auth.loginTitle')}
+            </h1> */}
+          </div>
           {children}
         </Content>
       </Layout>

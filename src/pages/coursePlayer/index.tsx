@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import ReactPlayer from 'react-player';
-import { useList, useOne } from '@refinedev/core';
+import { useList, useOne, useTranslation } from '@refinedev/core';
 import { Link, useParams } from 'react-router-dom';
 import { VideoPlayer } from '@/components/VideoPlayer';
 
@@ -15,20 +15,24 @@ declare global {
 }
 const {Sider} = Layout;
 export const Coursereplay = () => {
+  const { translate: t } = useTranslation();
+  
   return (
     <div className="relative w-full aspect-video bg-black">
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-white text-center">
-          <img src="/lovable-uploads/aeaef32e-8be8-40c3-95d7-f04777f72ffc.png" 
-               alt="Course content" 
-               className="max-w-md mx-auto rounded-lg shadow-lg" />
+          <img 
+            src="/lovable-uploads/aeaef32e-8be8-40c3-95d7-f04777f72ffc.png" 
+            alt={t('coursePlayer.courseContent')} 
+            className="max-w-md mx-auto rounded-lg shadow-lg" 
+          />
         </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 bg-black/50 p-4">
         <div className="flex items-center justify-between text-white">
           <div className="flex items-center gap-4">
             <Button type="text" icon={<CaretRightOutlined />} className="text-white" />
-            <span>00:00 / 00:00</span>
+            <span>{t('coursePlayer.timeProgress')}</span>
           </div>
           <div className="flex items-center gap-4">
             <Button type="text" icon={<SoundOutlined />} className="text-white" />
@@ -41,59 +45,60 @@ export const Coursereplay = () => {
   );
 };
 
-
-const items: MenuProps['items'] = [
-  {
-    key: '1',
-    label: 'المقدمة',
-    children:[{
-        key:"20",
-        label:"whuy"
-    }]
-  },
-  {
-    key: '2',
-    label: 'الوحدة: العملية',
-  },
-  {
-    key: '3',
-    label: 'الوحدة : التجارة الالكترونية',
-  },
-  {
-    key: '4',
-    label: 'الوحدة : المتاجر الالكترونية',
-  },
-  {
-    key: '5',
-    label: 'الوحدة : خبايا البحث عن منتجات',
-  },
-  {
-    key: '6',
-    label: 'الوحدة: ابدأ في تحقيق الارباح في دول الخليج',
-  },
-  {
-    key: '7',
-    label: 'الوحدة : ادارة المخزون',
-  },
-  {
-    key: '8',
-    label: 'الوحدة: اساسيات اعلانات الفايسبول',
-  },
-  {
-    key: '9',
-    label: 'الوحدة: التسويق والبيع',
-  },
-  {
-    key: '10',
-    label: 'الوحدة : مؤشرات الأداء الرئيسية للدفع (COD KPIs) عند التسليم',
-  },
-];
-
 const CourseSidebar = () => {
+  const { translate: t } = useTranslation();
+  
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: t('coursePlayer.introduction'),
+      children: [{
+        key: "20",
+        label: t('coursePlayer.why')
+      }]
+    },
+    {
+      key: '2',
+      label: t('coursePlayer.unit1'),
+    },
+    {
+      key: '3',
+      label: t('coursePlayer.unit2'),
+    },
+    {
+      key: '4',
+      label: t('coursePlayer.unit3'),
+    },
+    {
+      key: '5',
+      label: t('coursePlayer.unit4'),
+    },
+    {
+      key: '6',
+      label: t('coursePlayer.unit5'),
+    },
+    {
+      key: '7',
+      label: t('coursePlayer.unit6'),
+    },
+    {
+      key: '8',
+      label: t('coursePlayer.unit7'),
+    },
+    {
+      key: '9',
+      label: t('coursePlayer.unit8'),
+    },
+    {
+      key: '10',
+      label: t('coursePlayer.unit9'),
+    },
+  ];
+
   return (
     <div className="w-80 h-screen bg-[#2d1b69] text-white overflow-y-auto">
       <div className="p-4 border-b border-white/10">
-        <h2 className="text-xl font-bold">المفيد في التجارة الالكترونية - 100% مجانا</h2>
+        <h2 className="text-xl font-bold">{t('coursePlayer.title')}</h2>
       </div>
       <Menu
         mode="inline"
@@ -106,11 +111,11 @@ const CourseSidebar = () => {
   );
 };
 
-
 export const CoursePlayer = () => {
+  const { translate: t } = useTranslation();
   const [currentLesson, setCurrentLesson] = useState<any>();
   const [progress, setProgress] = useState(77);
-  const[currentVideo,setCurrentVideo]=useState("");
+  const [currentVideo, setCurrentVideo] = useState("");
   const { id } = useParams();
 
   const {data:lessons,isFetched:lessonsFetched} = useList({
@@ -183,11 +188,11 @@ export const CoursePlayer = () => {
         
         >
           {/* Course title */}
-          <div className="p-4 border-b ">
+          <div className="p-4 border-b">
             <Link to={`/course/${id}`}>
             <div className="flex items-center mb-4">
               <LeftOutlined className="h-4 w-4" />
-              <span className="mr-2">Back to course</span>
+              <span className="mr-2">{t('coursePlayer.backToCourse')}</span>
             </div>
             </Link>
             <Typography.Title level={4} style={{ textAlign: 'right' }}>
@@ -223,5 +228,7 @@ export const CoursePlayer = () => {
       </div>
   );
 };
+
+export default CourseSidebar;
 
 

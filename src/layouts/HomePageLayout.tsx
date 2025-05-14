@@ -1,21 +1,21 @@
-import { FC, PropsWithChildren, useState } from "react";
-import Sider from "@/components/Sider";
-import { CanAccess, useResource } from "@refinedev/core";
-import {Page403} from "@/pages";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import React from 'react';
+import { useTranslation } from '@refinedev/core';
+import { Layout } from 'antd';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
-const HomePageLayout: FC<PropsWithChildren> = ({
-  children,
-}: PropsWithChildren) => {
-  const { resource } = useResource();
-  const [showsider,setShowsider] = useState(true);
+const { Content } = Layout;
+
+export const HomePageLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { translate: t } = useTranslation();
+
   return (
-   <>
-   <Header />
-    {children}
-   </>
+    <Layout className="min-h-screen">
+      <Header />
+      <Content className="flex-1">
+        {children}
+      </Content>
+      <Footer />
+    </Layout>
   );
 };
-
-export default HomePageLayout;

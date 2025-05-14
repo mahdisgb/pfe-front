@@ -1,4 +1,3 @@
-
 import { 
   Users, 
   Clock, 
@@ -41,7 +40,7 @@ import {
 } from "@ant-design/icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useRef, useState } from "react";
-import { useGetIdentity, useList, useOne } from "@refinedev/core";
+import { useGetIdentity, useList, useOne, useTranslation } from "@refinedev/core";
 import dayjs from "dayjs";
 
 const { Title, Text, Paragraph } = Typography;
@@ -51,6 +50,7 @@ const { TabPane } = Tabs;
 const { Panel } = Collapse;
 
 export const CourseDetail = () => {
+  const { translate: t } = useTranslation();
   const{data:user}=useGetIdentity<any>()
   const { id } = useParams();
   const{data:isEnrolled}=useOne({
@@ -86,11 +86,11 @@ export const CourseDetail = () => {
   if (!course) {
     return (
       <div className="container mx-auto py-12 px-4 text-center">
-        <Title level={3}>Course not found</Title>
-        <Paragraph className="mb-6">The course you're looking for doesn't exist or has been removed.</Paragraph>
+        <Title level={3}>{t('course.notFound.title')}</Title>
+        <Paragraph className="mb-6">{t('course.notFound.description')}</Paragraph>
         <Link to="/courses">
           <Button icon={<ArrowLeftOutlined />}>
-            Back to Courses
+            {t('common.backToCourses')}
           </Button>
         </Link>
       </div>
@@ -99,7 +99,7 @@ export const CourseDetail = () => {
 
 
   const handleDownload = (materialName: string) => {
-    messageApi.success(`${materialName} is being downloaded.`);
+    messageApi.success(t('course.download.success'));
   };
 
   return (
@@ -110,7 +110,7 @@ export const CourseDetail = () => {
         <div className="absolute inset-0">
           <img 
             src={course?.data?.thumbnail} 
-            // alt={course?.title} 
+            alt={course?.data?.title}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30" />
@@ -118,19 +118,17 @@ export const CourseDetail = () => {
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white">
           <Link to="/courses" className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors">
             <ArrowLeftOutlined className="mr-2" />
-            Back to Courses
+            {t('common.backToCourses')}
           </Link>
-          {/* <Title level={1} className="text-white mb-2">{course?.title}</Title> */}
           <Space className="flex justify-between items-center">
-           
-          <Title level={1} style={{color:"white"}}>{course?.data?.title}</Title>
-          {isEnrolled?.data.hasAccess ? null:
-          <Button
-          size="large"
-          type="primary"
-          onClick={()=>navigate(`/enrollment/${course?.data?.id}`)}>
-            Enroll
-          </Button>}
+            <Title level={1} style={{color:"white"}}>{course?.data?.title}</Title>
+            {isEnrolled?.data.hasAccess ? null:
+            <Button
+            size="large"
+            type="primary"
+            onClick={()=>navigate(`/enrollment/${course?.data?.id}`)}>
+              {t('common.enroll')}
+            </Button>}
           </Space>
         </div>
       </div>
@@ -141,7 +139,7 @@ export const CourseDetail = () => {
           <div className="lg:col-span-2">
             {/* Course? Description */}
             <div className="mb-8">
-              <Title level={3}>About This Course</Title>
+              <Title level={3}>{t('course.aboutCourse')}</Title>
               <Paragraph className="text-gray-600">{course?.data?.description}</Paragraph>
             </div>
 
@@ -199,7 +197,7 @@ export const CourseDetail = () => {
                   // alt={course?.professor.name}
                 />
                 <div>
-                  <Title level={4} className="!mb-0">Your Instructor</Title>
+                  <Title level={4} className="!mb-0">{t('course.yourInstructor')}</Title>
                   {/* <Text type="secondary">{course?.professor.name}</Text> */}
                 </div>
               </div>

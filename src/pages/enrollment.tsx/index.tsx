@@ -24,7 +24,7 @@ import {
   UserOutlined 
 } from "@ant-design/icons";
 import type { FormInstance } from "antd/es/form";
-import { useCreate, useGetIdentity, useOne } from "@refinedev/core";
+import { useCreate, useGetIdentity, useOne, useTranslation } from "@refinedev/core";
 
 const { Title, Text } = Typography;
 
@@ -42,6 +42,7 @@ const Enrollment = () => {
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
   const {data:user}=useGetIdentity<any>();
+  const { translate: t } = useTranslation();
 
   const [form] = Form.useForm<PaymentFormValues>();
   const {data:course}=useOne({
@@ -107,16 +108,16 @@ const Enrollment = () => {
     <div className="container mx-auto py-8 px-4 md:px-6">
       <Link to={`/course/${courseId}`}>
         <Button type="link" icon={<ArrowLeftOutlined />}>
-          Back to Course Details
+          {t('common.backToCourses')}
         </Button>
       </Link>
       
-      <Title level={2} className="mb-8">Enroll in Course</Title>
+      <Title level={2} className="mb-8">{t('enrollment.title')}</Title>
       
       <Row gutter={[24, 24]}>
         {/* Course Summary */}
         <Col xs={24} lg={8}>
-          <Card title="Course Summary">
+          <Card title={t('enrollment.courseSummary')}>
             <div className="w-full aspect-video rounded-lg overflow-hidden mb-4">
               <img 
                 src={course?.data?.thumbnail} 
@@ -134,13 +135,13 @@ const Enrollment = () => {
               <div>
                 <Text strong>{course?.data?.professor.firstName}</Text>
                 <br />
-                <Text type="secondary">Professor</Text>
+                <Text type="secondary">{t('enrollment.professor')}</Text>
               </div>
             </div>
             
             <div className="flex flex-wrap gap-2 mb-4">
               <Tag icon={<BookOutlined />}>
-                {course?.data?.lessonCount} lessons
+                {course?.data?.lessonCount} {t('course.lessons')}
               </Tag>
               <Tag icon={<ClockCircleOutlined />}>
                 {/* {course?.data?.estimatedTime} */}
@@ -153,7 +154,7 @@ const Enrollment = () => {
             <Divider />
             
             <div className="flex justify-between">
-              <Text strong>Course Price:</Text>
+              <Text strong>{t('enrollment.coursePrice')}</Text>
               <Text strong className="text-purple-600">$49.99</Text>
             </div>
           </Card>
@@ -165,7 +166,7 @@ const Enrollment = () => {
             title={
               <span>
                 <CreditCardOutlined className="mr-2" />
-                Payment Details
+                {t('enrollment.paymentDetails')}
               </span>
             }
           >
@@ -179,38 +180,38 @@ const Enrollment = () => {
                 <Col xs={24} md={12}>
                   <Form.Item
                     name="fullName"
-                    label="Full Name"
-                    rules={[{ required: true, message: "Please enter your full name" }]}
+                    label={t('enrollment.fullName')}
+                    rules={[{ required: true, message: t('enrollment.nameRequired') }]}
                   >
-                    <Input placeholder="John Doe" />
+                    <Input placeholder={t('enrollment.fullNamePlaceholder')} />
                   </Form.Item>
                 </Col>
                 
                 <Col xs={24} md={12}>
                   <Form.Item
                     name="email"
-                    label="Email"
+                    label={t('enrollment.email')}
                     rules={[
-                      { required: true, message: "Please enter your email" },
-                    //   { type: "email", message: "Please enter a valid email" }
+                      { required: true, message: t('enrollment.emailRequired') },
+                      { type: "email", message: t('enrollment.emailInvalid') }
                     ]}
                   >
-                    <Input placeholder="john.doe@example.com" />
+                    <Input placeholder={t('enrollment.emailPlaceholder')} />
                   </Form.Item>
                 </Col>
               </Row>
               
               <Form.Item
                 name="cardNumber"
-                label="Card Number"
+                label={t('enrollment.cardNumber')}
                 rules={[
-                  { required: true, message: "Please enter card number" },
-                //   { min: 16, message: "Card number must be at least 16 digits" }
+                  { required: true, message: t('enrollment.cardNumberRequired') },
+                  { min: 16, message: t('enrollment.cardNumberInvalid') }
                 ]}
               >
                 <Input 
-                type="number"
-                  placeholder="1234 5678 9012 3456"
+                  type="number"
+                  placeholder={t('enrollment.cardNumberPlaceholder')}
                   maxLength={19}
                   onChange={(e) => {
                     const value = formatCardNumber(e.target.value);
@@ -223,14 +224,14 @@ const Enrollment = () => {
                 <Col xs={24} md={12}>
                   <Form.Item
                     name="cardExpiry"
-                    label="Expiry Date"
+                    label={t('enrollment.expiryDate')}
                     rules={[
-                      { required: true, message: "Please enter expiry date" },
-                      { pattern: /^(0[1-9]|1[0-2])\/([0-9]{2})$/, message: "Use MM/YY format" }
+                      { required: true, message: t('enrollment.expiryDateRequired') },
+                      { pattern: /^(0[1-9]|1[0-2])\/([0-9]{2})$/, message: t('enrollment.expiryDateInvalid') }
                     ]}
                   >
                     <Input 
-                      placeholder="MM/YY"
+                      placeholder={t('enrollment.expiryDatePlaceholder')}
                       maxLength={5}
                       onChange={(e) => {
                         let value = e.target.value.replace(/\D/g, '');
@@ -246,14 +247,14 @@ const Enrollment = () => {
                 <Col xs={24} md={12}>
                   <Form.Item
                     name="cardCvv"
-                    label="CVV"
+                    label={t('enrollment.cvv')}
                     rules={[
-                      { required: true, message: "Please enter CVV" },
-                      { pattern: /^[0-9]{3}$/, message: "CVV must be 3 digits" }
+                      { required: true, message: t('enrollment.cvvRequired') },
+                      { pattern: /^[0-9]{3}$/, message: t('enrollment.cvvInvalid') }
                     ]}
                   >
                     <Input 
-                      placeholder="123"
+                      placeholder={t('enrollment.cvvPlaceholder')}
                       maxLength={3}
                     />
                   </Form.Item>
@@ -269,10 +270,10 @@ const Enrollment = () => {
                   block
                   className="bg-purple-600 hover:bg-purple-700"
                 >
-                  Complete Enrollment • $49.99
+                  {t('enrollment.completeEnrollment')} • $49.99
                 </Button>
                 <Text type="secondary" className="block text-center mt-4 text-xs">
-                  By clicking "Complete Enrollment", you agree to our Terms of Service and Privacy Policy
+                  {t('enrollment.termsAgreement')}
                 </Text>
               </Form.Item>
             </Form>

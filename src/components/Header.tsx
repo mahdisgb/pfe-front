@@ -45,6 +45,7 @@ const Header = () => {
 
   const { i18n } = usei18nextTranslation();
   const { getLocale, changeLocale } = useTranslation();
+  const { translate: t } = useTranslation();
   const currentLocale = getLocale();
 
   useEffect(() => {
@@ -100,7 +101,7 @@ const Header = () => {
       return [
         {
           key: "no-results",
-          label: <div className="p-2 text-gray-500">No results found</div>,
+          label: <div className="p-2 text-gray-500">{t('search.noResults')}</div>,
         },
       ];
     }
@@ -109,7 +110,7 @@ const Header = () => {
       items.push({
         type: "group",
         key: "courses-group",
-        label: "Courses",
+        label: t('search.courses'),
         children: searchResults.courses.map((course: Course) => ({
           key: `course-${course.id}`,
           label: (
@@ -137,7 +138,7 @@ const Header = () => {
       items.push({
         type: "group",
         key: "lessons-group",
-        label: "Lessons",
+        label: t('search.lessons'),
         children: searchResults.lessons.map((lesson: Lesson) => ({
           key: `lesson-${lesson.id}`,
           label: (
@@ -167,8 +168,15 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="flex h-[65px] bg-[#bbb] justify-around items-center">
-        <div className="flex items-center gap-3">
+      <nav 
+      style={{ 
+        background: "linear-gradient(135deg, #1e55a9 0%, #0e3b7c 100%)",
+        display:"flex",
+        height:"65px",
+        justifyContent:"space-around",
+        alignItems:"center"
+      }}>
+                <div className="flex items-center gap-3">
           <div className="logo">
             <Link to="#">
               <img
@@ -178,15 +186,30 @@ const Header = () => {
               />
             </Link>
           </div>
-          <ul className="flex gap-2">
-            <li className="hover:text-[#f8f8f8] underline">
-              <Link to="/">Home</Link>
+          <ul className="flex gap-2 ">
+            <li >
+              <Link
+              className="hover:text-[#f8f8f8] text-[20px] text-[#bbb] py-1 active:text-white"
+              style={{
+                borderBottom:"2px solid white"
+              }}
+              to="/">{t('navigation.home')}</Link>
             </li>
-            <li className="hover:text-[#f8f8f8] underline">
-              <Link to="/courses">Courses</Link>
+            <li >
+              <Link
+              style={{
+                borderBottom:"2px solid white"
+              }}
+              className="hover:text-[#f8f8f8] text-[20px] text-[#bbb] py-1 active:text-white"
+              to="/courses">{t('navigation.courses')}</Link>
             </li>
-            <li className="hover:text-[#f8f8f8] underline">
-              <Link to="#">Our services</Link>
+            <li >
+              <Link
+              style={{
+                borderBottom:"2px solid white"
+              }}
+              className="hover:text-[#f8f8f8] text-[20px] text-[#bbb] py-1 active:text-white"
+              to="#">{t('common.ourServices')}</Link>
             </li>
           </ul>
         </div>
@@ -199,7 +222,7 @@ const Header = () => {
           >
             <Input
               value={search}
-              placeholder="Search courses and lessons..."
+              placeholder={t('search.placeholder')}
               allowClear
               onChange={handleSearch}
               style={{ width: 304 }}
@@ -226,9 +249,9 @@ const Header = () => {
             </Link>
           ) : null}
           {!user ? (
-            <Button onClick={() => go({ to: "/login" })}>Register now</Button>
+            <Button onClick={() => go({ to: "/login" })}>{t('common.register')}</Button>
           ) : null}
-          {user ? <Button onClick={() => logout()}>Logout</Button> : null}
+          {user ? <Button onClick={() => logout()}>{t('common.logout')}</Button> : null}
         </div>
       </nav>
     </header>

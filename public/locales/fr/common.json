@@ -15,7 +15,7 @@
         "buttons": {
           "submit": "Login",
           "forgotPassword": "Forgot password?",
-          "noAccount": "Don’t have an account?",
+          "noAccount": "Don't have an account?",
           "rememberMe": "Remember me"
         }
       },
@@ -155,5 +155,151 @@
         "price": "price",
         "toBuy": "to buy"
       }
+    },
+    "common": {
+      "welcome": "",
+      "backToCourses": "",
+      "ourServices": "",
+      "register": "",
+      "logout": "",
+      "getStarted": ""
+    },
+    "navigation": {
+      "home": "",
+      "courses": "",
+      "profile": ""
+    },
+    "auth": {
+      "loginTitle": "",
+      "registerTitle": "",
+      "email": "",
+      "password": "",
+      "firstName": "",
+      "lastName": "",
+      "userType": "",
+      "student": "",
+      "professor": "",
+      "login": "",
+      "register": "",
+      "emailRequired": "",
+      "emailInvalid": "",
+      "passwordRequired": "",
+      "firstNameRequired": "",
+      "lastNameRequired": "",
+      "userTypeRequired": "",
+      "selectUserType": "",
+      "loginSuccess": "",
+      "loginError": "",
+      "registerSuccess": "",
+      "registerError": ""
+    },
+    "profile": {
+      "userType": "",
+      "viewDashboard": "",
+      "student": {
+        "dashboard": "",
+        "enrolledCourses": "",
+        "learningHours": "",
+        "completedCourses": "",
+        "noCourses": ""
+      },
+      "professor": {
+        "dashboard": "",
+        "totalCourses": "",
+        "totalStudents": "",
+        "totalRevenue": ""
+      }
+    },
+    "course": {
+      "lessons": "",
+      "tags": "",
+      "goToCourse": "",
+      "notFound": {
+        "title": "",
+        "description": ""
+      },
+      "aboutCourse": "",
+      "yourInstructor": "",
+      "download": {
+        "success": ""
+      }
+    },
+    "coursePlayer": {
+      "title": "",
+      "backToCourse": "",
+      "courseContent": "",
+      "timeProgress": "",
+      "introduction": "",
+      "why": "",
+      "unit1": "",
+      "unit2": "",
+      "unit3": "",
+      "unit4": "",
+      "unit5": "",
+      "unit6": "",
+      "unit7": "",
+      "unit8": "",
+      "unit9": ""
+    },
+    "enrollment": {
+      "title": "",
+      "courseSummary": "",
+      "professor": "",
+      "coursePrice": "",
+      "paymentDetails": "",
+      "fullName": "",
+      "fullNamePlaceholder": "",
+      "email": "",
+      "emailPlaceholder": "",
+      "cardNumber": "",
+      "cardNumberPlaceholder": "",
+      "expiryDate": "",
+      "expiryDatePlaceholder": "",
+      "cvv": "",
+      "cvvPlaceholder": "",
+      "nameRequired": "",
+      "emailRequired": "",
+      "emailInvalid": "",
+      "cardNumberRequired": "",
+      "cardNumberInvalid": "",
+      "expiryDateRequired": "",
+      "expiryDateInvalid": "",
+      "cvvRequired": "",
+      "cvvInvalid": "",
+      "completeEnrollment": "",
+      "termsAgreement": ""
+    },
+    "videoPlayer": {
+      "loading": ""
+    },
+    "search": {
+      "placeholder": ""
+    },
+    "forms": {
+      "course": {
+        "create": "",
+    }
+  },
+  "home": {
+    "features": {
+      "title": "",
+      "qualityCourses": {
+        "title": "",
+        "description": ""
+      },
+      "expertInstructors": {
+        "title": "",
+        "description": ""
+      },
+      "certification": {
+        "title": "",
+        "description": ""
+      }
+    },
+    "cta": {
+      "title": "",
+      "description": "",
+      "button": ""
     }
   }
+}

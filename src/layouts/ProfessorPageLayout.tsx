@@ -1,34 +1,20 @@
-import SideBar from "@/pages/profile/professor/Components/Sidebar";
-import { Layout, theme } from "antd"
-const { Content } = Layout
-import { PropsWithChildren } from "react"
+import { useTranslation } from '@refinedev/core';
+import { Layout } from 'antd';
+import Sidebar from '../pages/profile/professor/Components/Sidebar';
 
-type ProfessorPageLayoutProps = {
-    children: any,
-} & PropsWithChildren
-export default function ProfessorPageLayout(
-    {children}:ProfessorPageLayoutProps) {
+const { Content, Sider } = Layout;
+
+export const ProfessorPageLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { translate: t } = useTranslation();
+
   return (
-      <Layout
-      style={
-        {
-            height:"calc(100vh - 65px)"
-        }
-      }
-      >
-        <SideBar />
-        <Layout >
-          <Content
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-              backgroundColor: "#f7f7f7",
-            }}
-          >
-            {children}
-          </Content>
-        </Layout>
-      </Layout>
+    <Layout className="min-h-screen">
+      <Sider width={250} className="bg-white">
+        <Sidebar />
+      </Sider>
+      <Content className="p-6">
+        {children}
+      </Content>
+    </Layout>
   );
-}
+};

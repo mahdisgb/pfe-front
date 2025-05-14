@@ -28,14 +28,14 @@ import {
   CoursePage,
   CoursePlayer
 } from "./pages";
-import HomePageLayout from "./layouts/HomePageLayout";
+import { HomePageLayout } from "./layouts/HomePageLayout";
 import { ProfilePage } from "./pages/profile";
 import { StudentProfile } from "./pages/profile/student";
 import { ProfessorCoursesPage } from "./pages/profile/professor/ProfessorCoursesPage";
 import { ProfessorLessonsPage } from "./pages/profile/professor/ProfessorLessonsPage";
 import Enrollment from "./pages/enrollment.tsx";
-import AdminDashboardPage from "./pages/profile/admin/AdminDashboardPage";
-import AdminSettingsPage from "./pages/profile/admin/AdminSettingsPage";
+import { AdminDashboardPage } from "./pages/profile/admin/AdminDashboardPage";
+import { AdminSettingsPage } from "./pages/profile/admin/AdminSettingsPage";
 import AdminRequestsPage from "./pages/profile/admin/AdminRequestsPage";
 import StudentCoursesPage from "./pages/profile/student/StudentCoursesPage";
 import "./i18n";

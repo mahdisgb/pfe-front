@@ -1,0 +1,263 @@
+{
+    "pages":{
+        
+    },
+    "common": {
+        "welcome": "",
+        "getStarted": "",
+        "goHome": "",
+        "backToCourses": "",
+        "enroll": "",
+        "aboutCourse": "",
+        "courseContent": "",
+        "faq": "",
+        "yourInstructor": "",
+        "copyright": "",
+        "register": "",
+        "logout": "",
+        "whoAreWe": "",
+        "ourServices": ""
+    },
+    "courses": {
+        "filters": {
+            "title": "",
+            "resetAll": "",
+            "searchPlaceholder": "",
+            "category": "",
+            "sortBy": "",
+            "sortOptions": {
+                "mostPopular": "",
+                "highestRated": "",
+                "newest": "",
+                "priceHighToLow": "",
+                "priceLowToHigh": ""
+            }
+        },
+        "results": {
+            "showing": "",
+            "noCourses": "",
+            "noCoursesDescription": ""
+        }
+    },
+    "course": {
+        "notFound": {
+            "title": "",
+            "description": ""
+        },
+        "download": {
+            "success": ""
+        },
+        "player": {
+            "play": "",
+            "pause": "",
+            "volume": "",
+            "settings": "",
+            "fullscreen": ""
+        }
+    },
+    "footer": {
+        "company": {
+            "title": "",
+            "aboutUs": "",
+            "careers": "",
+            "blog": "",
+            "press": ""
+        },
+        "resources": {
+            "title": "",
+            "helpCenter": "",
+            "contactUs": "",
+            "termsOfService": "",
+            "privacyPolicy": ""
+        },
+        "subscribe": {
+            "title": "",
+            "description": "",
+            "emailPlaceholder": "",
+            "button": ""
+        },
+        "copyright": ""
+    },
+    "navigation": {
+        "home": "",
+        "categories": "",
+        "courses": "",
+        "lessons": "",
+        "profile": ""
+    },
+    "errors": {
+        "404": "",
+        "403": ""
+    },
+    "auth": {
+        "loginTitle": "",
+        "registerTitle": "",
+        "email": "",
+        "password": "",
+        "firstName": "",
+        "lastName": "",
+        "userType": "",
+        "student": "",
+        "professor": "",
+        "login": "",
+        "register": "",
+        "emailRequired": "",
+        "emailInvalid": "",
+        "passwordRequired": "",
+        "firstNameRequired": "",
+        "lastNameRequired": "",
+        "userTypeRequired": "",
+        "selectUserType": "",
+        "loginSuccess": "",
+        "loginError": "",
+        "registerSuccess": "",
+        "registerError": ""
+    },
+    "profile": {
+        "userType": "",
+        "viewDashboard": "",
+        "student": {
+            "title": "",
+            "enrolledCourses": "",
+            "achievements": "",
+            "history": "",
+            "completedOn": "",
+            "grade": "",
+            "dashboard": "",
+            "learningHours": "",
+            "completedCourses": "",
+            "noCourses": ""
+        },
+        "professor": {
+            "title": "",
+            "courses": "",
+            "lessons": "",
+            "createNewLesson": "",
+            "editLesson": "",
+            "filterByCourse": "",
+            "selectLessonToEdit": "",
+            "deleteLesson": {
+                "title": "",
+                "confirm": "",
+                "success": "",
+                "error": ""
+            },
+            "toggleActive": {
+                "success": "",
+                "error": ""
+            },
+            "dashboard": "",
+            "totalCourses": "",
+            "totalStudents": "",
+            "totalRevenue": ""
+        },
+        "admin": {
+            "title": "",
+            "settings": "",
+            "requests": "",
+            "processRequest": "",
+            "selectRequestToProcess": "",
+            "cancel": "",
+            "submit": ""
+        }
+    },
+    "forms": {
+        "course": {
+            "create": "",
+            "edit": "",
+            "title": "",
+            "description": "",
+            "category": "",
+            "price": "",
+            "titleRequired": "",
+            "descriptionRequired": ""
+        },
+        "lesson": {
+            "title": "",
+            "description": "",
+            "course": "",
+            "thumbnail": "",
+            "video": ""
+        }
+    },
+    "search": {
+        "placeholder": "",
+        "noResults": "",
+        "courses": "",
+        "lessons": ""
+    },
+    "modal": {
+        "cancel": "",
+        "save": ""
+    },
+    "coursePlayer": {
+        "title": "",
+        "backToCourse": "",
+        "courseContent": "",
+        "timeProgress": "",
+        "introduction": "",
+        "why": "",
+        "unit1": "",
+        "unit2": "",
+        "unit3": "",
+        "unit4": "",
+        "unit5": "",
+        "unit6": "",
+        "unit7": "",
+        "unit8": "",
+        "unit9": ""
+    },
+    "enrollment": {
+        "title": "",
+        "courseSummary": "",
+        "professor": "",
+        "coursePrice": "",
+        "paymentDetails": "",
+        "fullName": "",
+        "fullNamePlaceholder": "",
+        "email": "",
+        "emailPlaceholder": "",
+        "cardNumber": "",
+        "cardNumberPlaceholder": "",
+        "expiryDate": "",
+        "expiryDatePlaceholder": "",
+        "cvv": "",
+        "cvvPlaceholder": "",
+        "nameRequired": "",
+        "emailRequired": "",
+        "emailInvalid": "",
+        "cardNumberRequired": "",
+        "cardNumberInvalid": "",
+        "expiryDateRequired": "",
+        "expiryDateInvalid": "",
+        "cvvRequired": "",
+        "cvvInvalid": "",
+        "completeEnrollment": "",
+        "termsAgreement": ""
+    },
+    "videoPlayer": {
+        "loading": ""
+    },
+    "home": {
+        "features": {
+            "title": "",
+            "qualityCourses": {
+                "title": "",
+                "description": ""
+            },
+            "expertInstructors": {
+                "title": "",
+                "description": ""
+            },
+            "certification": {
+                "title": "",
+                "description": ""
+            }
+        },
+        "cta": {
+            "title": "",
+            "description": "",
+            "button": ""
+        }
+    }
+}

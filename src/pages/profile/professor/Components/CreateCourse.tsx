@@ -1,5 +1,5 @@
 import { InboxOutlined, UploadOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { useCreate, useGetIdentity, useList, useOne, useUpdate } from "@refinedev/core";
+import { useCreate, useGetIdentity, useList, useOne, useUpdate, useTranslation } from "@refinedev/core";
 import {
   Button,
   Card,
@@ -44,6 +44,7 @@ export const CreateCourse = ({ open, onCancel, selectedCourseId }: CreateCourseP
         }
       })
     const fileRef = React.useRef(null);
+    const { translate: t } = useTranslation();
     useEffect(()=>{
       if(isFetched && course){
         console.log(course)
@@ -150,14 +151,16 @@ export const CreateCourse = ({ open, onCancel, selectedCourseId }: CreateCourseP
 
   return (
     <Modal
-    title={selectedCourseId ? "Edit Course" : "Create Course"}
+    title={selectedCourseId ? t('forms.course.edit') : t('forms.course.create')}
       open={open}
       onCancel={handleCancel}
       maskClosable={false}
       footer={[
         <div className="flex items-center justify-end gap-2">
-            <Button type="default" onClick={onCancel}>Cancel</Button>
-            <Button type="primary" disabled={uploading} loading={uploading} onClick={handleSubmit}>Create</Button>
+            <Button type="default" onClick={onCancel}>{t('modal.cancel')}</Button>
+            <Button type="primary" disabled={uploading} loading={uploading} onClick={handleSubmit}>
+                {selectedCourseId ? t('modal.save') : t('forms.course.create')}
+            </Button>
         </div>
       ]}
       width={500}
@@ -175,20 +178,20 @@ export const CreateCourse = ({ open, onCancel, selectedCourseId }: CreateCourseP
         gap:"0px"
       }}>
         <Form.Item 
-        rules={[{required:true,message:"Title is required"}]}
-        label="Title" name="title" style={{marginBottom: 8}}>
-          <Input placeholder="Enter course title" />
+        rules={[{required:true,message:t('forms.course.titleRequired')}]}
+        label={t('forms.course.title')} name="title" style={{marginBottom: 8}}>
+          <Input placeholder={t('forms.course.titlePlaceholder')} />
         </Form.Item>
         <Form.Item 
-        rules={[{required:true,message:"Description is required"}]}
-        label="Description" name="description" style={{marginBottom: 8}}>
-          <Input.TextArea placeholder="Enter course description" />
+        rules={[{required:true,message:t('forms.course.descriptionRequired')}]}
+        label={t('forms.course.description')} name="description" style={{marginBottom: 8}}>
+          <Input.TextArea placeholder={t('forms.course.descriptionPlaceholder')} />
         </Form.Item>
         <Form.Item 
-        rules={[{required:true,message:"Category is required"}]}
-        label="Category" name="categoryId" style={{marginBottom: 8}}>
+        rules={[{required:true,message:t('forms.course.categoryRequired')}]}
+        label={t('forms.course.category')} name="categoryId" style={{marginBottom: 8}}>
           <Select
-            placeholder="Select category"
+            placeholder={t('forms.course.categoryPlaceholder')}
           >
             {categories?.data?.map((category:any)=>(
                 <Select.Option value={category.id} key={category.id}>
@@ -198,9 +201,9 @@ export const CreateCourse = ({ open, onCancel, selectedCourseId }: CreateCourseP
           </Select>
         </Form.Item>
         <Form.Item 
-        rules={[{required:true,message:"Price is required"}]}
-        label="Price (DZD)" name="price" style={{marginBottom: 8}}>
-          <Input type="number" min={0} placeholder="Enter course price (in DZD)" />
+        rules={[{required:true,message:t('forms.course.priceRequired')}]}
+        label={t('forms.course.price')} name="price" style={{marginBottom: 8}}>
+          <Input type="number" min={0} placeholder={t('forms.course.pricePlaceholder')} />
         </Form.Item>
         <Form.Item label="Thumbnail" name="thumbnail">
           
@@ -223,20 +226,20 @@ export const CreateCourse = ({ open, onCancel, selectedCourseId }: CreateCourseP
         gap:"0px"
       }}>
         <Form.Item 
-        rules={[{required:true,message:"Title is required"}]}
-        label="Title" name="title" style={{marginBottom: 8}}>
-          <Input placeholder="Enter course title" />
+        rules={[{required:true,message:t('forms.course.titleRequired')}]}
+        label={t('forms.course.title')} name="title" style={{marginBottom: 8}}>
+          <Input placeholder={t('forms.course.titlePlaceholder')} />
         </Form.Item>
         <Form.Item 
-        rules={[{required:true,message:"Description is required"}]}
-        label="Description" name="description" style={{marginBottom: 8}}>
-          <Input.TextArea placeholder="Enter course description" />
+        rules={[{required:true,message:t('forms.course.descriptionRequired')}]}
+        label={t('forms.course.description')} name="description" style={{marginBottom: 8}}>
+          <Input.TextArea placeholder={t('forms.course.descriptionPlaceholder')} />
         </Form.Item>
         <Form.Item 
-        rules={[{required:true,message:"Category is required"}]}
-        label="Category" name="categoryId" style={{marginBottom: 8}}>
+        rules={[{required:true,message:t('forms.course.categoryRequired')}]}
+        label={t('forms.course.category')} name="categoryId" style={{marginBottom: 8}}>
           <Select
-            placeholder="Select category"
+            placeholder={t('forms.course.categoryPlaceholder')}
           >
             {categories?.data?.map((category:any)=>(
                 <Select.Option value={category.id} key={category.id}>
@@ -246,9 +249,9 @@ export const CreateCourse = ({ open, onCancel, selectedCourseId }: CreateCourseP
           </Select>
         </Form.Item>
         <Form.Item 
-        rules={[{required:true,message:"Price is required"}]}
-        label="Price (DZD)" name="price" style={{marginBottom: 8}}>
-          <Input type="number" min={0} placeholder="Enter course price (in DZD)" />
+        rules={[{required:true,message:t('forms.course.priceRequired')}]}
+        label={t('forms.course.price')} name="price" style={{marginBottom: 8}}>
+          <Input type="number" min={0} placeholder={t('forms.course.pricePlaceholder')} />
         </Form.Item>
         <Form.Item label="Thumbnail" name="thumbnail">
         

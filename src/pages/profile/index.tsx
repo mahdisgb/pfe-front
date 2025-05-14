@@ -19,15 +19,15 @@ export const ProfilePage = () => {
   }
 
   // Route based on user role
-  if (user.role.includes('student')) {
+  if (user.roles.includes('student')) {
     return <StudentProfile />;
-  } else if (user.role.includes('professor')) {
+  } else if (user.roles.includes('professor')) {
     return <ProfessorCoursesPage />;
   } else {
     // Handle unknown roles
     return (
       <div className="p-4">
-        <h2>Unknown user role: {user.role}</h2>
+        <h2>Unknown user role: {user.roles}</h2>
         <p>Please contact support.</p>
       </div>
     );

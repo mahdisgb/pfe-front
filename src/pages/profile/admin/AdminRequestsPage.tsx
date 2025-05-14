@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useCreate, useDelete, useGetIdentity, useList } from '@refinedev/core';
 import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch } from 'antd';
 import { DeleteOutlined, InboxOutlined, UploadOutlined } from '@ant-design/icons';
-import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
+// import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
 import { TableRowSelection } from 'antd/es/table/interface';
 import { ProcessRequestModal } from './components/ProcessRequestModal';
 const { Dragger } = Upload;

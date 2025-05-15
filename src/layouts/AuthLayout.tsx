@@ -41,12 +41,12 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
         label: 'My Courses',
         onClick: () => navigate('/profile/my-courses')
       },
-      {
-        key: 'achievements',
-        icon: <CheckCircleOutlined />,
-        label: 'Achievements',
-        onClick: () => navigate('/profile/achievements')
-      }
+      // {
+      //   key: 'achievements',
+      //   icon: <CheckCircleOutlined />,
+      //   label: 'Achievements',
+      //   onClick: () => navigate('/profile/achievements')
+      // }
     ];
 
     const professorItems = [

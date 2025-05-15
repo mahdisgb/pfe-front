@@ -83,11 +83,20 @@ const Enrollment = () => {
   };
 
   const formatCardNumber = (value: string) => {
-    return value
-      .replace(/\s/g, '')
-      .match(/.{1,4}/g)
-      ?.join(' ')
-      .substr(0, 19) || '';
+    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    const matches = v.match(/\d{4,16}/g);
+    const match = matches && matches[0] || '';
+    const parts = [];
+
+    for (let i = 0, len = match.length; i < len; i += 4) {
+      parts.push(match.substring(i, i + 4));
+    }
+
+    if (parts.length) {
+      return parts.join(' ');
+    } else {
+      return value;
+    }
   };
   if (!course) {
     return (
@@ -206,16 +215,18 @@ const Enrollment = () => {
                 label={t('enrollment.cardNumber')}
                 rules={[
                   { required: true, message: t('enrollment.cardNumberRequired') },
-                  { min: 16, message: t('enrollment.cardNumberInvalid') }
+                  { pattern: /^[0-9\s]{19}$/, message: t('enrollment.cardNumberInvalid') }
                 ]}
               >
                 <Input 
-                  type="number"
                   placeholder={t('enrollment.cardNumberPlaceholder')}
                   maxLength={19}
                   onChange={(e) => {
-                    const value = formatCardNumber(e.target.value);
-                    form.setFieldValue("cardNumber", value);
+                    const value = e.target.value.replace(/\D/g, '');
+                    if (value.length <= 16) {
+                      const formatted = value.replace(/(\d{4})/g, '$1 ').trim();
+                      form.setFieldValue("cardNumber", formatted);
+                    }
                   }}
                 />
               </Form.Item>

@@ -24,7 +24,7 @@ const StudentCoursesPage = () => {
                 <Link to={`/course/${course.id}`}>
                     <div className="flex justify-between items-start mb-2">
                         <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-md">
-                            {course.category.name}
+                            {/* {course.category.name} */}
                         </span>
                         <div className="flex items-center">
                             <span className="ml-1 text-sm font-medium">{course.rating}</span>
@@ -57,18 +57,18 @@ const StudentCoursesPage = () => {
     return (
         <div className="container mx-auto px-4 py-8">
             <h1 className="text-2xl font-bold mb-6">{t('profile.student.enrolledCourses')}</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Row wrap gutter={[16, 16]}> 
                 {courses?.data && courses?.data?.length > 0 ? courses?.data?.map((course: any) => (
                     <Col span={8}>
                         <CourseCard course={course.course} />
                     </Col>
                 )) : (
                     <Empty 
-                        description={t('profile.student.noCourses')} 
-                        style={{ backgroundColor: "white", width: "100%", padding: "50px 0" }} 
+                    description={t('profile.student.noCourses')} 
+                    style={{ backgroundColor: "white", width: "100%", padding: "50px 0" }} 
                     />
                 )}
-            </div>
+                </Row>
         </div>
     )
 }

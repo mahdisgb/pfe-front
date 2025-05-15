@@ -62,7 +62,7 @@ type CreateCourseProps = {
           title:lesson?.data?.title,
           description:lesson?.data?.description,
           courseId:lesson?.data?.courseId,
-          thumbnail:lesson?.data?.thumbnail
+          // thumbnail:lesson?.data?.thumbnail
         })
       }},[isFetched,lesson])
     // useEffect(()=>{
@@ -81,9 +81,9 @@ type CreateCourseProps = {
                 const values = await form.validateFields();
               
                 const formData = new FormData();
-                if (thumbnailRef.current) {
-                    formData.append('thumbnail', thumbnailRef.current);
-                };
+                // if (thumbnailRef.current) {
+                //     formData.append('thumbnail', thumbnailRef.current);
+                // };
                 if (videoRef.current) {
                     formData.append('video', videoRef.current);
                 };
@@ -215,7 +215,7 @@ type CreateCourseProps = {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item label="Thumbnail" name="thumbnail">
+        {/* <Form.Item label="Thumbnail" name="thumbnail">
             <Upload
           beforeUpload={handleBeforeUpload}
           accept="image/*"
@@ -226,7 +226,7 @@ type CreateCourseProps = {
         >
           <Button icon={<UploadOutlined />}>Select Image</Button>
         </Upload>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item label="video" name="video">
          
          <Upload
@@ -270,7 +270,7 @@ type CreateCourseProps = {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item label="Thumbnail" name="thumbnail">
+        {/* <Form.Item label="Thumbnail" name="thumbnail">
          
             <Upload
           beforeUpload={handleBeforeUpload}
@@ -282,7 +282,7 @@ type CreateCourseProps = {
         >
           <Button icon={<UploadOutlined />}>Select Image</Button>
         </Upload>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item label="video" name="video">
          
          <Upload

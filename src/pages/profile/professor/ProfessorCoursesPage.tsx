@@ -113,7 +113,7 @@ export const ProfessorCoursesPage = () => {
   ];
   const handleToggleActive = (id:number,isActive:boolean) => {
     toggleCourse({
-      resource:"courses/toggle-course",
+      resource:"courses/toggle",
       values:{id,isActive}
     },{
       onSuccess:()=>{

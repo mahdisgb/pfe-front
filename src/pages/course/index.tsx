@@ -146,9 +146,11 @@ export const CourseDetail = () => {
             {/* Course? Lessons */}
             <div className="mb-8">
               <Title level={3}>Course Content</Title>
-              <Collapse accordion className="w-full bg-white">
+              
+              <Collapse accordion className="w-full bg-white" >
                  {lessons?.data?.map((lesson:any, index:any) => (
                    <Panel 
+                   
                     key={lesson.id} 
                     header={
                       <div className="font-medium">
@@ -156,7 +158,8 @@ export const CourseDetail = () => {
                       </div>
                     }
                     >
-                        <Link to={`/courseplayer/${course.data.id}`}>
+                      {isEnrolled?.data.hasAccess ?
+                        <Link to={ `/courseplayer/${course.data.id}`}>
                     <Paragraph className="text-gray-600 mb-2">{lesson.description}</Paragraph>
                     <div className="flex items-center justify-between">
                       <Tag color="blue" className="flex items-center">
@@ -165,9 +168,13 @@ export const CourseDetail = () => {
                       </Tag>
                     </div>
                     </Link>
+                    :
+                    <Paragraph className="text-gray-600 mb-2">{lesson.description}</Paragraph>
+                  }
                   </Panel>
                 ))} 
               </Collapse>
+              
             </div>
 
             {/* FAQs */}

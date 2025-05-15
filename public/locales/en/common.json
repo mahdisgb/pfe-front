@@ -3,7 +3,8 @@
         
     },
     "common": {
-        "welcome": "Welcome to Wajihani",
+        "welcome": "Welcome to Our Learning Platform",
+        "getStarted": "Get Started",
         "goHome": "Go Home",
         "backToCourses": "Back to Courses",
         "enroll": "Enroll",
@@ -12,15 +13,23 @@
         "faq": "Frequently Asked Questions",
         "yourInstructor": "Your Instructor",
         "copyright": "Copyright ©2024",
-        "register": "Register now",
+        "register": "Register",
         "logout": "Logout",
         "whoAreWe": "Who are we",
-        "ourServices": "Our services"
+        "ourServices": "Our Services",
+        "status": "Status",
+        "statuses": {
+            "active": "Active",
+            "inactive": "Inactive"
+        },
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete"
     },
     "courses": {
         "filters": {
             "title": "Filters",
-            "resetAll": "Reset all",
+            "resetAll": "Reset All",
             "searchPlaceholder": "Search courses...",
             "category": "Category",
             "sortBy": "Sort by",
@@ -36,7 +45,9 @@
             "showing": "Showing {{count}} courses",
             "noCourses": "No courses found",
             "noCoursesDescription": "Try adjusting your filters or search terms"
-        }
+        },
+        "students": "students",
+        "enroll": "Enroll Now"
     },
     "course": {
         "notFound": {
@@ -44,7 +55,7 @@
             "description": "The course you're looking for doesn't exist or has been removed."
         },
         "download": {
-            "success": "{{materialName}} is being downloaded."
+            "success": "is being downloaded."
         },
         "player": {
             "play": "Play",
@@ -52,6 +63,17 @@
             "volume": "Volume",
             "settings": "Settings",
             "fullscreen": "Fullscreen"
+        },
+        "lessons": "lessons",
+        "tags": "tags",
+        "goToCourse": "Go to Course",
+        "progress": {
+            "title": "Course Progress",
+            "completedLessons": "{{completed}} of {{total}} lessons completed"
+        },
+        "rating": {
+            "totalRatings": "{{count}} ratings",
+            "stars": "stars"
         }
     },
     "footer": {
@@ -81,26 +103,46 @@
         "home": "Home",
         "categories": "Categories",
         "courses": "Courses",
-        "lessons": "Lessons"
+        "lessons": "Lessons",
+        "profile": "Profile"
     },
     "errors": {
         "404": "404",
         "403": "403"
     },
     "auth": {
-        "login": "Login",
+        "loginTitle": "Sign in to your account",
+        "registerTitle": "Create your account",
+        "email": "Email",
+        "password": "Password",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "userType": "User Type",
+        "student": "Student",
+        "professor": "Professor",
+        "login": "Login In",
         "register": "Register",
-        "forgotPassword": "Forgot Password",
-        "resetPassword": "Reset Password"
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Please enter a valid email",
+        "passwordRequired": "Please enter your password",
+        "firstNameRequired": "Please enter your first name",
+        "lastNameRequired": "Please enter your last name",
+        "userTypeRequired": "Please select your user type",
+        "selectUserType": "Select user type",
+        "loginSuccess": "Successfully logged in",
+        "loginError": "Failed to log in",
+        "registerSuccess": "Successfully registered",
+        "registerError": "Failed to register"
     },
     "profile": {
+        "userType": "User Type",
+        "viewDashboard": "View Dashboard",
         "student": {
             "title": "Student Profile",
             "enrolledCourses": "Enrolled Courses",
-            "achievements": "Achievements",
-            "history": "History",
-            "completedOn": "Completed on",
-            "grade": "Grade: {{grade}}%"
+            "learningHours": "Learning Hours",
+            "completedCourses": "Completed Courses",
+            "noCourses": "No courses found"
         },
         "professor": {
             "title": "Professor Dashboard",
@@ -119,7 +161,11 @@
             "toggleActive": {
                 "success": "Course active status toggled successfully",
                 "error": "Failed to toggle lesson active status"
-            }
+            },
+            "dashboard": "Professor Dashboard",
+            "totalCourses": "Total Courses",
+            "totalStudents": "Total Students",
+            "totalRevenue": "Total Revenue"
         },
         "admin": {
             "title": "Admin Dashboard",
@@ -133,11 +179,14 @@
     },
     "forms": {
         "course": {
-            "title": "Enter course title",
-            "description": "Enter course description",
-            "category": "Select category",
-            "price": "Enter course price (in DZD)",
-            "thumbnail": "Select Image"
+            "create": "Create Course",
+            "edit": "Edit Course",
+            "title": "Course Title",
+            "description": "Course Description",
+            "category": "Category",
+            "price": "Price",
+            "titleRequired": "Please enter course title",
+            "descriptionRequired": "Please enter course description"
         },
         "lesson": {
             "title": "Enter lesson title",
@@ -148,7 +197,7 @@
         }
     },
     "search": {
-        "placeholder": "Search courses and lessons...",
+        "placeholder": "Search for courses...",
         "noResults": "No results found",
         "courses": "Courses",
         "lessons": "Lessons"
@@ -156,5 +205,112 @@
     "modal": {
         "cancel": "Cancel",
         "save": "Save"
+    },
+    "coursePlayer": {
+        "title": "Course Content",
+        "backToCourse": "Back to course",
+        "courseContent": "Course Content",
+        "timeProgress": "00:00 / 00:00",
+        "introduction": "Introduction",
+        "why": "Why This Course?",
+        "unit1": "Unit 1",
+        "unit2": "Unit 2",
+        "unit3": "Unit 3",
+        "unit4": "Unit 4",
+        "unit5": "Unit 5",
+        "unit6": "Unit 6",
+        "unit7": "Unit 7",
+        "unit8": "Unit 8",
+        "unit9": "Unit 9"
+    },
+    "enrollment": {
+        "title": "Enroll in Course",
+        "courseSummary": "Course Summary",
+        "professor": "Professor",
+        "coursePrice": "Course Price",
+        "paymentDetails": "Payment Details",
+        "fullName": "Full Name",
+        "fullNamePlaceholder": "John Doe",
+        "email": "Email",
+        "emailPlaceholder": "john.doe@example.com",
+        "cardNumber": "Card Number",
+        "cardNumberPlaceholder": "1234 5678 9012 3456",
+        "expiryDate": "Expiry Date",
+        "expiryDatePlaceholder": "MM/YY",
+        "cvv": "CVV",
+        "cvvPlaceholder": "123",
+        "nameRequired": "Please enter your full name",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Please enter a valid email",
+        "cardNumberRequired": "Please enter card number",
+        "cardNumberInvalid": "Card number must be at least 16 digits",
+        "expiryDateRequired": "Please enter expiry date",
+        "expiryDateInvalid": "Use MM/YY format",
+        "cvvRequired": "Please enter CVV",
+        "cvvInvalid": "CVV must be 3 digits",
+        "completeEnrollment": "Complete Enrollment",
+        "termsAgreement": "By completing your enrollment, you agree to our Terms of Service and Privacy Policy"
+    },
+    "videoPlayer": {
+        "loading": "Loading video..."
+    },
+    "home": {
+        "features": {
+            "title": "Why Choose Us",
+            "qualityCourses": {
+                "title": "Quality Courses",
+                "description": "Access high-quality courses designed by industry experts"
+            },
+            "expertInstructors": {
+                "title": "Expert Instructors",
+                "description": "Learn from experienced professionals in their fields"
+            },
+            "certification": {
+                "title": "Certification",
+                "description": "Earn certificates recognized by top companies"
+            }
+        },
+        "cta": {
+            "title": "Start Your Learning Journey Today",
+            "description": "Join thousands of students already learning with us",
+            "button": "Explore Courses"
+        }
+    },
+    "admin": {
+        "dashboard": {
+            "title": "Admin Dashboard",
+            "totalStudents": "Total Students",
+            "totalCourses": "Total Courses",
+            "totalProfessors": "Total Professors",
+            "activeEnrollments": "Active Enrollments"
+        },
+        "requests": {
+            "title": "Professor Requests",
+            "name": "Name",
+            "email": "Email",
+            "status": "Status",
+            "actions": "Actions",
+            "process": "Process Request",
+            "statuses": {
+                "pending": "Pending",
+                "approved": "Approved",
+                "rejected": "Rejected"
+            },
+            "processModal": {
+                "title": "Process Request",
+                "decision": "Decision",
+                "decisionRequired": "Please enter your decision"
+            }
+        },
+        "settings": {
+            "title": "Platform Settings",
+            "siteName": "Site Name",
+            "siteNameRequired": "Please enter site name",
+            "contactEmail": "Contact Email",
+            "contactEmailRequired": "Please enter contact email",
+            "invalidEmail": "Please enter a valid email",
+            "enableRegistration": "Enable User Registration",
+            "enableComments": "Enable Course Comments"
+        }
     }
 }

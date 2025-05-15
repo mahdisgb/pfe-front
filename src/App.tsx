@@ -28,17 +28,19 @@ import {
   CoursePage,
   CoursePlayer
 } from "./pages";
-import HomePageLayout from "./layouts/HomePageLayout";
+import { HomePageLayout } from "./layouts/HomePageLayout";
 import { ProfilePage } from "./pages/profile";
 import { StudentProfile } from "./pages/profile/student";
 import { ProfessorCoursesPage } from "./pages/profile/professor/ProfessorCoursesPage";
 import { ProfessorLessonsPage } from "./pages/profile/professor/ProfessorLessonsPage";
 import Enrollment from "./pages/enrollment.tsx";
-import AdminDashboardPage from "./pages/profile/admin/AdminDashboardPage";
-import AdminSettingsPage from "./pages/profile/admin/AdminSettingsPage";
+import { AdminDashboardPage } from "./pages/profile/admin/AdminDashboardPage";
+import { AdminSettingsPage } from "./pages/profile/admin/AdminSettingsPage";
 import AdminRequestsPage from "./pages/profile/admin/AdminRequestsPage";
 import StudentCoursesPage from "./pages/profile/student/StudentCoursesPage";
 import "./i18n";
+import { ProfessorPageLayout } from "./layouts/ProfessorPageLayout";
+import { PrivateLayout } from "./layouts/PrivateLayout";
 
 function App() {
   const { i18nProvider } = i18nProviderContext();
@@ -100,9 +102,20 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/course/:id" element={<CoursePage />} />
-            <Route path="/courseplayer/:id" element={<CoursePlayer />} />
             <Route path="/enrollment/:courseId" element={<Enrollment />} />
             <Route path="*" element={<Page403 />} />
+          </Route>
+          <Route
+            element={
+              <Authenticated
+                key="authenticated-routes"
+                fallback={<CatchAllNavigate to="/login" />}
+              >
+                {/* <PrivateLayout> */}
+                  <Outlet />
+                {/* </PrivateLayout> */}
+              </Authenticated>}>
+          <Route path="/courseplayer/:id" element={<CoursePlayer />} />
           </Route>
 
           {/* public routes */}

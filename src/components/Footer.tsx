@@ -1,7 +1,11 @@
+import { useTranslation } from '@refinedev/core';
+
 const Footer = () => {
+  const { translate: t } = useTranslation();
+  
   return (
     <footer className="text-center">
-      <div>Copyright ©2024</div>
+      <div>{t('common.copyright')}</div>
     </footer>
   )
 }

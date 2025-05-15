@@ -4,7 +4,6 @@ import SideBar from './Components/Sidebar'
 import { useCreate, useDelete, useGetIdentity, useList } from '@refinedev/core';
 import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch } from 'antd';
 import { DeleteOutlined, InboxOutlined, UploadOutlined } from '@ant-design/icons';
-import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
 import { CreateCourse } from './Components/CreateCourse';
 import { TableRowSelection } from 'antd/es/table/interface';
 const { Dragger } = Upload;
@@ -114,7 +113,7 @@ export const ProfessorCoursesPage = () => {
   ];
   const handleToggleActive = (id:number,isActive:boolean) => {
     toggleCourse({
-      resource:"courses/toggle-course",
+      resource:"courses/toggle",
       values:{id,isActive}
     },{
       onSuccess:()=>{
@@ -195,3 +194,115 @@ export const ProfessorCoursesPage = () => {
   )
 }
  
+/**
+ * 
+ * import { useTranslation } from '@refinedev/core';
+import { Table, Button, Space, Tag } from 'antd';
+import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
+import { CreateCourse } from './Components/CreateCourse';
+import { useState } from 'react';
+import { ProfessorPageLayout } from '@/layouts/ProfessorPageLayout';
+
+export const ProfessorCoursesPage = () => {
+  const { translate: t } = useTranslation();
+  const [isCreateModalVisible, setIsCreateModalVisible] = useState(false);
+  const [selectedCourseId, setSelectedCourseId] = useState<number | undefined>(undefined);
+
+  const columns = [
+    {
+      title: t('forms.course.title'),
+      dataIndex: 'title',
+      key: 'title',
+    },
+    {
+      title: t('forms.course.category'),
+      dataIndex: 'category',
+      key: 'category',
+      render: (category: string) => (
+        <Tag color="blue">{category}</Tag>
+      ),
+    },
+    {
+      title: t('course.lessons'),
+      dataIndex: 'lessonCount',
+      key: 'lessonCount',
+    },
+    {
+      title: t('course.students'),
+      dataIndex: 'studentCount',
+      key: 'studentCount',
+    },
+    {
+      title: t('forms.course.price'),
+      dataIndex: 'price',
+      key: 'price',
+      render: (price: number) => `$${price}`,
+    },
+    {
+      title: t('common.actions'),
+      key: 'actions',
+      render: (record: any) => (
+        <Space>
+          <Button
+            icon={<EyeOutlined />}
+            onClick={() => }
+            >
+            {t('common.view')}
+          </Button>
+          <Button
+            icon={<EditOutlined />}
+            onClick={() => {
+              setSelectedCourseId(record.id);
+              setIsCreateModalVisible(true);
+            }}
+          >
+            {t('common.edit')}
+          </Button>
+          <Button
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() =>}
+          >
+            {t('common.delete')}
+          </Button>
+        </Space>
+      ),
+    },
+  ];
+
+  return (
+    // <ProfessorPageLayout>
+      <div>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">{t('profile.professor.courses')}</h1>
+          <Button
+            type="primary"
+            onClick={() => {
+              setSelectedCourseId(undefined);
+              setIsCreateModalVisible(true);
+            }}
+          >
+            {t('forms.course.create')}
+          </Button>
+        </div>
+
+        <Table
+          columns={columns}
+          dataSource={[]}
+          rowKey="id"
+        />
+
+        <CreateCourse
+          open={isCreateModalVisible}
+          onCancel={() => {
+            setIsCreateModalVisible(false);
+            setSelectedCourseId(undefined);
+          }}
+          selectedCourseId={selectedCourseId}
+        />
+      </div>
+    // </ProfessorPageLayout>
+  );
+};
+ 
+ */

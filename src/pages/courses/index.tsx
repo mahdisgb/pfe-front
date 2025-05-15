@@ -11,10 +11,10 @@ import {
   GraduationCap,
   Tag
 } from 'lucide-react';
-import { useCreate, useGetIdentity, useList } from '@refinedev/core';
-import { Button, message } from 'antd';
+import { useCreate, useGetIdentity, useList, useTranslation } from '@refinedev/core';
+import { Button, message, Card, Row, Col, Typography } from 'antd';
 
-
+const { Title, Text } = Typography;
 
 export const CoursesPage = () => {
   // const [courses, setCourses] = useState();
@@ -34,6 +34,8 @@ export const CoursesPage = () => {
   const{data:courses} = useList({
     resource:"courses"
   })
+
+  const { translate: t } = useTranslation();
 
   const FilterSection = ({ title, options, selected, setSelected, icon: Icon }: any) => (
     <div className="mb-6">

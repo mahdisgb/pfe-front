@@ -1,19 +1,21 @@
-import { FC, PropsWithChildren } from "react"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
-import { useDocumentTitle } from "@refinedev/react-router-v6"
+import React from 'react';
+import { useTranslation } from '@refinedev/core';
+import { Layout } from 'antd';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
-const PublicLayout: FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
-     useDocumentTitle("project name");
-     return (
-          <div className="min-h-screen flex">
-               <main className="flex flex-col flex-grow">
-                    <Header />
-                    {children}
-                    <Footer />
-               </main>
-          </div>
-     )
-}
+const { Content } = Layout;
 
-export default PublicLayout
+export const PrivateLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { translate: t } = useTranslation();
+
+  return (
+    <Layout className="min-h-screen">
+      <Header />
+      <Content className="flex-1 p-6">
+        {children}
+      </Content>
+      <Footer />
+    </Layout>
+  );
+};

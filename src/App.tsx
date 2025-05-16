@@ -41,7 +41,11 @@ import StudentCoursesPage from "./pages/profile/student/StudentCoursesPage";
 import "./i18n";
 import { ProfessorPageLayout } from "./layouts/ProfessorPageLayout";
 import { PrivateLayout } from "./layouts/PrivateLayout";
-
+import AdminCoursesPage from "./pages/profile/admin/AdminCoursesPage";
+import AdminManageUsers from "./pages/profile/admin/AdminManageUsers";
+import { StudentDashboard } from "./pages/profile/student/StudentDashboard";
+import { Formation } from "./pages/formation";
+import AdminManageChat from "./pages/profile/admin/AdminManageChat";
 function App() {
   const { i18nProvider } = i18nProviderContext();
   const resources = useResources();
@@ -84,6 +88,10 @@ function App() {
             <Route path="/profile/professor-requests" element={<AdminRequestsPage />} />
             <Route path="/profile/settings" element={<AdminSettingsPage />} />
             <Route path="/profile/my-courses" element={<StudentCoursesPage />} />
+            <Route path="/profile/student-dashboard" element={<StudentDashboard />} />
+            <Route path="/profile/manage-courses" element={<AdminCoursesPage />} />
+            <Route path="/profile/manage-users" element={<AdminManageUsers />} />
+            <Route path="/profile/manage-chat" element={<AdminManageChat />} />
           </Route>
 
           {/* Other authenticated routes with HomePageLayout */}
@@ -111,9 +119,7 @@ function App() {
                 key="authenticated-routes"
                 fallback={<CatchAllNavigate to="/login" />}
               >
-                {/* <PrivateLayout> */}
                   <Outlet />
-                {/* </PrivateLayout> */}
               </Authenticated>}>
           <Route path="/courseplayer/:id" element={<CoursePlayer />} />
           </Route>
@@ -130,6 +136,7 @@ function App() {
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/course/:id" element={<CoursePage />} />
             <Route path="/courseplayer/:id" element={<CoursePlayer />} />
+            <Route path="/formation" element={<Formation />} />
           </Route>
 
           <Route
@@ -146,7 +153,6 @@ function App() {
         </Routes>
 
         <UnsavedChangesNotifier />
-        <DocumentTitleHandler />
       </Refine>
     </BrowserRouter>
   );

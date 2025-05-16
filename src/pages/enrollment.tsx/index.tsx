@@ -74,6 +74,7 @@ const Enrollment = () => {
           })
       // Simulate payment processing
       message.success(`Successfully enrolled in ${course?.data?.title}`);
+    setIsProcessing(false);
       navigate(`/course/${courseId}`);
     } catch (error) {
       message.error("Enrollment failed. Please try again.");
@@ -105,7 +106,7 @@ const Enrollment = () => {
         <Text className="mb-6 block">The course you're looking for doesn't exist or has been removed.</Text>
         <Link to="/courses">
           <Button type="primary" icon={<ArrowLeftOutlined />}>
-            Back to Courses
+            Back to Course
           </Button>
         </Link>
       </div>
@@ -164,7 +165,7 @@ const Enrollment = () => {
             
             <div className="flex justify-between">
               <Text strong>{t('enrollment.coursePrice')}</Text>
-              <Text strong className="text-purple-600">$49.99</Text>
+              <Text strong className="text-purple-600">{course?.data?.price}</Text>
             </div>
           </Card>
         </Col>
@@ -281,7 +282,7 @@ const Enrollment = () => {
                   block
                   className="bg-purple-600 hover:bg-purple-700"
                 >
-                  {t('enrollment.completeEnrollment')} • $49.99
+                  {t('enrollment.completeEnrollment')} • {course?.data?.price}
                 </Button>
                 <Text type="secondary" className="block text-center mt-4 text-xs">
                   {t('enrollment.termsAgreement')}

@@ -8,7 +8,11 @@ import {
   TeamOutlined,
   FileTextOutlined,
   CheckCircleOutlined,
-  SettingOutlined
+  SettingOutlined,
+  CommentOutlined,
+  SolutionOutlined,
+  PlayCircleOutlined,
+  FormOutlined
 } from '@ant-design/icons';
 import { PropsWithChildren } from 'react';
 
@@ -25,46 +29,51 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
   const { translate: t } = useTranslation();
 
   const getMenuItems = () => {
-    const commonItems = [
-      {
-        key: 'profile',
-        icon: <UserOutlined />,
-        label: 'Profile',
-        onClick: () => navigate('/profile')
-      }
-    ];
 
     const studentItems = [
       {
-        key: 'my-courses',
+        key: 'profile',
         icon: <BookOutlined />,
+        label: 'Profile',
+        onClick: () => navigate('/profile/student-dashboard')
+      },
+      {
+        key: 'my-courses',
+        icon: <PlayCircleOutlined />,
         label: 'My Courses',
         onClick: () => navigate('/profile/my-courses')
       },
-      // {
-      //   key: 'achievements',
-      //   icon: <CheckCircleOutlined />,
-      //   label: 'Achievements',
-      //   onClick: () => navigate('/profile/achievements')
-      // }
+     
     ];
 
     const professorItems = [
       {
-        key: 'courses',
+        key: 'profile',
         icon: <BookOutlined />,
+        label: 'Profile',
+        onClick: () => navigate('/profile')
+      },
+      {
+        key: 'courses',
+        icon: <PlayCircleOutlined />,
         label: 'Courses',
         onClick: () => navigate('/profile/courses')
       },
       {
         key: 'lessons',
-        icon: <FileTextOutlined />,
+        icon: <FormOutlined />,
         label: 'Lessons',
         onClick: () => navigate('/profile/lessons')
       }
     ];
 
     const adminItems = [
+      // {
+      //   key: 'profile',
+      //   icon: <BookOutlined />,
+      //   label: 'Profile',
+      //   onClick: () => navigate('/profile')
+      // },
       {
         key: 'dashboard',
         icon: <DashboardOutlined />,
@@ -73,24 +82,42 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       },
       {
         key: 'professor-requests',
-        icon: <TeamOutlined />,
+        icon:<SolutionOutlined />,
         label: 'Professor Requests',
         onClick: () => navigate('/profile/professor-requests')
       },
       {
-        key: 'settings',
-        icon: <SettingOutlined />,
-        label: 'Settings',
-        onClick: () => navigate('/profile/settings')
-      }
+        key: 'manage-courses',
+        icon: <PlayCircleOutlined />,
+        label: 'Manage Courses',
+        onClick: () => navigate('/profile/manage-courses')
+      },
+        {
+          key: 'manage-users',
+          icon: <TeamOutlined />,
+          label: 'Manage Users',
+          onClick: () => navigate('/profile/manage-users')
+        },
+        {
+          key: 'manage-chat',
+          icon: <CommentOutlined />,
+          label: 'Manage Chat',
+          onClick: () => navigate('/profile/manage-chat')
+        },
+      // {
+      //   key: 'settings',
+      //   icon: <SettingOutlined />,
+      //   label: 'Settings',
+      //   onClick: () => navigate('/profile/settings')
+      // }
     ];
 
     if (user?.roles?.includes('admin')) {
-      return [...commonItems, ...adminItems];
+      return adminItems;
     } else if (user?.roles?.includes('professor')) {
-      return [...commonItems, ...professorItems];
+      return professorItems;
     } else {
-      return [...commonItems, ...studentItems];
+      return studentItems;
     }
   };
 

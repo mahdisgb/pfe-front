@@ -24,7 +24,8 @@
         },
         "view": "View",
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "profile": "Profile"
     },
     "courses": {
         "filters": {
@@ -74,7 +75,9 @@
         "rating": {
             "totalRatings": "{{count}} ratings",
             "stars": "stars"
-        }
+        },
+        "aboutCourse": "About This Course",
+        "yourInstructor": "Your Instructor"
     },
     "footer": {
         "company": {

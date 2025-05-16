@@ -1,6 +1,6 @@
 import { Button, Input, Dropdown, Menu, Spin, Select } from "antd";
 import React, { useState, ChangeEvent, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   useGetIdentity,
   useGo,
@@ -9,7 +9,7 @@ import {
   useTranslation,
 } from "@refinedev/core";
 import { SearchProps } from "antd/es/input";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { useTranslation as usei18nextTranslation } from "react-i18next";
 
 interface Course {
@@ -78,9 +78,9 @@ const Header = () => {
     setDropdownVisible(false);
     setSearch("");
     if (type === "course") {
-      go({ to: `/courses/${id}` });
+      go({ to: `/course/${id}` });
     } else {
-      go({ to: `/lessons/${id}` });
+      go({ to: `/lesson/${id}` });
     }
   };
 
@@ -187,30 +187,46 @@ const Header = () => {
             </Link>
           </div>
           <ul className="flex gap-2 ">
-            <li >
-              <Link
-              className="hover:text-[#f8f8f8] text-[20px] text-[#bbb] py-1 active:text-white"
-              style={{
-                borderBottom:"2px solid white"
-              }}
-              to="/">{t('navigation.home')}</Link>
+            <li>
+              <NavLink
+                className={({ isActive }) => 
+                  `hover:text-[#f8f8f8] text-[20px] text-[#ddd] py-1 ${isActive ? 'text-white border-b-2 border-white' : ''}`
+                }
+                to="/"
+              >
+                {t('navigation.home')}
+              </NavLink>
             </li>
-            <li >
-              <Link
-              style={{
-                borderBottom:"2px solid white"
-              }}
-              className="hover:text-[#f8f8f8] text-[20px] text-[#bbb] py-1 active:text-white"
-              to="/courses">{t('navigation.courses')}</Link>
+            <li>
+              <NavLink
+                className={({ isActive }) => 
+                  `hover:text-[#f8f8f8] text-[20px] text-[#ddd] py-1 ${isActive ? 'text-white border-b-2 border-white' : ''}`
+                }
+                to="/courses"
+              >
+                {t('navigation.courses')}
+              </NavLink>
             </li>
-            <li >
-              <Link
-              style={{
-                borderBottom:"2px solid white"
-              }}
-              className="hover:text-[#f8f8f8] text-[20px] text-[#bbb] py-1 active:text-white"
-              to="#">{t('common.ourServices')}</Link>
+            <li>
+              <NavLink
+                className={({ isActive }) => 
+                  `hover:text-[#f8f8f8] text-[20px] text-[#ddd] py-1 ${isActive ? 'text-white border-b-2 border-white' : ''}`
+                }
+                to="/formation"
+              >
+                Formation
+              </NavLink>
             </li>
+            {/* <li>
+              <NavLink
+                className={({ isActive }) => 
+                  `hover:text-[#f8f8f8] text-[20px] text-[#bbb] py-1 ${isActive ? 'text-white border-b-2 border-white' : ''}`
+                }
+                to="#"
+              >
+                {t('common.ourServices')}
+              </NavLink>
+            </li> */}
           </ul>
         </div>
         <div className="flex items-center gap-3">
@@ -234,24 +250,64 @@ const Header = () => {
               changeLocale(e);
               window.location.reload();
             }}
-          //   className="w-[70px] p-1 rounded-lg outline-none bg-[#f5f5f5] border-solid border-[1px] border-blue3 dark:text-[#252525]"
+            className="w-[70px]"
+            style={{
+              backgroundColor: 'transparent',
+              color: 'white',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              borderRadius: '4px',
+            }}
+            dropdownStyle={{
+              backgroundColor: '#1e55a9',
+              color: 'white',
+            }}
           >
             {i18n.languages.map((lang, i) => (
-              <option key={i} value={lang}>
-                {lang}
-              </option>
+              <Select.Option 
+                key={i} 
+                value={lang}
+                style={{
+                  color: 'white',
+                  backgroundColor: '#1e55a9',
+                }}
+              >
+                {lang.toUpperCase()}
+              </Select.Option>
             ))}
           </Select>
 
           {user ? (
-            <Link to={`/profile`}>
-              <UserOutlined style={{ fontSize: "24px", color: "white" }} />
-            </Link>
+            <Dropdown
+              menu={{
+                items: [
+                  {
+                    key: 'profile',
+                    label: (
+                      <Link to="/profile" className="flex items-center gap-2">
+                        <UserOutlined />
+                        {t('common.profile')}
+                      </Link>
+                    ),
+                  },
+                  {
+                    key: 'logout',
+                    label: (
+                      <div onClick={() => logout()} className="flex items-center gap-2 cursor-pointer">
+                        <LogoutOutlined />
+                        {t('common.logout')}
+                      </div>
+                    ),
+                  },
+                ],
+              }}
+              trigger={['hover']}
+            >
+              <UserOutlined style={{ fontSize: "24px", color: "white", cursor: "pointer" }} />
+            </Dropdown>
           ) : null}
           {!user ? (
             <Button onClick={() => go({ to: "/login" })}>{t('common.register')}</Button>
           ) : null}
-          {user ? <Button onClick={() => logout()}>{t('common.logout')}</Button> : null}
         </div>
       </nav>
     </header>

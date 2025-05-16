@@ -52,10 +52,12 @@ export const dataProvider = (
     if(mode === "client"){
       urlWithQuery =  `${url}${filters?.[0]?.value}`
       ;
-    }else{
+    }else if(mode === "server"){
       urlWithQuery = Object.keys(combinedQuery).length
       ? `${url}?${stringify(combinedQuery)}`
       : url;
+    }else{
+      urlWithQuery = `${url}`
     }
 
 

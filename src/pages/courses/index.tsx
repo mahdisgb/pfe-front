@@ -9,30 +9,44 @@ import {
   Clock, 
   Star, 
   GraduationCap,
-  Tag
 } from 'lucide-react';
 import { useCreate, useGetIdentity, useList, useTranslation } from '@refinedev/core';
-import { Button, message, Card, Row, Col, Typography } from 'antd';
+import { Button, message, Card, Row, Col, Typography, Input, Tag, Select, InputNumber } from 'antd';
 
 const { Title, Text } = Typography;
 
 export const CoursesPage = () => {
-  // const [courses, setCourses] = useState();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
-  const [selectedLevel, setSelectedLevel] = useState("All Levels");
-  const [selectedDuration, setSelectedDuration] = useState("Any Duration");
-  const [selectedRating, setSelectedRating] = useState("Any Rating");
-  const [selectedPriceRange, setSelectedPriceRange] = useState("Any Price");
-  const [showMobileFilters, setShowMobileFilters] = useState(false);
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState();
+  const[minPrice,setMinPrice] = useState("");
+  const[maxPrice,setMaxPrice] = useState("");
+
   const navigate=useNavigate();
   const{data:categories,isFetched}= useList({
     resource:"categories"
   });
   
   const{data:courses} = useList({
-    resource:"courses"
+    resource:"courses",
+    // pagination: {
+    //   mode: "off",
+    // },
+    filters: [
+      {
+        field: "categoryId",
+        operator: "eq",
+        value: selectedCategory,
+      },
+      // {
+      //   field: "price",
+      //   operator: "gte",
+      //   value: minPrice,
+      // },
+      // {
+      //   field: "price",
+      //   operator: "lte",
+      //   value: maxPrice,
+      // },  
+    ],
   })
 
   const { translate: t } = useTranslation();
@@ -61,48 +75,57 @@ export const CoursesPage = () => {
     </div>
   );
 
+const handleGetMin=async(value:any)=>{
+  console.log(value);
+  setMinPrice(value);
+}
 
+const handleGetMax=async(value:any)=>{
+  setMaxPrice(value);
+}
   // Course card component
   const CourseCard = ({ course }:any) => (
-   
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
+       <Link to={`/course/${course.id}`}>
+      
          {course.thumbnail && <img 
         src={course.thumbnail} 
         alt={course.title} 
         className="w-full h-40 object-cover"
       />} 
+        </Link>
+
       <div className="p-4">
        <Link to={`/course/${course.id}`}>
-
-        <div className="flex justify-between items-start mb-2">
-          <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-md">
+       <p className="mb-2">
+        <Tag color='blue'>
            {course.category.name}
-          </span>
-          <div className="flex items-center">
-            <span className="ml-1 text-sm font-medium">course.rating</span>
-          </div>
+        </Tag>
+        </p>
+        <div className="flex justify-end items-start  flex-wrap ">
+        <h3 className="font-bold text-lg mb-1 w-full">{course.title}</h3>
+        <p className="text-gray-600 text-sm mb-1">{course.professor.firstName} {course.professor.lastName} </p>
         </div>
-        <h3 className="font-bold text-lg mb-1 line-clamp-2">{course.title}</h3>
-        <p className="text-gray-600 text-sm mb-2">{course.professor.firstName} {course.professor.lastName} </p>
-        <div className="flex items-center text-sm text-gray-500 mb-3">
-          <span className="mr-3 block">{course.description}</span>
+        <div style={{
+           WebkitLineClamp: 1,
+           WebkitBoxOrient: "vertical",
+           overflow: "hidden",
+           textOverflow: "ellipsis",
+           maxWidth: "90ch",
+        }} className="text-gray-500 mb-1 truncate max-w-[200px]">
+          <span>{course.description}</span>
         </div>
-        <div className="flex items-center text-sm text-gray-500 mb-3">
+        <div className="flex items-center text-sm text-gray-500 mb-2">
           <span className="mr-3 block">{course.lessonCount} lessons</span>
-        </div>
-        <div className="flex flex-wrap gap-1 mb-3">
-            <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
-              tags
-            </span>
         </div>
         </Link>
         <div className="flex justify-between items-center">
           <span className="font-bold text-lg">${course.price}</span>
           
           <Button 
-            onClick={()=>navigate(`/enrollment/${course.id}`)}
+            onClick={()=>navigate(`/course/${course.id}`)}
           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-            Enroll
+            Explore more
           </Button>
         </div>
       </div>
@@ -110,12 +133,101 @@ export const CoursesPage = () => {
    
 
   );
+  const[searchResults,setSearchResults] = useState<any>(null);
+  const [search, setSearch] = useState("");
+  const [searchClick,setSearchClick] = useState("");
+  const { data: results, isLoading } = useList({
+    resource: "search",
+    queryOptions: {
+      enabled: !!searchClick,
+    },
+    pagination: {
+      mode: "off",
+    },
+    filters: [
+      {
+        field: "query",
+        operator: "eq",
+        value: searchClick,
+      },
+    ],
+  });
+  useEffect(()=>{
+    if(results?.data){
+      setSearchResults(results?.data);
+    }
+  },[results]);
+  const handleSearch = (e:any) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <main className="max-w-full px-4 py-8 sm:px-6 lg:px-8">
+      <Row style={
+            {
+              width:"100%",
+              background:"blue",
+              padding:15
+            } }
+            justify={"end"}
+            gutter={10}
+          >
+            <Col>
+            <Select
+            value={selectedCategory}
+            onChange={(value)=>setSelectedCategory(value)}
+            placeholder="Select Category"
+            allowClear
+            >
+              {categories?.data?.map((category:any)=>(
+                <Select.Option value={category.id}>{category.name}</Select.Option>
+              ))}
+            </Select>
+            </Col>
+            <Col style={{
+              display:"flex",
+              alignItems:"center",
+              gap:10
+            }}>
+            <Input
+              value={search}
+              placeholder={t('search.placeholder')}
+              allowClear
+              onChange={handleSearch}
+              style={{ width: 304 }}
+            />
+            <Button type='primary'
+            onClick={()=>{setSearchClick(search);setSearch("")}}
+            >
+              search
+            </Button>
+            <Button 
+            onClick={()=>{setSearchResults(null)}}
+            >
+              reset
+            </Button>
+            </Col>
+            
+            {/* <Col>
+            <InputNumber
+            // type='number'
+              value={minPrice}
+              onChange={handleGetMin}
+              placeholder="Min Price" />
+            </Col>
+            <Col>
+            <InputNumber
+              value={maxPrice}
+              onChange={handleGetMax}
+              placeholder="Max Price"/>
+            </Col> */}
+          </Row>
+
+          <div className="max-w-full px-4 py-6 sm:px-6 lg:px-8">
+   
         <div className="flex flex-col lg:flex-row">
-          <div className="lg:hidden mb-4">
+        
+          {/* <div className="lg:hidden mb-4">
             <button 
               className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md bg-white shadow-sm"
               onClick={() => setShowMobileFilters(!showMobileFilters)}
@@ -127,37 +239,6 @@ export const CoursesPage = () => {
               <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${showMobileFilters ? 'transform rotate-180' : ''}`} />
             </button>
           </div>
-
-          {/* {activeFilters.length > 0 && (
-            <div className="mb-4 flex flex-wrap gap-2">
-              {activeFilters.map((filter) => (
-                <div
-                  key={filter}
-                  className="h-[50px] flex items-center bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm"
-                >
-                  <span>{filter}</span>
-                  <button
-                    onClick={() => {
-                      if (filter === selectedCategory) setSelectedCategory("All Categories");
-                      if (filter === selectedLevel) setSelectedLevel("All Levels");
-                      if (filter === selectedDuration) setSelectedDuration("Any Duration");
-                      if (filter === selectedRating) setSelectedRating("Any Rating");
-                      if (filter === selectedPriceRange) setSelectedPriceRange("Any Price");
-                    }}
-                    className="ml-2 hover:text-blue-900"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              ))}
-              <button
-                onClick={resetFilters}
-                className="text-sm text-gray-600 hover:text-gray-900"
-              >
-                Clear all
-              </button>
-            </div>
-          )} */}
  
           <div className={`lg:w-64 lg:pr-8 ${showMobileFilters ? 'block' : 'hidden'} lg:block`}>
             <div className="sticky top-4 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
@@ -196,26 +277,43 @@ export const CoursesPage = () => {
               </div>
             </div>
           </div>
-          
+           */}
           <div className="flex-1">
-            {/* <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-              <h2 className="text-2xl font-bold text-gray-800">Browse Courses</h2>
-              <div className="flex items-center w-full sm:w-auto">
-                <span className="text-gray-600 mr-2 whitespace-nowrap">Sort by:</span>
-                <select className="w-full sm:w-auto border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                  <option>Most Popular</option>
-                  <option>Highest Rated</option>
-                  <option>Newest</option>
-                  <option>Price: High to Low</option>
-                  <option>Price: Low to High</option>
-                </select>
+          {searchResults ? 
+            <>
+            {searchResults?.courses && searchResults?.courses.length>0 ? searchResults?.courses ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+                {searchResults?.courses?.map((course:any) => (
+                  <CourseCard key={course.id} course={course} />
+                ))}
               </div>
-            </div> */}
-            
+            ) : (
+              <div className="bg-white p-8 rounded-lg shadow-sm text-center">
+                <h3 className="text-xl font-medium text-gray-800 mb-2">No courses found</h3>
+                <p className="text-gray-600">Try adjusting your filters or search terms</p>
+              </div>
+            ): null}
+            {searchResults?.lessons && searchResults?.lessons.length>0 ? searchResults?.lessons ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+                {searchResults?.lessons?.map((lesson:any) => (
+                  <CourseCard key={lesson.id} course={lesson} />
+                ))}
+              </div>
+            ) : (
+              <div className="bg-white p-8 rounded-lg shadow-sm text-center">
+                <h3 className="text-xl font-medium text-gray-800 mb-2">No courses found</h3>
+                <p className="text-gray-600">Try adjusting your filters or search terms</p>
+              </div>
+            ): null}
+              
+             
+            </>
+          :
+          <>
             <p className="text-gray-600 mb-6">Showing {courses?.data?.length} courses</p>
             
             {courses?.data ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
                 {courses?.data?.map(course => (
                   <CourseCard key={course.id} course={course} />
                 ))}
@@ -226,22 +324,12 @@ export const CoursesPage = () => {
                 <p className="text-gray-600">Try adjusting your filters or search terms</p>
               </div>
             )}
-             
-            {/* <div className="mt-8 flex justify-center">
-              <nav className="flex items-center space-x-1">
-                <button className="px-3 py-2 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">Previous</button>
-                <button className="px-3 py-2 rounded-md bg-blue-600 text-white">1</button>
-                <button className="px-3 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
-                <button className="px-3 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
-                <span className="px-3 py-2 text-gray-500">...</span>
-                <button className="px-3 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">8</button>
-                <button className="px-3 py-2 rounded-md border border-gray-300 text-gray-500 hover:bg-gray-50">Next</button>
-              </nav>
-            </div> */}
+            </>
+            }
           </div>
         </div>
-      </main>
-      
+      </div>
+{/*       
       <footer className="bg-gray-800 text-white py-12 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -288,7 +376,7 @@ export const CoursesPage = () => {
             <p>© 2025 EduLearn Academy. All rights reserved.</p>
           </div>
         </div>
-      </footer>
+      </footer> */}
     
     </div>
   );

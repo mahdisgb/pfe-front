@@ -1,12 +1,14 @@
-import { Button, Layout, Progress, Segmented, Typography } from 'antd';
+import { Avatar, Button, Input, Layout, List, Progress, Segmented, Typography } from 'antd';
 import { CaretRightOutlined, ExpandOutlined, SoundOutlined, SettingOutlined, LeftOutlined } from '@ant-design/icons';
 import React, { useState, useEffect } from 'react';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import ReactPlayer from 'react-player';
-import { useList, useOne, useTranslation } from '@refinedev/core';
+import { useCreate, useGetIdentity, useList, useOne, useTranslation } from '@refinedev/core';
 import { Link, useParams } from 'react-router-dom';
 import { VideoPlayer } from '@/components/VideoPlayer';
+import Header from '@/components/Header';
+import { Download } from 'lucide-react';
 
 declare global {
   interface Window {
@@ -112,12 +114,14 @@ const CourseSidebar = () => {
 };
 
 export const CoursePlayer = () => {
+  const [comment,setComment]=useState("")
   const { translate: t } = useTranslation();
   const [currentLesson, setCurrentLesson] = useState<any>();
   const [progress, setProgress] = useState(77);
   const [currentVideo, setCurrentVideo] = useState("");
   const { id } = useParams();
-
+  const{mutateAsync:createComment}=useCreate()
+  const {data:user}=useGetIdentity<any>()
   const {data:lessons,isFetched:lessonsFetched} = useList({
     resource:"lessons/course/",
     pagination:{
@@ -143,8 +147,13 @@ export const CoursePlayer = () => {
       setCurrentVideo(lesson?.data?.videoUrl)
     }
   },[currentLesson])
- 
-
+  const {data:comments,refetch}=useList({
+    resource:`comments/lesson/${currentLesson}`,
+    pagination:{
+      mode:"off"
+    }
+  })
+console.log(comments)
   // const lessons = [
   //   { id: 1, title: "المقدمة" },
   //   { id: 2, title: "الوحدة: العملية" },
@@ -169,25 +178,92 @@ export const CoursePlayer = () => {
   }
 
 ));
-  return (
-      <div className="h-screen flex gap-4 pl-2 overflow-hidden">
 
-        <div className="flex-1 flex flex-col py-8 px-4 ">
-          <div className="relative flex-1">
+const handleDownload =async  () => {
+  if (!currentVideo || !lesson?.data?.title) return;
+ const type = await fetch(currentVideo, { method: "HEAD" })
+  .then(r =>r.headers.get("Content-Type"))
+  const a = document.createElement('a');
+  a.href = currentVideo; 
+  a.download = `${lesson.data.title}.${type}`; 
+  a.style.display = 'none';
+
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
+const handleAddComment = async ()=>{
+  try {
+    await createComment({
+      resource:"comments",
+      values:{
+        userId:user?.id, 
+        content :comment,
+         lessonId:currentLesson,
+        //  courseId:id
+      }
+    })
+    setComment("")
+    refetch()
+  } catch (error) {
+    
+  }
+}
+  return (
+      <div className="min-h-screen flex flex-col">
+      <Header />
+<div className='relative flex'>
+        <div className="flex-1 flex flex-col items-between px-4 py-4 lg:h-[150vh]">
+          <div className="flex-1">
+            <div className="relative">
             {!vidLoading ? 
            <VideoPlayer url={currentVideo}/>
            :null}
+           </div>
           </div>
-              <div className="bg-[#ddd] h-fit p-4 rounded-lg w-full">
+          <div className='flex items-center justify-between bg-[#eee] p-4 rounded-lg '>
+              <div className="h-fit w-full">
                 {lesson?.data?.description}
               </div>
+              <Button
+              type='link'
+              icon={<Download />}
+              onClick={handleDownload}
+              />
+
+          </div>
+          <div className=" bg-[#eee] rounded-lg ">
+            <Typography.Title level={4}>Comments</Typography.Title>
+            <List
+              itemLayout="horizontal"
+              dataSource={comments?.data} 
+              renderItem={(item) => (
+                <List.Item>
+                  <List.Item.Meta
+                    avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                    title={<a href="#">{item.user.firstName} {item.user.lastName}</a>}
+                    description={item.content}
+                  />
+                </List.Item>
+              )}
+            />
+            <div className="mt-4">
+              <Input.TextArea onChange={(e)=>e.target.value && setComment(e.target.value)} value={comment} rows={4} placeholder="Add a comment..." />
+              <Button onClick={handleAddComment} type="primary" className="mt-2">
+                Post Comment
+              </Button>
+            </div>
+          </div>
         </div>
         <Sider 
           width={384} 
-        style={{backgroundColor:"#ddd"}}
-        
+        style={{backgroundColor:"#eee",
+          height:"100%",
+          minHeight:"100vh",
+          padding:"0",
+          margin:"0"
+        }}
         >
-          {/* Course title */}
           <div className="p-4 border-b">
             <Link to={`/course/${id}`}>
             <div className="flex items-center mb-4">
@@ -198,26 +274,7 @@ export const CoursePlayer = () => {
             <Typography.Title level={4} style={{ textAlign: 'right' }}>
               {lesson?.data?.title}
             </Typography.Title>
-            {/* <Progress 
-              percent={progress}
-              strokeColor="#3B82F6"
-              trailColor="#374151"
-              showInfo={false}
-              className="mt-4"
-            /> */}
           </div>
-
-          {/* <Segmented
-            block
-            options={[
-              { label: 'مسار', value: 'path' },
-              { label: 'قائمة', value: 'list' }
-            ]}
-            style={{ 
-              margin: '16px',
-            }}
-          /> */}
-
 
           <Menu
             // mode="inline"
@@ -225,6 +282,9 @@ export const CoursePlayer = () => {
             items={menuItems}
           />
         </Sider>
+
+</div>
+
       </div>
   );
 };

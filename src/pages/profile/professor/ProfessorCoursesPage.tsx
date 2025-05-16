@@ -15,9 +15,9 @@ export const ProfessorCoursesPage = () => {
   const[selectedCourseId,setSelectedCourseId]=useState<number | undefined>(undefined);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
-  const {mutate :deleteCourse } =useDelete();
   const {data:user}=useGetIdentity<any>();
   const {mutate :uploadVideo } =useCreate();
+  const {mutate :deleteCourse } =useDelete();
   const {mutate :toggleCourse } =useCreate();
   const {data:courses,refetch} = useList({
     resource:"courses/professor/",

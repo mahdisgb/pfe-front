@@ -1,6 +1,7 @@
 import { useTranslation } from '@refinedev/core';
 import { Button, Card, Row, Col, Typography } from 'antd';
 import { BookOutlined, TeamOutlined, TrophyOutlined } from '@ant-design/icons';
+import Chat from '@/components/Chat';
 
 const { Title, Paragraph } = Typography;
 
@@ -9,6 +10,7 @@ export const Home = () => {
   
   return (
     <div className="min-h-screen">
+      {/* <Chat roomId={`course-2`} /> */}
       {/* Hero Section */}
       <div className='h-[70vh] bg-blue1 w-full flex items-center justify-center'>
         <div className="text-center">

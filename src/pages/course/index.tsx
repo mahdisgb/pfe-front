@@ -140,7 +140,7 @@ export const CourseDetail = () => {
             {/* Course? Description */}
             <div className="mb-8">
               <Title level={3}>{t('course.aboutCourse')}</Title>
-              <Paragraph className="text-gray-600">{course?.data?.description}</Paragraph>
+              <Paragraph style={{fontSize:"16px"}} className="text-gray-600">{course?.data?.description}</Paragraph>
             </div>
 
             {/* Course? Lessons */}
@@ -150,15 +150,15 @@ export const CourseDetail = () => {
               <Collapse accordion className="w-full bg-white" >
                  {lessons?.data?.map((lesson:any, index:any) => (
                    <Panel 
-                   
                     key={lesson.id} 
                     header={
                       <div className="font-medium">
                         {index + 1}. {lesson.title}
                       </div>
                     }
+                    style={{backgroundColor:"#f9f9f9"}}
                     >
-                      {isEnrolled?.data.hasAccess ?
+                      {isEnrolled?.data.hasAccess || user?.roles.includes("admin") || lesson.professorId === user?.id ?
                         <Link to={ `/courseplayer/${course.data.id}`}>
                     <Paragraph className="text-gray-600 mb-2">{lesson.description}</Paragraph>
                     <div className="flex items-center justify-between">
@@ -178,33 +178,29 @@ export const CourseDetail = () => {
             </div>
 
             {/* FAQs */}
-            <div className="mb-8">
+            {/* <div className="mb-8">
               <Title level={3}>Frequently Asked Questions</Title>
               <Collapse accordion className="w-full bg-white">
-                {/* {course?.faqs.map((faq:any, index:any) => (
+               {course?.faqs.map((faq:any, index:any) => (
                   <Panel 
                     key={`faq-${index}`} 
                     header={faq.question}
                   >
                     <Paragraph className="text-gray-600">{faq.answer}</Paragraph>
                   </Panel>
-                ))} */}
+                ))} 
               </Collapse>
-            </div>
+            </div> */}
           </div>
 
           {/* Sidebar - Right 1/3 */}
           <div>
             {/* Professor Card */}
             <Card className="mb-6">
-              <div className="flex items-center space-x-4 mb-4">
-                <Avatar 
-                  size={48} 
-                  // src={course?.professor.avatar} 
-                  // alt={course?.professor.name}
-                />
+              <div className="flex items-center space-x-4">
+              <UserOutlined style={{fontSize:"30px"}} />
                 <div>
-                  <Title level={4} className="!mb-0">{t('course.yourInstructor')}</Title>
+                  <Title level={5} className="!mb-0">{course?.data?.professor?.firstName} {course?.data?.professor?.name}</Title>
                   {/* <Text type="secondary">{course?.professor.name}</Text> */}
                 </div>
               </div>

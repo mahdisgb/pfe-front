@@ -47,7 +47,7 @@ const Chat = ({ roomId }: ChatProps) => {
   }, [roomId]);
 
   useEffect(() => {
-    const socketUrl = import.meta.env.VITE_APP_API_URL;
+    const socketUrl = import.meta.env.VITE_APP_BACK_URL;
     
     const newSocket = io(socketUrl, {
       transports: ['websocket'],

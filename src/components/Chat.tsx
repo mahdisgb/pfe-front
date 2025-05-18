@@ -100,7 +100,7 @@ const Chat = ({ roomId }: ChatProps) => {
       roomId,
       message: newMessage,
       userId: user.id,
-      userName: user.name
+      // userName: user.name
     };
 
     socket.emit('send_message', messageData, (error: any) => {
@@ -144,7 +144,7 @@ const Chat = ({ roomId }: ChatProps) => {
               avatar={<Avatar icon={<UserOutlined />} />}
               title={
                 <Space>
-                  <Typography.Text strong>{message.user.firstName} {message.user.lastName}</Typography.Text>
+                  <Typography.Text strong>{message?.user?.firstName} {message?.user?.lastName}</Typography.Text>
                   <Typography.Text type="secondary" style={{ fontSize: '12px' }}>
                     {format(new Date(message.timeAdded), 'MMM d, h:mm a')}
                   </Typography.Text>

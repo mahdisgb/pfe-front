@@ -27,7 +27,8 @@ import {
   List, 
   Tag, 
   Divider,
-  message
+  message,
+  Spin
 } from "antd";
 import {
   UserOutlined,
@@ -36,7 +37,8 @@ import {
   MessageOutlined,
   DownloadOutlined,
   SendOutlined,
-  ArrowLeftOutlined
+  ArrowLeftOutlined,
+  LoadingOutlined
 } from "@ant-design/icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useRef, useState } from "react";
@@ -57,7 +59,7 @@ export const CourseDetail = () => {
     resource:`course-subscriptions/check`,
     id:`${user?.id}/${id}`
   })
-  const {data:course} = useOne({
+  const {data:course,isLoading} = useOne({
     resource:"courses",
     id:id
   })
@@ -83,6 +85,13 @@ export const CourseDetail = () => {
   const [messageApi, contextHolder] = message.useMessage();
  
   console.log(isEnrolled)
+  if(isLoading){
+    return (
+      <div className="container mx-auto py-12 px-4 text-center">
+        <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
+      </div>
+    );
+  }
   if (!course) {
     return (
       <div className="container mx-auto py-12 px-4 text-center">
@@ -195,20 +204,16 @@ export const CourseDetail = () => {
 
           {/* Sidebar - Right 1/3 */}
           <div>
-            {/* Professor Card */}
             <Card className="mb-6">
               <div className="flex items-center space-x-4">
               <UserOutlined style={{fontSize:"30px"}} />
                 <div>
                   <Title level={5} className="!mb-0">{course?.data?.professor?.firstName} {course?.data?.professor?.name}</Title>
-                  {/* <Text type="secondary">{course?.professor.name}</Text> */}
                 </div>
               </div>
-              {/* <Paragraph className="text-gray-600">{course?.professor.bio}</Paragraph> */}
             </Card>
 
-            {/* Tabs for Chat and Materials */}
-            <Card>
+            {/* <Card>
               <Tabs defaultActiveKey="chat">
                 <TabPane 
                   tab={
@@ -221,10 +226,8 @@ export const CourseDetail = () => {
                 >
                   <Title level={4}>Ask a Question</Title>
                   <Paragraph type="secondary">
-                    {/* Send a message to {course?.professor.name} */}
                   </Paragraph>
                   <div className="space-y-4">
-                    {/* Chat Messages Area */}
                     <div 
                       ref={chatRef}
                       className="h-[200px] p-4 bg-gray-100 rounded-md overflow-auto"
@@ -256,7 +259,6 @@ export const CourseDetail = () => {
                       )}
                     </div>
 
-                    {/* Message Input */}
                     <div className="flex items-end gap-2">
                       <TextArea 
                         placeholder="Type your message here..." 
@@ -312,7 +314,7 @@ export const CourseDetail = () => {
                   </Text>
                 </TabPane>
               </Tabs>
-            </Card>
+            </Card> */}
           </div>
         </div>
       </Content>

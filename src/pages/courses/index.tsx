@@ -11,7 +11,8 @@ import {
   GraduationCap,
 } from 'lucide-react';
 import { useCreate, useGetIdentity, useList, useTranslation } from '@refinedev/core';
-import { Button, message, Card, Row, Col, Typography, Input, Tag, Select, InputNumber } from 'antd';
+import { Button, message, Card, Row, Col, Typography, Input, Tag, Select, InputNumber, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 
@@ -21,11 +22,11 @@ export const CoursesPage = () => {
   const[maxPrice,setMaxPrice] = useState("");
 
   const navigate=useNavigate();
-  const{data:categories,isFetched}= useList({
+  const{data:categories}= useList({
     resource:"categories"
   });
   
-  const{data:courses} = useList({
+  const{data:courses,isLoading} = useList({
     resource:"courses",
     // pagination: {
     //   mode: "off",
@@ -136,7 +137,7 @@ const handleGetMax=async(value:any)=>{
   const[searchResults,setSearchResults] = useState<any>(null);
   const [search, setSearch] = useState("");
   const [searchClick,setSearchClick] = useState("");
-  const { data: results, isLoading } = useList({
+  const { data: results} = useList({
     resource: "search",
     queryOptions: {
       enabled: !!searchClick,
@@ -160,13 +161,21 @@ const handleGetMax=async(value:any)=>{
   const handleSearch = (e:any) => {
     setSearch(e.target.value);
   };
+  // useEffect(() => {
+  //   setSearchClick(search);
 
+  // },[search])
+  if(isLoading){
+    return <div className="container mx-auto py-12 px-4 text-center">
+      <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
+    </div>
+  }
   return (
     <div className="min-h-screen bg-gray-50">
       <Row style={
             {
               width:"100%",
-              background:"blue",
+              background:"#f9f9f9",
               padding:15
             } }
             justify={"end"}
@@ -197,7 +206,7 @@ const handleGetMax=async(value:any)=>{
               style={{ width: 304 }}
             />
             <Button type='primary'
-            onClick={()=>{setSearchClick(search);setSearch("")}}
+            onClick={()=>{setSearchClick(search)}}
             >
               search
             </Button>
@@ -279,6 +288,12 @@ const handleGetMax=async(value:any)=>{
           </div>
            */}
           <div className="flex-1">
+            {searchClick && !results ? 
+             <div className="container mx-auto py-12 px-4 text-center">
+        <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
+      </div>
+      :
+      <>
           {searchResults ? 
             <>
             {searchResults?.courses && searchResults?.courses.length>0 ? searchResults?.courses ? (
@@ -326,6 +341,8 @@ const handleGetMax=async(value:any)=>{
             )}
             </>
             }
+            </> }
+
           </div>
         </div>
       </div>

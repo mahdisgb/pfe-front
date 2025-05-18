@@ -8,17 +8,17 @@ import { useTranslation } from '@refinedev/core';
 export const Formation = () => {
     const { translate: t } = useTranslation();
     const { mutate: register } = useRegister();
-    const [registerForm] = Form.useForm();
+    const [form] = Form.useForm();
     const navigate = useNavigate();
       const [isLoading, setIsLoading] = useState(false);
     const handleSubmit = async () => {
         try {
           setIsLoading(true);
-          const values = await registerForm.validateFields();
+          const values = await form.validateFields();
           await register({ ...values}, {
             onSuccess: () => {
               message.success(t('auth.registerSuccess'));
-              registerForm.resetFields();
+              form.resetFields();
               setIsLoading(false);
             },
             onError: () => {
@@ -33,12 +33,15 @@ export const Formation = () => {
     };
     return (
         <div className='flex items-center justify-center min-h-[90vh]'>
-            <div className='flex items-center gap-16'>
-                <div>
+            <div className='flex flex-col gap-16 bg-white rounded-lg p-10'>
+          <Card>
+
+          </Card>
+                  {/* <div>
                     <img src="logo.jpeg" alt="" />
-                </div>
+                </div> */}
       <Form
-      form={registerForm}
+      form={form}
       onFinish={handleSubmit}
       layout="vertical"
     >

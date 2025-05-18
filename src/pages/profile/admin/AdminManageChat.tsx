@@ -16,7 +16,7 @@ export default function AdminManageChat () {
   const {mutate :deleteCourse } =useDelete();
   const {data:user}=useGetIdentity<any>();
   const {data:messages,refetch} = useList({
-    resource:"chat/user/6",
+    resource:"chat/room/course-1",
     pagination:{
         mode:"off",
     },

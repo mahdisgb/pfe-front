@@ -57,7 +57,8 @@ export const dataProvider = (
       ? `${url}?${stringify(combinedQuery)}`
       : url;
     }else{
-      urlWithQuery = `${url}`
+      const yes = stringify(combinedQuery).replace("query=","") !== ""
+      urlWithQuery =yes ? `${url}?${stringify(combinedQuery)}` : url;
     }
 
 

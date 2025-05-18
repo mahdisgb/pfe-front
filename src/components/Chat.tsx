@@ -35,7 +35,7 @@ const Chat = ({ roomId }: ChatProps) => {
   useEffect(() => {
     const loadMessages = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_APP_API_URL}/chat/room/${roomId}/messages`);
+        const response = await axios.get(`${import.meta.env.VITE_APP_API_URL}/chat/room/${roomId}`);
         setMessages(response.data);
       } catch (error) {
         console.error('Error loading messages:', error);

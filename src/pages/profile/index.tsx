@@ -1,10 +1,12 @@
 import { useParams, Navigate } from 'react-router-dom';
+import { useTranslation } from '@refinedev/core';
 import { StudentProfile } from './student';
 import { ProfessorCoursesPage } from './professor/ProfessorCoursesPage';
 import { ProfessorDashboard } from './professor/ProfessorDashboard';
 
 export const ProfilePage = () => {
   const { id } = useParams();
+  const { translate: t } = useTranslation();
   const user = JSON.parse(localStorage.getItem("refine_user")!);
   
   // If no user is logged in, redirect to login
@@ -28,8 +30,8 @@ export const ProfilePage = () => {
     // Handle unknown roles
     return (
       <div className="p-4">
-        <h2>Unknown user role: {user.roles}</h2>
-        <p>Please contact support.</p>
+        <h2>{t('profile.unknownRole.title')}: {user.roles}</h2>
+        <p>{t('profile.unknownRole.message')}</p>
       </div>
     );
   }

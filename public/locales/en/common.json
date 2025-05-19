@@ -25,7 +25,9 @@
         "view": "View",
         "edit": "Edit",
         "delete": "Delete",
-        "profile": "Profile"
+        "profile": "Profile",
+        "submit": "Submit",
+        "cancel": "Cancel"
     },
     "courses": {
         "filters": {
@@ -48,7 +50,13 @@
             "noCoursesDescription": "Try adjusting your filters or search terms"
         },
         "students": "students",
-        "enroll": "Enroll Now"
+        "enroll": "Enroll Now",
+        "search": "Search",
+        "reset": "Reset",
+        "postComment": "Post Comment",
+        "tryAdjustingFiltersOrSearchTerms": "Try adjusting your filters or search terms",
+        "noCoursesFound": "No courses found",
+        "showing": "Showing {{count}} courses"
     },
     "course": {
         "notFound": {
@@ -77,7 +85,8 @@
             "stars": "stars"
         },
         "aboutCourse": "About This Course",
-        "yourInstructor": "Your Instructor"
+        "yourInstructor": "Your Instructor",
+        "courseContent": "Course Content"
     },
     "footer": {
         "company": {
@@ -107,7 +116,8 @@
         "categories": "Categories",
         "courses": "Courses",
         "lessons": "Lessons",
-        "profile": "Profile"
+        "profile": "Profile",
+        "formation": "Formation"
     },
     "errors": {
         "404": "404",
@@ -138,46 +148,139 @@
         "registerError": "Failed to register"
     },
     "profile": {
-        "userType": "User Type",
-        "viewDashboard": "View Dashboard",
+        "title": "Profile",
+        "editProfile": "Edit Profile",
         "student": {
             "title": "Student Profile",
-            "enrolledCourses": "Enrolled Courses",
-            "learningHours": "Learning Hours",
-            "completedCourses": "Completed Courses",
-            "noCourses": "No courses found"
+            "role": "Student",
+            "tabs": {
+                "enrolledCourses": "Enrolled Courses",
+                "achievements": "Achievements",
+                "history": "History"
+            },
+            "courseProgress": "{{progress}}% completed",
+            "completionDate": "Completed on {{date}}",
+            "grade": "Grade: {{grade}}%"
         },
         "professor": {
             "title": "Professor Dashboard",
-            "courses": "Courses",
-            "lessons": "Lessons",
-            "createNewLesson": "Create New Lesson",
-            "editLesson": "Edit Lesson",
-            "filterByCourse": "Filter by course",
-            "selectLessonToEdit": "Please select a lesson to edit",
-            "deleteLesson": {
-                "title": "Delete Lesson",
-                "confirm": "Are you sure you want to delete this lesson?",
-                "success": "Lesson deleted successfully",
-                "error": "Failed to delete lesson"
-            },
-            "toggleActive": {
-                "success": "Course active status toggled successfully",
-                "error": "Failed to toggle lesson active status"
-            },
-            "dashboard": "Professor Dashboard",
+            "role": "Professor",
+            "editProfile": "Edit Profile",
+            "submit": "Submit",
+            "cancel": "Cancel",
             "totalCourses": "Total Courses",
             "totalStudents": "Total Students",
-            "totalRevenue": "Total Revenue"
+            "totalRevenue": "Total Revenue",
+            "form": {
+                "firstName": "First Name",
+                "lastName": "Last Name",
+                "email": "Email",
+                "currentPassword": "Current Password",
+                "newPassword": "New Password"
+            }
         },
         "admin": {
             "title": "Admin Dashboard",
-            "settings": "Settings",
-            "requests": "Requests",
+            "role": "Administrator",
             "processRequest": "Process Request",
             "selectRequestToProcess": "Please select a request to process",
-            "cancel": "Cancel",
-            "submit": "Submit"
+            "dashboard": {
+                "title": "Admin Dashboard",
+                "totalStudents": "Total Students",
+                "totalCourses": "Total Courses",
+                "totalProfessors": "Total Professors",
+                "activeEnrollments": "Active Enrollments"
+            },
+            "users": {
+                "title": "Manage Users",
+                "name": "Name",
+                "email": "Email",
+                "role": "Role",
+                "actions": "Actions",
+                "edit": "Edit",
+                "delete": "Delete",
+                "addUser": "Add User",
+                "editUser": "Edit User",
+                "deleteConfirm": "Delete User",
+                "deleteConfirmMessage": "Are you sure you want to delete this user?",
+                "deleteSuccess": "User deleted successfully",
+                "deleteError": "Failed to delete user",
+                "cancel": "Cancel"
+            },
+            "courses": {
+                "title": "Manage Courses",
+                "professor": "Professor",
+                "enrollments": "Enrollments",
+                "status": "Status",
+                "actions": "Actions",
+                "view": "View",
+                "edit": "Edit",
+                "delete": "Delete",
+                "addCourse": "Add Course",
+                "courseDetails": "Course Details",
+                "description": "Description",
+                "deleteConfirm": "Delete Course",
+                "deleteConfirmMessage": "Are you sure you want to delete this course?",
+                "deleteSuccess": "Course deleted successfully",
+                "deleteError": "Failed to delete course",
+                "cancel": "Cancel"
+            },
+            "chat": {
+                "title": "Manage Chat",
+                "sender": "Sender",
+                "room": "Room",
+                "message": "Message",
+                "time": "Time",
+                "actions": "Actions",
+                "view": "View",
+                "delete": "Delete",
+                "createRoom": "Create Room",
+                "messageDetails": "Message Details",
+                "deleteConfirm": "Delete Message",
+                "deleteConfirmMessage": "Are you sure you want to delete this message?",
+                "deleteSuccess": "Message deleted successfully",
+                "deleteError": "Failed to delete message",
+                "cancel": "Cancel"
+            },
+            "requests": {
+                "title": "Manage Requests",
+                "user": "User",
+                "type": "Type",
+                "status": "Status",
+                "date": "Date",
+                "actions": "Actions",
+                "view": "View",
+                "approve": "Approve",
+                "reject": "Reject",
+                "requestDetails": "Request Details",
+                "details": "Details",
+                "approveConfirm": "Approve Request",
+                "approveConfirmMessage": "Are you sure you want to approve this request?",
+                "rejectConfirm": "Reject Request",
+                "rejectConfirmMessage": "Are you sure you want to reject this request?",
+                "approveSuccess": "Request approved successfully",
+                "approveError": "Failed to approve request",
+                "rejectSuccess": "Request rejected successfully",
+                "rejectError": "Failed to reject request",
+                "cancel": "Cancel"
+            },
+            "settings": {
+                "title": "Platform Settings",
+                "siteName": "Site Name",
+                "contactEmail": "Contact Email",
+                "enableRegistration": "Enable Registration",
+                "enableComments": "Enable Comments",
+                "save": "Save",
+                "siteNameRequired": "Please enter site name",
+                "contactEmailRequired": "Please enter contact email",
+                "invalidEmail": "Please enter a valid email",
+                "saveSuccess": "Settings saved successfully",
+                "saveError": "Failed to save settings"
+            }
+        },
+        "unknownRole": {
+            "title": "Unknown user role",
+            "message": "Please contact support."
         }
     },
     "forms": {
@@ -189,25 +292,37 @@
             "category": "Category",
             "price": "Price",
             "titleRequired": "Please enter course title",
-            "descriptionRequired": "Please enter course description"
+            "descriptionRequired": "Please enter course description",
+            "selectImage": "Select Image",
+            "priceRequired": "Please enter course price"
+
         },
         "lesson": {
             "title": "Enter lesson title",
             "description": "Enter lesson description",
             "course": "Select course",
             "thumbnail": "Select Image",
-            "video": "Select Video"
+            "video": "Select Video",
+            "create": "Create Lesson",
+            "edit": "Edit Lesson",
+            "filterByCourse": "Filter by course"
         }
     },
     "search": {
-        "placeholder": "Search for courses...",
+        "placeholder": "Search courses and lessons...",
         "noResults": "No results found",
         "courses": "Courses",
         "lessons": "Lessons"
     },
     "modal": {
         "cancel": "Cancel",
-        "save": "Save"
+        "save": "Save",
+        "deleteCourse": "Are you sure you want to delete this course? lessons related to this course will also be deleted",
+        "deleteLesson": "Are you sure you want to delete this lesson?",
+        "deleteCourseConfirm": "Delete Course",
+        "deleteLessonConfirm": "Delete This Lesson",
+        "selectCourse": "Please select a course",
+        "selectLesson": "Please select a lesson"
     },
     "coursePlayer": {
         "title": "Course Content",
@@ -224,7 +339,10 @@
         "unit6": "Unit 6",
         "unit7": "Unit 7",
         "unit8": "Unit 8",
-        "unit9": "Unit 9"
+        "unit9": "Unit 9",
+        "comments": "Comments",
+        "addComment": "Add Comment",
+        "commentPlaceholder": "Add a comment..."
     },
     "enrollment": {
         "title": "Enroll in Course",
@@ -258,19 +376,78 @@
         "loading": "Loading video..."
     },
     "home": {
+        "hero": {
+            "title": "Learn with online private courses from anywhere in the world",
+            "startNow": "Start Now",
+            "subjects": "Mathematics · English · Physics · Programming"
+        },
+        "languageCourses": {
+            "title": "Online language courses with native teachers from around the world",
+            "english": "Courses in English",
+            "french": "Courses in French",
+            "arabic": "Courses in Arabic",
+            "enrollNow": "Enroll Now"
+        },
+        "competences": {
+            "title": "Prepare for an exam, develop your skills",
+            "categories": {
+                "language": "Language",
+                "examPrep": "Exam Prep",
+                "professional": "Professional",
+                "children": "Children",
+                "others": "Others"
+            }
+        },
         "features": {
-            "title": "Why Choose Us",
-            "qualityCourses": {
-                "title": "Quality Courses",
-                "description": "Access high-quality courses designed by industry experts"
+            "title": "Over 500,000 students have relied on our class tracking",
+            "items": {
+                "flexibility": {
+                    "title": "Flexibility",
+                    "description": "Description of the benefit here."
+                },
+                "teachers": {
+                    "title": "Teachers",
+                    "description": "Description of the benefit here."
+                },
+                "goals": {
+                    "title": "Goals",
+                    "description": "Description of the benefit here."
+                },
+                "exercises": {
+                    "title": "Exercises",
+                    "description": "Description of the benefit here."
+                }
             },
-            "expertInstructors": {
-                "title": "Expert Instructors",
-                "description": "Learn from experienced professionals in their fields"
-            },
-            "certification": {
-                "title": "Certification",
-                "description": "Earn certificates recognized by top companies"
+            "enrollNow": "Enroll Now"
+        },
+        "howItWorks": {
+            "title": "How does Classgap work?",
+            "steps": {
+                "findTeacher": {
+                    "title": "1. Find your ideal teacher",
+                    "description": "Choose from thousands of qualified teachers."
+                },
+                "chooseTime": {
+                    "title": "2. Choose the best time",
+                    "description": "Schedule your class according to your timetable."
+                },
+                "learnFromHome": {
+                    "title": "3. Learn from your living room",
+                    "description": "Use Classgap's virtual classroom."
+                }
+            }
+        },
+        "testimonials": {
+            "title": "These students started just like you",
+            "testimonials": {
+                "david": {
+                    "text": "The English class with my teacher was super motivating. I highly recommend it!",
+                    "name": "David"
+                },
+                "fatima": {
+                    "text": "Practical and intuitive, the course videos helped me progress quickly.",
+                    "name": "Fatima"
+                }
             }
         },
         "cta": {
@@ -315,5 +492,24 @@
             "enableRegistration": "Enable User Registration",
             "enableComments": "Enable Course Comments"
         }
+    },
+    "chat": {
+        "room": "Chat Room",
+        "connected": "Connected",
+        "disconnected": "Disconnected",
+        "connectionError": "Failed to connect to chat",
+        "sendError": "Failed to send message",
+        "messagePlaceholder": "Type a message...",
+        "send": "Send"
+    },
+    "sidebar": {
+        "myCourses": "My Courses",
+        "myLessons": "My Lessons",
+        "myProfile": "My Profile",
+        "mySettings": "My Settings",
+        "professorRequests": "Professor Requests",
+        "manageCourses": "Manage Courses",
+        "manageUsers": "Manage Users",
+        "manageChat": "Manage Chat"
     }
 }

@@ -1,5 +1,5 @@
 import { InboxOutlined, UploadOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { useCreate, useGetIdentity, useList, useOne, useUpdate } from "@refinedev/core";
+import { useCreate, useGetIdentity, useList, useOne, useUpdate, useTranslation } from "@refinedev/core";
 import {
   Button,
   Card,
@@ -23,10 +23,9 @@ type CreateCourseProps = {
   onCancel: () => void,
   selectedLessonId: number | undefined
 };
-  export const CreateLesson = ({ open, onCancel, selectedLessonId }: CreateCourseProps) => {
-    const [form] = Form.useForm();
+  export const CreateLesson = ({ open, onCancel, selectedLessonId }: CreateCourseProps) => {    const [form] = Form.useForm();
     const[uploading,setUploading]=useState(false);
-    
+    const {translate:t}=useTranslation();
     const {data:user}=useGetIdentity<any>();
 
     const {mutateAsync:createLesson} =useCreate();
@@ -173,8 +172,8 @@ type CreateCourseProps = {
       maskClosable={false}
       footer={[
         <div className="flex items-center justify-end gap-2">
-            <Button type="default" onClick={onCancel}>Cancel</Button>
-            <Button type="primary" disabled={uploading} loading={uploading} onClick={handleSubmit}>{selectedLessonId ? "Update" : "Create"}</Button>
+            <Button type="default" onClick={onCancel}>{t('modal.cancel')}</Button>
+            <Button type="primary" disabled={uploading} loading={uploading} onClick={handleSubmit}>{selectedLessonId ? t('modal.update') : t('modal.create')}</Button>
         </div>
       ]}
       width={500}
@@ -237,7 +236,7 @@ type CreateCourseProps = {
        onRemove={() => {videoRef.current = null}}
        disabled={videoRef.current ? true : false}
      >
-       <Button icon={<UploadOutlined />}>Select Video</Button>
+       <Button icon={<UploadOutlined />}>{t('forms.lesson.selectVideo')}</Button>
      </Upload>
      </Form.Item>
       </Form>
@@ -293,7 +292,7 @@ type CreateCourseProps = {
        onRemove={() => {videoRef.current = null}}
        disabled={videoRef.current ? true : false}
      >
-       <Button icon={<UploadOutlined />}>Select Video</Button>
+       <Button icon={<UploadOutlined />}>{t('forms.lesson.selectVideo')}</Button>
      </Upload>
      </Form.Item>
       </Form>}
@@ -302,28 +301,3 @@ type CreateCourseProps = {
     </Modal>
   );
 };
-
- {/* <div>
-            <Upload
-              name="thumbnail"
-              listType="picture-card"
-              className="avatar-uploader"
-              showUploadList={false}
-              beforeUpload={beforeUpload}
-              onChange={handleChange}
-              customRequest={({ file, onSuccess }) => {
-                setTimeout(() => {
-                  onSuccess?.("ok");
-                }, 0);
-              }}
-            >
-              {imageUrl ? (
-                <img src={imageUrl} alt="thumbnail" style={{ width: '100%' }} />
-              ) : (
-                uploadButton
-              )}
-            </Upload>
-            {uploading && (
-              <Progress percent={uploadProgress} status="active" />
-            )}
-          </div> */}

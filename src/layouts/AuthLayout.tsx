@@ -40,7 +40,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       {
         key: 'my-courses',
         icon: <PlayCircleOutlined />,
-        label: 'My Courses',
+        label: t('sidebar.myCourses'),
         onClick: () => navigate('/profile/my-courses')
       },
      
@@ -56,13 +56,13 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       {
         key: 'courses',
         icon: <PlayCircleOutlined />,
-        label: 'Courses',
+        label: t('sidebar.myCourses'),
         onClick: () => navigate('/profile/courses')
       },
       {
         key: 'lessons',
         icon: <FormOutlined />,
-        label: 'Lessons',
+        label: t('sidebar.myLessons'),
         onClick: () => navigate('/profile/lessons')
       }
     ];
@@ -83,33 +83,28 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       {
         key: 'professor-requests',
         icon:<SolutionOutlined />,
-        label: 'Professor Requests',
+        label: t('sidebar.professorRequests'),
         onClick: () => navigate('/profile/professor-requests')
       },
       {
         key: 'manage-courses',
         icon: <PlayCircleOutlined />,
-        label: 'Manage Courses',
+        label: t('sidebar.manageCourses'),
         onClick: () => navigate('/profile/manage-courses')
       },
         {
           key: 'manage-users',
           icon: <TeamOutlined />,
-          label: 'Manage Users',
+          label: t('sidebar.manageUsers'),
           onClick: () => navigate('/profile/manage-users')
         },
         {
           key: 'manage-chat',
           icon: <CommentOutlined />,
-          label: 'Manage Chat',
+          label: t('sidebar.manageChat'),
           onClick: () => navigate('/profile/manage-chat')
         },
-      // {
-      //   key: 'settings',
-      //   icon: <SettingOutlined />,
-      //   label: 'Settings',
-      //   onClick: () => navigate('/profile/settings')
-      // }
+     
     ];
 
     if (user?.roles?.includes('admin')) {
@@ -124,23 +119,17 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider width={250} theme="light">
-        <div className="h-16 flex items-center justify-center border-b">
-          <h1 className="text-xl font-bold">Learning Platform</h1>
-        </div>
+     
         <Menu
           mode="inline"
           selectedKeys={[location.pathname.split('/')[2] || 'profile']}
           items={getMenuItems()}
-          style={{ borderRight: 0 }}
+          style={{ borderRight: 0,marginTop:20 }}
         />
       </Sider>
       <Layout>
         <Content style={{ margin: '24px 16px', padding: 24,  }}>
-          <div className="text-center mb-8">
-            {/* <h1 className="text-2xl font-bold text-gray-900">
-              {t('auth.loginTitle')}
-            </h1> */}
-          </div>
+         
           {children}
         </Content>
       </Layout>

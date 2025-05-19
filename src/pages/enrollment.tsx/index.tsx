@@ -102,11 +102,11 @@ const Enrollment = () => {
   if (!course) {
     return (
       <div className="container mx-auto py-12 px-4 text-center">
-        <Title level={2}>Course not found</Title>
-        <Text className="mb-6 block">The course you're looking for doesn't exist or has been removed.</Text>
+        <Title level={2}>{t('course.notFound.title')}</Title>
+        <Text className="mb-6 block">{t('course.notFound.description')}</Text>
         <Link to="/courses">
           <Button type="primary" icon={<ArrowLeftOutlined />}>
-            Back to Course
+            {t('coursePlayer.backToCourses')}
           </Button>
         </Link>
       </div>

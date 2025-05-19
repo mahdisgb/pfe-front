@@ -215,7 +215,7 @@ export const CreateCourse = ({ open, onCancel, selectedCourseId }: CreateCourseP
           onRemove={() => {fileRef.current = null}}
           disabled={fileRef.current ? true : false}
         >
-          <Button icon={<UploadOutlined />}>Select Image</Button>
+          <Button icon={<UploadOutlined />}>{t('forms.course.selectImage')}</Button>
         </Upload>
         </Form.Item>
       </Form>

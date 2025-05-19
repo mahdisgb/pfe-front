@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { format } from 'date-fns';
 import axios from 'axios';
-import { useGetIdentity } from '@refinedev/core';
+import { useGetIdentity, useTranslation } from '@refinedev/core';
 import { Card, Input, Button, List, Typography, Avatar, Space, Divider, message } from 'antd';
 import { SendOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -24,12 +24,13 @@ interface User {
 }
 
 const Chat = ({ roomId }: ChatProps) => {
+  const { translate: t } = useTranslation();
+  const { data: user } = useGetIdentity<User>();
   const [socket, setSocket] = useState<Socket | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [isConnected, setIsConnected] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { data: user } = useGetIdentity<User>();
 
   // Load message history
   useEffect(() => {
@@ -57,28 +58,30 @@ const Chat = ({ roomId }: ChatProps) => {
     });
 
     newSocket.on('connect', () => {
+      console.log('Connected to socket server');
       setIsConnected(true);
-      // message.success('Connected to chat');
+      message.success(t('chat.connected'));
     });
 
     newSocket.on('connect_error', (error) => {
-      console.error('Socket connection error:', error);
-      // message.error('Failed to connect to chat');
+      console.error('Connection error:', error);
       setIsConnected(false);
+      message.error(t('chat.connectionError'));
     });
 
     newSocket.on('disconnect', () => {
+      console.log('Disconnected from socket server');
       setIsConnected(false);
-      // message.warning('Disconnected from chat');
+      message.warning(t('chat.disconnected'));
     });
 
-    setSocket(newSocket);
+    newSocket.on('receive_message', (message: Message) => {
+      setMessages((prev) => [...prev, message]);
+    });
 
     newSocket.emit('join_room', roomId);
 
-    newSocket.on('receive_message', (message: Message) => {
-      setMessages(prev => [...prev, message]);
-    });
+    setSocket(newSocket);
 
     return () => {
       newSocket.emit('leave_room', roomId);
@@ -100,13 +103,12 @@ const Chat = ({ roomId }: ChatProps) => {
       roomId,
       message: newMessage,
       userId: user.id,
-      // userName: user.name
     };
 
     socket.emit('send_message', messageData, (error: any) => {
       if (error) {
         console.error('Error sending message:', error);
-        // message.error('Failed to send message');
+        message.error(t('chat.sendError'));
       }
     });
 
@@ -117,14 +119,13 @@ const Chat = ({ roomId }: ChatProps) => {
     <Card 
       title={
         <Space>
-          <Typography.Text>Chat Room</Typography.Text>
+          <Typography.Text>{t('chat.room')}</Typography.Text>
           <Typography.Text type={isConnected ? "success" : "danger"}>
-            {isConnected ? "Connected" : "Disconnected"}
+            {isConnected ? t('chat.connected') : t('chat.disconnected')}
           </Typography.Text>
         </Space>
       }
-      style={{ height: '95%', display: 'flex', flexDirection: 'column',border: 'none' }}
-
+      style={{ height: '95%', display: 'flex', flexDirection: 'column', border: 'none' }}
       styles={{
         body: {
           display: 'flex',
@@ -164,18 +165,16 @@ const Chat = ({ roomId }: ChatProps) => {
           <Input
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Type a message..."
-            size="large"
+            placeholder={t('chat.messagePlaceholder')}
             disabled={!isConnected}
           />
           <Button 
             type="primary" 
             icon={<SendOutlined />} 
-            size="large"
-            disabled={!newMessage.trim() || !isConnected}
-            onClick={sendMessage}
+            htmlType="submit"
+            disabled={!isConnected || !newMessage.trim()}
           >
-            Send
+            {t('chat.send')}
           </Button>
         </Space.Compact>
       </form>

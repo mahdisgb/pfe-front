@@ -66,56 +66,9 @@ export const HomePageLayout: React.FC<{ children: React.ReactNode }> = ({ childr
         onClose={() => setIsChatOpen(false)}
         open={isChatOpen}
         width={450}
-        // extra={
-        //   <Button 
-        //     type="text" 
-        //     icon={<CloseOutlined />} 
-        //     onClick={() => setIsChatOpen(false)}
-        //   />
-        // }
+       
       >
-        {/* <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}> */}
-          {/* Messages List */}
           <Chat roomId="course-1" />
-          {/* <div style={{ flex: 1, overflowY: 'auto', marginBottom: '16px' }}>
-            <List
-              dataSource={messages}
-              renderItem={(msg) => (
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={<Avatar>{user?.firstName?.[0]}</Avatar>}
-                    title={
-                      <Space>
-                        <Text strong>{user?.firstName} {user?.lastName}</Text>
-                        <Text type="secondary" style={{ fontSize: '12px' }}>
-                          {new Date(msg.timeAdded).toLocaleTimeString()}
-                        </Text>
-                      </Space>
-                    }
-                    description={msg.content}
-                  />
-                </List.Item>
-              )}
-            />
-          </div>
-
-          <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: '16px' }}>
-            <Input.Group compact>
-              <Input
-                style={{ width: 'calc(100% - 40px)' }}
-                placeholder="Type a message..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onPressEnter={handleSendMessage}
-              />
-              <Button 
-                type="primary" 
-                icon={<SendOutlined />} 
-                onClick={handleSendMessage}
-              />
-            </Input.Group>
-          </div> */}
-        {/* </div> */}
       </Drawer>
     </Layout>
   );

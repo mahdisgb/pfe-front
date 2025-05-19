@@ -214,7 +214,7 @@ const Header = () => {
                 }
                 to="/formation"
               >
-                Formation
+                {t('navigation.formation')}
               </NavLink>
             </li>
             {/* <li>

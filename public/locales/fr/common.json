@@ -157,149 +157,393 @@
       }
     },
     "common": {
-      "welcome": "",
-      "backToCourses": "",
-      "ourServices": "",
-      "register": "",
-      "logout": "",
-      "getStarted": ""
+      "welcome": "Bienvenue sur notre plateforme d'apprentissage",
+      "backToCourses": "Retour aux cours",
+      "ourServices": "Nos services",
+      "register": "S'inscrire",
+      "logout": "Déconnexion",
+      "getStarted": "Commencer",
+      "goHome": "Retour à l'accueil",
+      "aboutCourse": "À propos de ce cours",
+      "courseContent": "Contenu du cours",
+      "faq": "Questions fréquentes",
+      "yourInstructor": "Votre instructeur",
+      "copyright": "Copyright ©2024",
+      "status": "Statut",
+      "statuses": {
+        "active": "Actif",
+        "inactive": "Inactif"
+      },
+      "view": "Voir",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "profile": "Profil"
     },
     "navigation": {
-      "home": "",
-      "courses": "",
-      "profile": ""
+      "home": "Accueil",
+      "categories": "Catégories",
+      "courses": "Cours",
+      "lessons": "Leçons",
+      "profile": "Profil",
+      "formation": "Formation"
     },
     "auth": {
-      "loginTitle": "",
-      "registerTitle": "",
-      "email": "",
-      "password": "",
-      "firstName": "",
-      "lastName": "",
-      "userType": "",
-      "student": "",
-      "professor": "",
-      "login": "",
-      "register": "",
-      "emailRequired": "",
-      "emailInvalid": "",
-      "passwordRequired": "",
-      "firstNameRequired": "",
-      "lastNameRequired": "",
-      "userTypeRequired": "",
-      "selectUserType": "",
-      "loginSuccess": "",
-      "loginError": "",
-      "registerSuccess": "",
-      "registerError": ""
+      "loginTitle": "Connectez-vous à votre compte",
+      "registerTitle": "Créez votre compte",
+      "email": "Email",
+      "password": "Mot de passe",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "userType": "Type d'utilisateur",
+      "student": "Étudiant",
+      "professor": "Professeur",
+      "login": "Se connecter",
+      "register": "S'inscrire",
+      "emailRequired": "Veuillez entrer votre email",
+      "emailInvalid": "Veuillez entrer un email valide",
+      "passwordRequired": "Veuillez entrer votre mot de passe",
+      "firstNameRequired": "Veuillez entrer votre prénom",
+      "lastNameRequired": "Veuillez entrer votre nom",
+      "userTypeRequired": "Veuillez sélectionner votre type d'utilisateur",
+      "selectUserType": "Sélectionnez le type d'utilisateur",
+      "loginSuccess": "Connexion réussie",
+      "loginError": "Échec de la connexion",
+      "registerSuccess": "Inscription réussie",
+      "registerError": "Échec de l'inscription"
     },
     "profile": {
-      "userType": "",
-      "viewDashboard": "",
+      "userType": "Type d'utilisateur",
+      "viewDashboard": "Voir le tableau de bord",
       "student": {
-        "dashboard": "",
-        "enrolledCourses": "",
-        "learningHours": "",
-        "completedCourses": "",
-        "noCourses": ""
+        "title": "Profil étudiant",
+        "enrolledCourses": "Cours inscrits",
+        "learningHours": "Heures d'apprentissage",
+        "completedCourses": "Cours terminés",
+        "noCourses": "Aucun cours trouvé"
       },
       "professor": {
-        "dashboard": "",
-        "totalCourses": "",
-        "totalStudents": "",
-        "totalRevenue": ""
+        "title": "Tableau de bord professeur",
+        "courses": "Cours",
+        "lessons": "Leçons",
+        "createNewLesson": "Créer une nouvelle leçon",
+        "editLesson": "Modifier la leçon",
+        "filterByCourse": "Filtrer par cours",
+        "selectLessonToEdit": "Veuillez sélectionner une leçon à modifier",
+        "deleteLesson": {
+          "title": "Supprimer la leçon",
+          "confirm": "Êtes-vous sûr de vouloir supprimer cette leçon ?",
+          "success": "Leçon supprimée avec succès",
+          "error": "Échec de la suppression de la leçon"
+        },
+        "toggleActive": {
+          "success": "Statut actif du cours modifié avec succès",
+          "error": "Échec de la modification du statut actif de la leçon"
+        },
+        "dashboard": "Tableau de bord professeur",
+        "totalCourses": "Total des cours",
+        "totalStudents": "Total des étudiants",
+        "totalRevenue": "Revenu total"
+      },
+      "admin": {
+        "dashboard": {
+          "title": "Tableau de Bord Administrateur",
+          "totalStudents": "Total des Étudiants",
+          "totalCourses": "Total des Cours",
+          "totalProfessors": "Total des Professeurs",
+          "activeEnrollments": "Inscriptions Actives"
+        },
+        "users": {
+          "title": "Gérer les Utilisateurs",
+          "name": "Nom",
+          "email": "Email",
+          "role": "Rôle",
+          "actions": "Actions",
+          "edit": "Modifier",
+          "delete": "Supprimer",
+          "addUser": "Ajouter un Utilisateur",
+          "editUser": "Modifier l'Utilisateur",
+          "deleteConfirm": "Supprimer l'Utilisateur",
+          "deleteConfirmMessage": "Êtes-vous sûr de vouloir supprimer cet utilisateur ?",
+          "deleteSuccess": "Utilisateur supprimé avec succès",
+          "deleteError": "Échec de la suppression de l'utilisateur",
+          "cancel": "Annuler"
+        },
+        "courses": {
+          "title": "Gérer les Cours",
+          "professor": "Professeur",
+          "enrollments": "Inscriptions",
+          "status": "Statut",
+          "actions": "Actions",
+          "view": "Voir",
+          "edit": "Modifier",
+          "delete": "Supprimer",
+          "addCourse": "Ajouter un Cours",
+          "courseDetails": "Détails du Cours",
+          "description": "Description",
+          "deleteConfirm": "Supprimer le Cours",
+          "deleteConfirmMessage": "Êtes-vous sûr de vouloir supprimer ce cours ?",
+          "deleteSuccess": "Cours supprimé avec succès",
+          "deleteError": "Échec de la suppression du cours",
+          "cancel": "Annuler"
+        },
+        "chat": {
+          "title": "Gérer le Chat",
+          "sender": "Expéditeur",
+          "room": "Salle",
+          "message": "Message",
+          "time": "Heure",
+          "actions": "Actions",
+          "view": "Voir",
+          "delete": "Supprimer",
+          "createRoom": "Créer une Salle",
+          "messageDetails": "Détails du Message",
+          "deleteConfirm": "Supprimer le Message",
+          "deleteConfirmMessage": "Êtes-vous sûr de vouloir supprimer ce message ?",
+          "deleteSuccess": "Message supprimé avec succès",
+          "deleteError": "Échec de la suppression du message",
+          "cancel": "Annuler"
+        },
+        "requests": {
+          "title": "Gérer les Demandes",
+          "user": "Utilisateur",
+          "type": "Type",
+          "status": "Statut",
+          "date": "Date",
+          "actions": "Actions",
+          "view": "Voir",
+          "approve": "Approuver",
+          "reject": "Rejeter",
+          "requestDetails": "Détails de la Demande",
+          "details": "Détails",
+          "approveConfirm": "Approuver la Demande",
       }
     },
     "course": {
-      "lessons": "",
-      "tags": "",
-      "goToCourse": "",
+      "lessons": "leçons",
+      "tags": "tags",
+      "goToCourse": "Aller au cours",
       "notFound": {
-        "title": "",
-        "description": ""
+        "title": "Cours non trouvé",
+        "description": "Le cours que vous recherchez n'existe pas ou a été supprimé."
       },
-      "aboutCourse": "",
-      "yourInstructor": "",
+      "aboutCourse": "À propos de ce cours",
+      "yourInstructor": "Votre instructeur",
       "download": {
-        "success": ""
+        "success": "est en cours de téléchargement."
       }
     },
     "coursePlayer": {
-      "title": "",
-      "backToCourse": "",
-      "courseContent": "",
-      "timeProgress": "",
-      "introduction": "",
-      "why": "",
-      "unit1": "",
-      "unit2": "",
-      "unit3": "",
-      "unit4": "",
-      "unit5": "",
-      "unit6": "",
-      "unit7": "",
-      "unit8": "",
-      "unit9": ""
+      "title": "Lecteur de cours",
+      "backToCourse": "Retour au cours",
+      "courseContent": "Contenu du cours",
+      "timeProgress": "Progression du temps",
+      "introduction": "Introduction",
+      "why": "Pourquoi",
+      "unit1": "Unité 1",
+      "unit2": "Unité 2",
+      "unit3": "Unité 3",
+      "unit4": "Unité 4",
+      "unit5": "Unité 5",
+      "unit6": "Unité 6",
+      "unit7": "Unité 7",
+      "unit8": "Unité 8",
+      "unit9": "Unité 9"
     },
     "enrollment": {
-      "title": "",
-      "courseSummary": "",
-      "professor": "",
-      "coursePrice": "",
-      "paymentDetails": "",
-      "fullName": "",
-      "fullNamePlaceholder": "",
-      "email": "",
-      "emailPlaceholder": "",
-      "cardNumber": "",
-      "cardNumberPlaceholder": "",
-      "expiryDate": "",
-      "expiryDatePlaceholder": "",
-      "cvv": "",
-      "cvvPlaceholder": "",
-      "nameRequired": "",
-      "emailRequired": "",
-      "emailInvalid": "",
-      "cardNumberRequired": "",
-      "cardNumberInvalid": "",
-      "expiryDateRequired": "",
-      "expiryDateInvalid": "",
-      "cvvRequired": "",
-      "cvvInvalid": "",
-      "completeEnrollment": "",
-      "termsAgreement": ""
+      "title": "Inscription au cours",
+      "courseSummary": "Résumé du cours",
+      "professor": "Professeur",
+      "coursePrice": "Prix du cours",
+      "paymentDetails": "Détails du paiement",
+      "fullName": "Nom complet",
+      "fullNamePlaceholder": "Entrez votre nom complet",
+      "email": "Email",
+      "emailPlaceholder": "Entrez votre email",
+      "cardNumber": "Numéro de carte",
+      "cardNumberPlaceholder": "Entrez le numéro de votre carte",
+      "expiryDate": "Date d'expiration",
+      "expiryDatePlaceholder": "MM/AA",
+      "cvv": "CVV",
+      "cvvPlaceholder": "Entrez le code CVV",
+      "nameRequired": "Le nom complet est requis",
+      "emailRequired": "L'email est requis",
+      "emailInvalid": "Veuillez entrer un email valide",
+      "cardNumberRequired": "Le numéro de carte est requis",
+      "cardNumberInvalid": "Veuillez entrer un numéro de carte valide",
+      "expiryDateRequired": "La date d'expiration est requise",
+      "expiryDateInvalid": "Veuillez entrer une date d'expiration valide",
+      "cvvRequired": "Le code CVV est requis",
+      "cvvInvalid": "Veuillez entrer un code CVV valide",
+      "completeEnrollment": "Compléter l'inscription",
+      "termsAgreement": "J'accepte les conditions d'utilisation"
     },
     "videoPlayer": {
-      "loading": ""
+      "loading": "Chargement de la vidéo..."
     },
     "search": {
-      "placeholder": ""
+      "placeholder": "Rechercher des cours et des leçons...",
+      "noResults": "Aucun résultat trouvé",
+      "courses": "Cours",
+      "lessons": "Leçons"
     },
     "forms": {
       "course": {
-        "create": "",
-    }
-  },
-  "home": {
-    "features": {
-      "title": "",
-      "qualityCourses": {
-        "title": "",
-        "description": ""
+        "create": "Créer un cours",
+        "edit": "Modifier le cours",
+        "title": "Titre du cours",
+        "description": "Description du cours",
+        "category": "Catégorie",
+        "price": "Prix",
+        "titleRequired": "Veuillez entrer le titre du cours",
+        "descriptionRequired": "Veuillez entrer la description du cours"
       },
-      "expertInstructors": {
-        "title": "",
-        "description": ""
-      },
-      "certification": {
-        "title": "",
-        "description": ""
+      "lesson": {
+        "title": "Entrez le titre de la leçon",
+        "description": "Entrez la description de la leçon",
+        "course": "Sélectionnez le cours",
+        "thumbnail": "Sélectionnez l'image",
+        "video": "Sélectionnez la vidéo"
       }
     },
-    "cta": {
-      "title": "",
-      "description": "",
-      "button": ""
+    "home": {
+      "hero": {
+        "title": "Apprenez grâce aux cours particulier en ligne depuis n'importe où dans le monde",
+        "startNow": "Commencer",
+        "subjects": "Mathématiques · Anglais · Physique · Programmation"
+      },
+      "languageCourses": {
+        "title": "Cours de langue en ligne avec des professeurs natifs du monde entier",
+        "english": "Cours en anglais",
+        "french": "Cours en français",
+        "arabic": "Cours en arabe",
+        "enrollNow": "S'inscrire maintenant"
+      },
+      "competences": {
+        "title": "Préparez un examen, développez vos compétences",
+        "categories": {
+          "language": "Langue",
+          "examPrep": "Prépa examen",
+          "professional": "Professionnel",
+          "children": "Enfants",
+          "others": "Autres"
+        }
+      },
+      "features": {
+        "title": "Plus de 500 000 élèves ont pu dépendre du suivi de classe",
+        "items": {
+          "flexibility": {
+            "title": "Flexibilité",
+            "description": "Description du bénéfice ici."
+          },
+          "teachers": {
+            "title": "Professeurs",
+            "description": "Description du bénéfice ici."
+          },
+          "goals": {
+            "title": "Objectifs",
+            "description": "Description du bénéfice ici."
+          },
+          "exercises": {
+            "title": "Exercices",
+            "description": "Description du bénéfice ici."
+          }
+        },
+        "enrollNow": "S'inscrire maintenant"
+      },
+      "howItWorks": {
+        "title": "Comment fonctionne Classgap ?",
+        "steps": {
+          "findTeacher": {
+            "title": "1. Trouvez votre professeur idéal",
+            "description": "Choisissez parmi des milliers de professeurs qualifiés."
+          },
+          "chooseTime": {
+            "title": "2. Choisissez le meilleur moment",
+            "description": "Planifiez votre cours selon votre emploi du temps."
+          },
+          "learnFromHome": {
+            "title": "3. Apprenez depuis votre salon",
+            "description": "Utilisez la salle de classe virtuelle de Classgap."
+          }
+        }
+      },
+      "testimonials": {
+        "title": "Ces élèves ont commencé comme vous",
+        "testimonials": {
+          "david": {
+            "text": "Le cours d'anglais avec mon professeur était super motivant. Je recommande vivement !",
+            "name": "David"
+          },
+          "fatima": {
+            "text": "Pratique et intuitif, les vidéos des cours m'ont aidé à progresser rapidement.",
+            "name": "Fatima"
+          }
+        }
+      },
+      "cta": {
+        "title": "Commencez votre parcours d'apprentissage aujourd'hui",
+        "description": "Rejoignez des milliers d'étudiants qui apprennent déjà avec nous",
+        "button": "Explorer les cours"
+      }
+    },
+    "chat": {
+      "room": "Salle de chat",
+      "connected": "Connecté",
+      "disconnected": "Déconnecté",
+      "connectionError": "Échec de la connexion au chat",
+      "sendError": "Échec de l'envoi du message",
+      "messagePlaceholder": "Tapez un message...",
+      "send": "Envoyer"
+    },
+    "courses": {
+        "filters": {
+            "title": "Filtres",
+            "resetAll": "Réinitialiser tout",
+            "searchPlaceholder": "Rechercher des cours...",
+            "category": "Catégorie",
+            "sortBy": "Trier par",
+            "sortOptions": {
+                "mostPopular": "Les plus populaires",
+                "highestRated": "Les mieux notés",
+                "newest": "Les plus récents",
+                "priceHighToLow": "Prix : du plus élevé au plus bas",
+                "priceLowToHigh": "Prix : du plus bas au plus élevé"
+            }
+        },
+        "results": {
+            "showing": "Affichage de {{count}} cours",
+            "noCourses": "Aucun cours trouvé",
+            "noCoursesDescription": "Essayez d'ajuster vos filtres ou vos termes de recherche"
+        }
+    },
+    "footer": {
+        "company": {
+            "title": "Entreprise",
+            "aboutUs": "À propos de nous",
+            "careers": "Carrières",
+            "blog": "Blog",
+            "press": "Presse"
+        },
+        "resources": {
+            "title": "Ressources",
+            "helpCenter": "Centre d'aide",
+            "contactUs": "Contactez-nous",
+            "termsOfService": "Conditions d'utilisation",
+            "privacyPolicy": "Politique de confidentialité"
+        },
+        "subscribe": {
+            "title": "S'abonner",
+            "description": "Recevez les dernières mises à jour et offres",
+            "emailPlaceholder": "Votre email",
+            "button": "S'abonner"
+        }
+    },
+    "errors": {
+        "404": "404",
+        "403": "403"
+    },
+    "modal": {
+        "cancel": "Annuler",
+        "save": "Enregistrer"
     }
-  }
 }

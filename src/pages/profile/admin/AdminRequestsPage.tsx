@@ -1,19 +1,21 @@
 import Sider from '@/components/Sider'
 import React, { useState } from 'react'
-import { useCreate, useDelete, useGetIdentity, useList } from '@refinedev/core';
-import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch } from 'antd';
-import { DeleteOutlined, InboxOutlined, UploadOutlined } from '@ant-design/icons';
+import { useCreate, useDelete, useGetIdentity, useList, useUpdate } from '@refinedev/core';
+import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Space } from 'antd';
+import { DeleteOutlined, InboxOutlined, UploadOutlined, CheckOutlined, CloseOutlined, EyeOutlined } from '@ant-design/icons';
 // import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
 import { TableRowSelection } from 'antd/es/table/interface';
 import { ProcessRequestModal } from './components/ProcessRequestModal';
+import { useTranslation } from '@refinedev/core';
 const { Dragger } = Upload;
 
 export default function AdminRequestsPage () {
+  const { translate: t } = useTranslation();
   const[selectedRequest,setSelectedRequest]=useState<any | undefined>(undefined);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const[processModal,setProcessModal]=useState<boolean>(false);
+  const { mutateAsync: updateRequest } = useUpdate();
 
-  const {mutate :deleteCourse } =useDelete();
   const {data:user}=useGetIdentity<any>();
   const {data:courses,refetch} = useList({
     resource:"admin/professor-requests",
@@ -77,6 +79,34 @@ export default function AdminRequestsPage () {
     
   ];
   
+  const handleApprove = async (id: number) => {
+    try {
+      await updateRequest({
+        resource: 'requests',
+        id,
+        values: { status: 'approved' },
+      });
+      message.success(t('profile.admin.requests.approveSuccess'));
+      refetch();
+    } catch (error) {
+      message.error(t('profile.admin.requests.approveError'));
+    }
+  };
+
+  const handleReject = async (id: number) => {
+    try {
+      await updateRequest({
+        resource: 'requests',
+        id,
+        values: { status: 'rejected' },
+      });
+      message.success(t('profile.admin.requests.rejectSuccess'));
+      refetch();
+    } catch (error) {
+      message.error(t('profile.admin.requests.rejectError'));
+    }
+  };
+
   return (
     <>
     <Row style={{marginBottom:"20px"}} justify={"end"} gutter={16}>
@@ -118,33 +148,6 @@ export default function AdminRequestsPage () {
             </p>
           </div>
         )} */}
-      {/*  <div className=' w-full flex items-center justify-center'>
-        <div className="flex flex-col gap-4">
-           <Card 
-          style={{
-            // width:"500px",
-            // height:"500px",
-            display:"flex"
-            ,alignItems:"center",
-            justifyContent:"center"
-          }}
-          styles={{body:{
-            padding:0
-          }}}>
-          
-      <Dragger height={300} {...props}>
-    <p className="ant-upload-drag-icon">
-      <InboxOutlined />
-    </p>
-    <p className="ant-upload-text">Click or drag file to this area to upload</p>
-    <p className="ant-upload-hint">
-      Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-      banned files.
-    </p>
-  </Dragger>
-      </Card> 
-    </div>
-        </div>*/}
         </>
 
 

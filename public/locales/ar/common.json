@@ -1,263 +1,579 @@
 {
-    "pages":{
-        
+    "pages": {
+        "login": {
+            "title": "تسجيل الدخول إلى حسابك",
+            "signin": "تسجيل الدخول",
+            "signup": "تسجيل",
+            "divider": "أو",
+            "fields": {
+                "email": "البريد الإلكتروني",
+                "password": "كلمة المرور"
+            },
+            "errors": {
+                "validEmail": "عنوان بريد إلكتروني غير صالح"
+            },
+            "buttons": {
+                "submit": "تسجيل الدخول",
+                "forgotPassword": "نسيت كلمة المرور؟",
+                "noAccount": "ليس لديك حساب؟",
+                "rememberMe": "تذكرني"
+            }
+        },
+        "forgotPassword": {
+            "title": "نسيت كلمة المرور؟",
+            "fields": {
+                "email": "البريد الإلكتروني"
+            },
+            "errors": {
+                "validEmail": "عنوان بريد إلكتروني غير صالح"
+            },
+            "buttons": {
+                "submit": "إرسال تعليمات إعادة التعيين"
+            }
+        },
+        "register": {
+            "title": "إنشاء حساب جديد",
+            "fields": {
+                "email": "البريد الإلكتروني",
+                "password": "كلمة المرور"
+            },
+            "errors": {
+                "validEmail": "عنوان بريد إلكتروني غير صالح"
+            },
+            "buttons": {
+                "submit": "تسجيل",
+                "haveAccount": "لديك حساب؟"
+            }
+        },
+        "updatePassword": {
+            "title": "تحديث كلمة المرور",
+            "fields": {
+                "password": "كلمة المرور الجديدة",
+                "confirmPassword": "تأكيد كلمة المرور الجديدة"
+            },
+            "errors": {
+                "confirmPasswordNotMatch": "كلمات المرور غير متطابقة"
+            },
+            "buttons": {
+                "submit": "تحديث"
+            }
+        },
+        "error": {
+            "info": "ربما نسيت إضافة مكون {{action}} إلى مورد {{resource}}.",
+            "404": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
+            "resource404": "هل أنت متأكد من أنك قمت بإنشاء مورد {{resource}}.",
+            "backHome": "العودة للرئيسية"
+        }
     },
     "common": {
-        "welcome": "",
-        "getStarted": "",
-        "goHome": "",
-        "backToCourses": "",
-        "enroll": "",
-        "aboutCourse": "",
-        "courseContent": "",
-        "faq": "",
-        "yourInstructor": "",
-        "copyright": "",
-        "register": "",
-        "logout": "",
-        "whoAreWe": "",
-        "ourServices": ""
+        "welcome": "مرحباً بك في منصتنا التعليمية",
+        "getStarted": "ابدأ الآن",
+        "goHome": "العودة للرئيسية",
+        "backToCourses": "العودة للدورات",
+        "enroll": "سجل الآن",
+        "aboutCourse": "عن هذا الكورس",
+        "courseContent": "محتوى الكورس",
+        "faq": "الأسئلة الشائعة",
+        "yourInstructor": "مدرسك",
+        "copyright": "حقوق النشر ©2024",
+        "register": "تسجيل",
+        "logout": "تسجيل الخروج",
+        "whoAreWe": "من نحن",
+        "ourServices": "خدماتنا",
+        "status": "الحالة",
+        "statuses": {
+            "active": "نشط",
+            "inactive": "غير نشط"
+        },
+        "view": "عرض",
+        "edit": "تعديل",
+        "delete": "حذف",
+        "profile": "الملف الشخصي"
     },
     "courses": {
         "filters": {
-            "title": "",
-            "resetAll": "",
-            "searchPlaceholder": "",
-            "category": "",
-            "sortBy": "",
+            "title": "التصفية",
+            "resetAll": "إعادة تعيين الكل",
+            "searchPlaceholder": "البحث عن الدورات...",
+            "category": "الفئة",
+            "sortBy": "ترتيب حسب",
             "sortOptions": {
-                "mostPopular": "",
-                "highestRated": "",
-                "newest": "",
-                "priceHighToLow": "",
-                "priceLowToHigh": ""
+                "mostPopular": "الأكثر شعبية",
+                "highestRated": "الأعلى تقييماً",
+                "newest": "الأحدث",
+                "priceHighToLow": "السعر: من الأعلى إلى الأقل",
+                "priceLowToHigh": "السعر: من الأقل إلى الأعلى"
             }
         },
         "results": {
-            "showing": "",
-            "noCourses": "",
-            "noCoursesDescription": ""
+            "showing": "عرض {{count}} دورات",
+            "noCourses": "لم يتم العثور على دورات",
+            "noCoursesDescription": "حاول تعديل الفلاتر أو مصطلحات البحث"
         }
     },
     "course": {
+        "lessons": "الدروس",
+        "tags": "العلامات",
+        "goToCourse": "الذهاب إلى الدورة",
         "notFound": {
-            "title": "",
-            "description": ""
+            "title": "لم يتم العثور على الدورة",
+            "description": "الدورة التي تبحث عنها غير موجودة أو تم حذفها."
         },
+        "aboutCourse": "عن هذه الدورة",
+        "yourInstructor": "مدرسك",
         "download": {
-            "success": ""
-        },
-        "player": {
-            "play": "",
-            "pause": "",
-            "volume": "",
-            "settings": "",
-            "fullscreen": ""
+            "success": "جاري التحميل."
         }
     },
     "footer": {
         "company": {
-            "title": "",
-            "aboutUs": "",
-            "careers": "",
-            "blog": "",
-            "press": ""
+            "title": "الشركة",
+            "aboutUs": "من نحن",
+            "careers": "وظائف",
+            "blog": "المدونة",
+            "press": "الصحافة"
         },
         "resources": {
-            "title": "",
-            "helpCenter": "",
-            "contactUs": "",
-            "termsOfService": "",
-            "privacyPolicy": ""
+            "title": "الموارد",
+            "helpCenter": "مركز المساعدة",
+            "contactUs": "اتصل بنا",
+            "termsOfService": "شروط الخدمة",
+            "privacyPolicy": "سياسة الخصوصية"
         },
         "subscribe": {
-            "title": "",
-            "description": "",
-            "emailPlaceholder": "",
-            "button": ""
+            "title": "اشترك",
+            "description": "احصل على آخر التحديثات والعروض",
+            "emailPlaceholder": "بريدك الإلكتروني",
+            "button": "اشترك"
         },
         "copyright": ""
     },
     "navigation": {
-        "home": "",
-        "categories": "",
-        "courses": "",
-        "lessons": "",
-        "profile": ""
+        "home": "الرئيسية",
+        "categories": "التصنيفات",
+        "courses": "الدورات",
+        "lessons": "الدروس",
+        "profile": "الملف الشخصي",
+        "formation": "التكوين"
     },
     "errors": {
-        "404": "",
-        "403": ""
+        "404": "404",
+        "403": "403"
     },
     "auth": {
-        "loginTitle": "",
-        "registerTitle": "",
-        "email": "",
-        "password": "",
-        "firstName": "",
-        "lastName": "",
-        "userType": "",
-        "student": "",
-        "professor": "",
-        "login": "",
-        "register": "",
-        "emailRequired": "",
-        "emailInvalid": "",
-        "passwordRequired": "",
-        "firstNameRequired": "",
-        "lastNameRequired": "",
-        "userTypeRequired": "",
-        "selectUserType": "",
-        "loginSuccess": "",
-        "loginError": "",
-        "registerSuccess": "",
-        "registerError": ""
+        "loginTitle": "تسجيل الدخول إلى حسابك",
+        "registerTitle": "إنشاء حساب جديد",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "firstName": "الاسم الأول",
+        "lastName": "الاسم الأخير",
+        "userType": "نوع المستخدم",
+        "student": "طالب",
+        "professor": "أستاذ",
+        "login": "تسجيل الدخول",
+        "register": "تسجيل",
+        "emailRequired": "الرجاء إدخال بريدك الإلكتروني",
+        "emailInvalid": "الرجاء إدخال بريد إلكتروني صحيح",
+        "passwordRequired": "الرجاء إدخال كلمة المرور",
+        "firstNameRequired": "الرجاء إدخال الاسم الأول",
+        "lastNameRequired": "الرجاء إدخال الاسم الأخير",
+        "userTypeRequired": "الرجاء اختيار نوع المستخدم",
+        "selectUserType": "اختر نوع المستخدم",
+        "loginSuccess": "تم تسجيل الدخول بنجاح",
+        "loginError": "فشل تسجيل الدخول",
+        "registerSuccess": "تم التسجيل بنجاح",
+        "registerError": "فشل التسجيل"
     },
     "profile": {
-        "userType": "",
-        "viewDashboard": "",
+        "userType": "نوع المستخدم",
+        "viewDashboard": "عرض لوحة التحكم",
         "student": {
-            "title": "",
-            "enrolledCourses": "",
-            "achievements": "",
-            "history": "",
-            "completedOn": "",
-            "grade": "",
-            "dashboard": "",
-            "learningHours": "",
-            "completedCourses": "",
-            "noCourses": ""
+            "title": "الملف الشخصي للطالب",
+            "enrolledCourses": "الدورات المسجلة",
+            "learningHours": "ساعات التعلم",
+            "completedCourses": "الدورات المكتملة",
+            "noCourses": "لم يتم العثور على دورات"
         },
         "professor": {
-            "title": "",
-            "courses": "",
-            "lessons": "",
-            "createNewLesson": "",
-            "editLesson": "",
-            "filterByCourse": "",
-            "selectLessonToEdit": "",
+            "title": "لوحة تحكم الأستاذ",
+            "courses": "الدورات",
+            "lessons": "الدروس",
+            "createNewLesson": "إنشاء درس جديد",
+            "editLesson": "تعديل الدرس",
+            "filterByCourse": "تصفية حسب الدورة",
+            "selectLessonToEdit": "الرجاء اختيار درس للتعديل",
             "deleteLesson": {
-                "title": "",
-                "confirm": "",
-                "success": "",
-                "error": ""
+                "title": "حذف الدرس",
+                "confirm": "هل أنت متأكد من حذف هذا الدرس؟",
+                "success": "تم حذف الدرس بنجاح",
+                "error": "فشل حذف الدرس"
             },
             "toggleActive": {
-                "success": "",
-                "error": ""
+                "success": "تم تغيير حالة الدورة بنجاح",
+                "error": "فشل تغيير حالة الدرس"
             },
-            "dashboard": "",
-            "totalCourses": "",
-            "totalStudents": "",
-            "totalRevenue": ""
+            "dashboard": "لوحة تحكم الأستاذ",
+            "totalCourses": "إجمالي الدورات",
+            "totalStudents": "إجمالي الطلاب",
+            "totalRevenue": "إجمالي الإيرادات"
         },
         "admin": {
-            "title": "",
-            "settings": "",
-            "requests": "",
-            "processRequest": "",
-            "selectRequestToProcess": "",
-            "cancel": "",
-            "submit": ""
+            "title": "لوحة تحكم المسؤول",
+            "settings": "الإعدادات",
+            "requests": "الطلبات",
+            "processRequest": "معالجة الطلب",
+            "selectRequestToProcess": "الرجاء اختيار طلب للمعالجة",
+            "cancel": "إلغاء",
+            "submit": "إرسال",
+            "dashboard": {
+                "title": "لوحة تحكم المدير",
+                "totalStudents": "إجمالي الطلاب",
+                "totalCourses": "إجمالي الدورات",
+                "totalProfessors": "إجمالي الأساتذة",
+                "activeEnrollments": "الاشتراكات النشطة"
+            },
+            "users": {
+                "title": "إدارة المستخدمين",
+                "name": "الاسم",
+                "email": "البريد الإلكتروني",
+                "role": "الدور",
+                "actions": "الإجراءات",
+                "edit": "تعديل",
+                "delete": "حذف",
+                "addUser": "إضافة مستخدم",
+                "editUser": "تعديل المستخدم",
+                "deleteConfirm": "حذف المستخدم",
+                "deleteConfirmMessage": "هل أنت متأكد من حذف هذا المستخدم؟",
+                "deleteSuccess": "تم حذف المستخدم بنجاح",
+                "deleteError": "فشل في حذف المستخدم",
+                "cancel": "إلغاء"
+            },
+            "courses": {
+                "title": "إدارة الدورات",
+                "professor": "الأستاذ",
+                "enrollments": "الاشتراكات",
+                "status": "الحالة",
+                "actions": "الإجراءات",
+                "view": "عرض",
+                "edit": "تعديل",
+                "delete": "حذف",
+                "addCourse": "إضافة دورة",
+                "courseDetails": "تفاصيل الدورة",
+                "description": "الوصف",
+                "deleteConfirm": "حذف الدورة",
+                "deleteConfirmMessage": "هل أنت متأكد من حذف هذه الدورة؟",
+                "deleteSuccess": "تم حذف الدورة بنجاح",
+                "deleteError": "فشل في حذف الدورة",
+                "cancel": "إلغاء"
+            },
+            "chat": {
+                "title": "إدارة المحادثة",
+                "sender": "المرسل",
+                "room": "الغرفة",
+                "message": "الرسالة",
+                "time": "الوقت",
+                "actions": "الإجراءات",
+                "view": "عرض",
+                "delete": "حذف",
+                "createRoom": "إنشاء غرفة",
+                "messageDetails": "تفاصيل الرسالة",
+                "deleteConfirm": "حذف الرسالة",
+                "deleteConfirmMessage": "هل أنت متأكد من حذف هذه الرسالة؟",
+                "deleteSuccess": "تم حذف الرسالة بنجاح",
+                "deleteError": "فشل في حذف الرسالة",
+                "cancel": "إلغاء"
+            },
+            "requests": {
+                "title": "إدارة الطلبات",
+                "user": "المستخدم",
+                "type": "النوع",
+                "status": "الحالة",
+                "date": "التاريخ",
+                "actions": "الإجراءات",
+                "view": "عرض",
+                "approve": "موافقة",
+                "reject": "رفض",
+                "requestDetails": "تفاصيل الطلب",
+                "details": "التفاصيل",
+                "approveConfirm": "الموافقة على الطلب",
+                "approveConfirmMessage": "هل أنت متأكد من الموافقة على هذا الطلب؟",
+                "rejectConfirm": "رفض الطلب",
+                "rejectConfirmMessage": "هل أنت متأكد من رفض هذا الطلب؟",
+                "approveSuccess": "تمت الموافقة على الطلب بنجاح",
+                "approveError": "فشل في الموافقة على الطلب",
+                "rejectSuccess": "تم رفض الطلب بنجاح",
+                "rejectError": "فشل في رفض الطلب",
+                "cancel": "إلغاء"
+            },
+            "settings": {
+                "title": "إعدادات المنصة",
+                "siteName": "اسم الموقع",
+                "contactEmail": "البريد الإلكتروني للاتصال",
+                "enableRegistration": "تفعيل التسجيل",
+                "enableComments": "تفعيل التعليقات",
+                "save": "حفظ",
+                "siteNameRequired": "الرجاء إدخال اسم الموقع",
+                "contactEmailRequired": "الرجاء إدخال البريد الإلكتروني للاتصال",
+                "invalidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+                "saveSuccess": "تم حفظ الإعدادات بنجاح",
+                "saveError": "فشل في حفظ الإعدادات"
+            }
         }
     },
     "forms": {
         "course": {
-            "create": "",
-            "edit": "",
-            "title": "",
-            "description": "",
-            "category": "",
-            "price": "",
-            "titleRequired": "",
-            "descriptionRequired": ""
+            "create": "إنشاء دورة",
+            "edit": "تعديل الدورة",
+            "title": "عنوان الدورة",
+            "description": "وصف الدورة",
+            "category": "الفئة",
+            "price": "السعر",
+            "titleRequired": "الرجاء إدخال عنوان الدورة",
+            "descriptionRequired": "الرجاء إدخال وصف الدورة"
         },
         "lesson": {
-            "title": "",
-            "description": "",
-            "course": "",
-            "thumbnail": "",
-            "video": ""
+            "title": "أدخل عنوان الدرس",
+            "description": "أدخل وصف الدرس",
+            "course": "اختر الدورة",
+            "thumbnail": "اختر الصورة",
+            "video": "اختر الفيديو"
         }
     },
     "search": {
-        "placeholder": "",
-        "noResults": "",
-        "courses": "",
-        "lessons": ""
+        "placeholder": "البحث عن الدورات والدروس...",
+        "noResults": "لم يتم العثور على نتائج",
+        "courses": "الدورات",
+        "lessons": "الدروس"
     },
     "modal": {
-        "cancel": "",
-        "save": ""
+        "cancel": "إلغاء",
+        "save": "حفظ"
     },
     "coursePlayer": {
-        "title": "",
-        "backToCourse": "",
-        "courseContent": "",
-        "timeProgress": "",
-        "introduction": "",
-        "why": "",
-        "unit1": "",
-        "unit2": "",
-        "unit3": "",
-        "unit4": "",
-        "unit5": "",
-        "unit6": "",
-        "unit7": "",
-        "unit8": "",
-        "unit9": ""
+        "title": "مشغل الدورة",
+        "backToCourse": "العودة إلى الدورة",
+        "courseContent": "محتوى الدورة",
+        "timeProgress": "تقدم الوقت",
+        "introduction": "مقدمة",
+        "why": "لماذا",
+        "unit1": "الوحدة 1",
+        "unit2": "الوحدة 2",
+        "unit3": "الوحدة 3",
+        "unit4": "الوحدة 4",
+        "unit5": "الوحدة 5",
+        "unit6": "الوحدة 6",
+        "unit7": "الوحدة 7",
+        "unit8": "الوحدة 8",
+        "unit9": "الوحدة 9"
     },
     "enrollment": {
-        "title": "",
-        "courseSummary": "",
-        "professor": "",
-        "coursePrice": "",
-        "paymentDetails": "",
-        "fullName": "",
-        "fullNamePlaceholder": "",
-        "email": "",
-        "emailPlaceholder": "",
-        "cardNumber": "",
-        "cardNumberPlaceholder": "",
-        "expiryDate": "",
-        "expiryDatePlaceholder": "",
-        "cvv": "",
-        "cvvPlaceholder": "",
-        "nameRequired": "",
-        "emailRequired": "",
-        "emailInvalid": "",
-        "cardNumberRequired": "",
-        "cardNumberInvalid": "",
-        "expiryDateRequired": "",
-        "expiryDateInvalid": "",
-        "cvvRequired": "",
-        "cvvInvalid": "",
-        "completeEnrollment": "",
-        "termsAgreement": ""
+        "title": "تسجيل الدورة",
+        "courseSummary": "ملخص الدورة",
+        "professor": "الأستاذ",
+        "coursePrice": "سعر الدورة",
+        "paymentDetails": "تفاصيل الدفع",
+        "fullName": "الاسم الكامل",
+        "fullNamePlaceholder": "أدخل اسمك الكامل",
+        "email": "البريد الإلكتروني",
+        "emailPlaceholder": "أدخل بريدك الإلكتروني",
+        "cardNumber": "رقم البطاقة",
+        "cardNumberPlaceholder": "أدخل رقم بطاقتك",
+        "expiryDate": "تاريخ الانتهاء",
+        "expiryDatePlaceholder": "شهر/سنة",
+        "cvv": "رمز الأمان",
+        "cvvPlaceholder": "أدخل رمز الأمان",
+        "nameRequired": "الاسم الكامل مطلوب",
+        "emailRequired": "البريد الإلكتروني مطلوب",
+        "emailInvalid": "الرجاء إدخال بريد إلكتروني صحيح",
+        "cardNumberRequired": "رقم البطاقة مطلوب",
+        "cardNumberInvalid": "الرجاء إدخال رقم بطاقة صحيح",
+        "expiryDateRequired": "تاريخ الانتهاء مطلوب",
+        "expiryDateInvalid": "الرجاء إدخال تاريخ انتهاء صحيح",
+        "cvvRequired": "رمز الأمان مطلوب",
+        "cvvInvalid": "الرجاء إدخال رمز أمان صحيح",
+        "completeEnrollment": "إكمال التسجيل",
+        "termsAgreement": "أوافق على شروط الاستخدام"
     },
     "videoPlayer": {
-        "loading": ""
+        "loading": "جاري تحميل الفيديو..."
     },
     "home": {
+        "hero": {
+            "title": "تعلم من خلال الدورات الخاصة عبر الإنترنت من أي مكان في العالم",
+            "startNow": "ابدأ الآن",
+            "subjects": "الرياضيات · اللغة الإنجليزية · الفيزياء · البرمجة"
+        },
+        "languageCourses": {
+            "title": "دورات لغة عبر الإنترنت مع مدرسين أصليين من جميع أنحاء العالم",
+            "english": "دورات باللغة الإنجليزية",
+            "french": "دورات باللغة الفرنسية",
+            "arabic": "دورات باللغة العربية",
+            "enrollNow": "سجل الآن"
+        },
+        "competences": {
+            "title": "استعد للامتحان، طور مهاراتك",
+            "categories": {
+                "language": "اللغة",
+                "examPrep": "التحضير للامتحان",
+                "professional": "المهني",
+                "children": "الأطفال",
+                "others": "أخرى"
+            }
+        },
         "features": {
-            "title": "",
-            "qualityCourses": {
-                "title": "",
-                "description": ""
+            "title": "أكثر من 500,000 طالب اعتمدوا على متابعة الفصول الدراسية",
+            "items": {
+                "flexibility": {
+                    "title": "المرونة",
+                    "description": "وصف الفائدة هنا."
+                },
+                "teachers": {
+                    "title": "المدرسون",
+                    "description": "وصف الفائدة هنا."
+                },
+                "goals": {
+                    "title": "الأهداف",
+                    "description": "وصف الفائدة هنا."
+                },
+                "exercises": {
+                    "title": "التمارين",
+                    "description": "وصف الفائدة هنا."
+                }
             },
-            "expertInstructors": {
-                "title": "",
-                "description": ""
-            },
-            "certification": {
-                "title": "",
-                "description": ""
+            "enrollNow": "سجل الآن"
+        },
+        "howItWorks": {
+            "title": "كيف يعمل Classgap؟",
+            "steps": {
+                "findTeacher": {
+                    "title": "1. ابحث عن مدرسك المثالي",
+                    "description": "اختر من بين آلاف المدرسين المؤهلين."
+                },
+                "chooseTime": {
+                    "title": "2. اختر أفضل وقت",
+                    "description": "جدول دروسك وفقًا لجدولك الزمني."
+                },
+                "learnFromHome": {
+                    "title": "3. تعلم من غرفة المعيشة الخاصة بك",
+                    "description": "استخدم الفصل الدراسي الافتراضي لـ Classgap."
+                }
+            }
+        },
+        "testimonials": {
+            "title": "هؤلاء الطلاب بدأوا مثلك تماماً",
+            "testimonials": {
+                "david": {
+                    "text": "كان درس اللغة الإنجليزية مع مدرسي محفزاً للغاية. أنصح به بشدة!",
+                    "name": "ديفيد"
+                },
+                "fatima": {
+                    "text": "عملي وبديهي، ساعدتني مقاطع الفيديو التعليمية على التقدم بسرعة.",
+                    "name": "فاطمة"
+                }
             }
         },
         "cta": {
-            "title": "",
-            "description": "",
-            "button": ""
+            "title": "ابدأ رحلة التعلم اليوم",
+            "description": "انضم إلى آلاف الطلاب الذين يتعلمون معنا بالفعل",
+            "button": "استكشف الدورات"
+        }
+    },
+    "chat": {
+        "room": "غرفة الدردشة",
+        "connected": "متصل",
+        "disconnected": "غير متصل",
+        "connectionError": "فشل الاتصال بالدردشة",
+        "sendError": "فشل إرسال الرسالة",
+        "messagePlaceholder": "اكتب رسالة...",
+        "send": "إرسال"
+    },
+    "actions": {
+        "list": "قائمة",
+        "create": "إنشاء",
+        "edit": "تعديل",
+        "show": "عرض"
+    },
+    "buttons": {
+        "addItem": "إضافة عنصر",
+        "exportAll": "تصدير الكل إلى ملف",
+        "exportTobuy": "تصدير للشراء إلى ملف"
+    },
+    "warnWhenUnsavedChanges": "هل أنت متأكد من المغادرة؟ لديك تغييرات غير محفوظة.",
+    "notifications": {
+        "success": "تم بنجاح",
+        "error": "خطأ (رمز الحالة: {{statusCode}})",
+        "undoable": "لديك {{seconds}} ثوانٍ للتراجع",
+        "createSuccess": "تم إنشاء {{resource}} بنجاح",
+        "createError": "حدث خطأ أثناء إنشاء {{resource}} (رمز الحالة: {{statusCode}})",
+        "deleteSuccess": "تم حذف {{resource}} بنجاح",
+        "deleteError": "خطأ عند حذف {{resource}} (رمز الحالة: {{statusCode}})",
+        "editSuccess": "تم تعديل {{resource}} بنجاح",
+        "editError": "خطأ عند تعديل {{resource}} (رمز الحالة: {{statusCode}})",
+        "importProgress": "جاري الاستيراد: {{processed}}/{{total}}"
+    },
+    "loading": "جاري التحميل",
+    "tags": {
+        "clone": "نسخ"
+    },
+    "dashboard": {
+        "title": "لوحة التحكم"
+    },
+    "posts": {
+        "posts": "المنشورات",
+        "fields": {
+            "id": "المعرف",
+            "title": "العنوان",
+            "category": "الفئة",
+            "status": {
+                "title": "الحالة",
+                "published": "منشور",
+                "draft": "مسودة",
+                "rejected": "مرفوض"
+            },
+            "content": "المحتوى",
+            "createdAt": "تاريخ الإنشاء"
+        },
+        "titles": {
+            "create": "إنشاء منشور",
+            "edit": "تعديل المنشور",
+            "list": "المنشورات",
+            "show": "عرض المنشور"
+        }
+    },
+    "resources": {
+        "home": "الرئيسية",
+        "daily": "يومي",
+        "vegetables": "خضروات",
+        "meats": "لحوم",
+        "weekly": "أسبوعي",
+        "drinks": "مشروبات",
+        "spices": "توابل",
+        "plasticUtensils": "أدوات بلاستيكية"
+    },
+    "table": {
+        "headers": {
+            "name": "الاسم",
+            "category": "الفئة",
+            "quantity": "الكمية",
+            "unit": "الوحدة",
+            "price": "السعر",
+            "toBuy": "للشراء",
+            "actions": "الإجراءات"
+        },
+        "gotopage": "الذهاب إلى الصفحة"
+    },
+    "toast": {
+        "addedItem": "تمت إضافة العنصر بنجاح",
+        "deletedItem": "تم حذف العنصر بنجاح"
+    },
+    "addItemModal": {
+        "save": "حفظ",
+        "cancel": "إلغاء",
+        "placeholder": {
+            "name": "الاسم",
+            "quantity": "الكمية",
+            "price": "السعر",
+            "toBuy": "للشراء"
         }
     }
 }

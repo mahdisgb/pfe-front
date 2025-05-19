@@ -40,7 +40,7 @@ export const StudentDashboard = () => {
       {!editing ?
       <Button onClick={()=>setEditing(true)}>
         <EditOutlined />
-    Edit Profile
+    {t('profile.editProfile')}
       </Button> : 
       <div className='flex items-center gap-2'>
       <Button
@@ -50,7 +50,7 @@ export const StudentDashboard = () => {
       onClick={handleSubmit}
       >
       <EditOutlined />
-  Submit
+  {t('common.submit')}
     </Button>
       <Button
       onClick={()=>{
@@ -58,7 +58,7 @@ export const StudentDashboard = () => {
         registerForm.resetFields()
       }}
       >
-      Cancel
+      {t('common.cancel')}
       </Button>
       </div>
       }
@@ -134,36 +134,7 @@ export const StudentDashboard = () => {
   </Form>
 
     </Card>}
-      {/* <Row gutter={[16, 16]}>
-        <Col xs={24} sm={12} lg={8}>
-          <Card>
-            <Statistic
-              title={t('profile.professor.totalCourses')}
-              value={12}
-              prefix={<BookOutlined />}
-            />
-          </Card>
-        </Col>
-        <Col xs={24} sm={12} lg={8}>
-          <Card>
-            <Statistic
-              title={t('profile.professor.totalStudents')}
-              value={456}
-              prefix={<UserOutlined />}
-            />
-          </Card>
-        </Col>
-        <Col xs={24} sm={12} lg={8}>
-          <Card>
-            <Statistic
-              title={t('profile.professor.totalRevenue')}
-              value={7890}
-              prefix={<DollarOutlined />}
-              precision={2}
-            />
-          </Card>
-        </Col>
-      </Row> */}
+     
     </div>
   );
 }; 

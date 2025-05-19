@@ -1,7 +1,9 @@
 import { Card, Tabs, List, Avatar, Tag } from 'antd';
 import { BookOutlined, TrophyOutlined, UserOutlined } from '@ant-design/icons';
+import { useTranslation } from '@refinedev/core';
 
 export const StudentProfile = () => {
+  const { translate: t } = useTranslation();
   const user = JSON.parse(localStorage.getItem("refine_user")!);
 
   return (
@@ -11,7 +13,7 @@ export const StudentProfile = () => {
           <Avatar size={64} icon={<UserOutlined />} />
           <div>
             <h2 className="text-2xl font-bold">{user?.firstName} {user?.lastName}</h2>
-            <p className="text-gray-500">Student</p>
+            <p className="text-gray-500">{t('profile.student.role')}</p>
           </div>
         </div>
 
@@ -19,7 +21,7 @@ export const StudentProfile = () => {
           items={[
             {
               key: '1',
-              label: 'Enrolled Courses',
+              label: t('profile.student.tabs.enrolledCourses'),
               children: (
                 <List
                   itemLayout="horizontal"
@@ -29,7 +31,7 @@ export const StudentProfile = () => {
                       <List.Item.Meta
                         avatar={<BookOutlined />}
                         title={item.title}
-                        description={item.progress + '% completed'}
+                        description={t('profile.student.courseProgress', { progress: item.progress })}
                       />
                     </List.Item>
                   )}
@@ -38,7 +40,7 @@ export const StudentProfile = () => {
             },
             {
               key: '2', 
-              label: 'Achievements',
+              label: t('profile.student.tabs.achievements'),
               children: (
                 <List
                   itemLayout="horizontal"
@@ -57,7 +59,7 @@ export const StudentProfile = () => {
             },
             {
               key: '3',
-              label: 'History',
+              label: t('profile.student.tabs.history'),
               children: (
                 <List
                   itemLayout="horizontal"
@@ -67,11 +69,11 @@ export const StudentProfile = () => {
                       <List.Item.Meta
                         avatar={<BookOutlined />}
                         title={item.courseName}
-                        description={`Completed on ${item.completionDate}`}
+                        description={t('profile.student.completionDate', { date: item.completionDate })}
                       />
                       <div className="text-right">
                         <Tag color={item.grade >= 70 ? 'green' : 'orange'}>
-                          Grade: {item.grade}%
+                          {t('profile.student.grade', { grade: item.grade })}
                         </Tag>
                       </div>
                     </List.Item>

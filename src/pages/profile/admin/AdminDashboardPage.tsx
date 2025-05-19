@@ -1,19 +1,18 @@
-import { useTranslation } from '@refinedev/core';
 import { Card, Row, Col, Statistic } from 'antd';
-import { UserOutlined, BookOutlined, TeamOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { UserOutlined, BookOutlined, TeamOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { useTranslation } from '@refinedev/core';
 
 export const AdminDashboardPage = () => {
   const { translate: t } = useTranslation();
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">{t('admin.dashboard.title')}</h1>
-      
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-6">{t('profile.admin.dashboard.title')}</h1>
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title={t('admin.dashboard.totalStudents')}
+              title={t('profile.admin.dashboard.totalStudents')}
               value={1234}
               prefix={<UserOutlined />}
             />
@@ -22,7 +21,7 @@ export const AdminDashboardPage = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title={t('admin.dashboard.totalCourses')}
+              title={t('profile.admin.dashboard.totalCourses')}
               value={56}
               prefix={<BookOutlined />}
             />
@@ -31,7 +30,7 @@ export const AdminDashboardPage = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title={t('admin.dashboard.totalProfessors')}
+              title={t('profile.admin.dashboard.totalProfessors')}
               value={23}
               prefix={<TeamOutlined />}
             />
@@ -40,9 +39,9 @@ export const AdminDashboardPage = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title={t('admin.dashboard.activeEnrollments')}
+              title={t('profile.admin.dashboard.activeEnrollments')}
               value={789}
-              prefix={<CheckCircleOutlined />}
+              prefix={<ShoppingCartOutlined />}
             />
           </Card>
         </Col>

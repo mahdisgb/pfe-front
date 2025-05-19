@@ -1,5 +1,5 @@
 import { ArrowRightOutlined, UserOutlined } from '@ant-design/icons';
-import { useCreate, useUpdate } from '@refinedev/core';
+import { useCreate, useTranslation, useUpdate } from '@refinedev/core';
 import { Avatar, Button, Col, Form, Input,Modal, Select, Row, Typography, Tag, message } from 'antd'
 import dayjs from 'dayjs';
 import { cp } from 'fs';
@@ -10,6 +10,7 @@ type ProcessRequestModalProps = {
   selectedRequest: any | undefined
 };
 export const ProcessRequestModal = ({open,onCancel,selectedRequest}:ProcessRequestModalProps) => {
+  const {translate:t}=useTranslation();
   const [form] = Form.useForm();
   const{mutateAsync:processRequest}=useUpdate()
   const handleSubmit = async() => {
@@ -49,8 +50,8 @@ export const ProcessRequestModal = ({open,onCancel,selectedRequest}:ProcessReque
      onCancel={onCancel}
      footer={[
       <div className="flex items-center justify-end gap-2">
-      <Button type="default" onClick={onCancel}>Cancel</Button>
-      <Button type="primary" onClick={handleSubmit}>Submit</Button>
+      <Button type="default" onClick={onCancel}>{t('modal.cancel')}</Button>
+      <Button type="primary" onClick={handleSubmit}>{t('modal.submit')}</Button>
   </div>
      ]}
      maskClosable={false}

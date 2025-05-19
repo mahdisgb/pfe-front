@@ -1,17 +1,21 @@
 import Sider from '@/components/Sider'
 import React, { useState } from 'react'
 import { useCreate, useDelete, useGetIdentity, useList } from '@refinedev/core';
-import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch } from 'antd';
-import { DeleteOutlined, InboxOutlined, UploadOutlined } from '@ant-design/icons';
+import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Space } from 'antd';
+import { DeleteOutlined, InboxOutlined, UploadOutlined, EyeOutlined } from '@ant-design/icons';
 // import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
 import { TableRowSelection } from 'antd/es/table/interface';
 import { ProcessRequestModal } from './components/ProcessRequestModal';
+import { useTranslation } from '@refinedev/core';
 const { Dragger } = Upload;
 
 export default function AdminManageChat () {
+  const { translate: t } = useTranslation();
   const[selectedRequest,setSelectedRequest]=useState<any | undefined>(undefined);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const[processModal,setProcessModal]=useState<boolean>(false);
+  const [selectedMessage, setSelectedMessage] = useState<any>(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const {mutate :deleteCourse } =useDelete();
   const {data:user}=useGetIdentity<any>();
@@ -31,6 +35,19 @@ export default function AdminManageChat () {
     setSelectedRowKeys(selectedRowKeys)
 
   }
+
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteCourse({
+        resource: 'messages',
+        id,
+      });
+      message.success(t('profile.admin.chat.deleteSuccess'));
+      refetch();
+    } catch (error) {
+      message.error(t('profile.admin.chat.deleteError'));
+    }
+  };
 
   const columns:TableColumnType<any>[] = [
     {
@@ -62,10 +79,35 @@ export default function AdminManageChat () {
     {
       title: 'Actions',
       key: 'actions',
-      
+      render: (_: any, record: any) => (
+        <Space>
+          <Button
+            icon={<EyeOutlined />}
+            onClick={() => {
+              setSelectedMessage(record);
+              setIsModalVisible(true);
+            }}
+          >
+            {t('profile.admin.chat.view')}
+          </Button>
+          <Button
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => {
+              Modal.confirm({
+                title: t('profile.admin.chat.deleteConfirm'),
+                content: t('profile.admin.chat.deleteConfirmMessage'),
+                okText: t('profile.admin.chat.delete'),
+                cancelText: t('profile.admin.chat.cancel'),
+                onOk: () => handleDelete(record.id),
+              });
+            }}
+          >
+            {t('profile.admin.chat.delete')}
+          </Button>
+        </Space>
+      ),
     },
-    
-    
   ];
   
   return (
@@ -101,6 +143,22 @@ export default function AdminManageChat () {
     selectedRequest={selectedRequest}
     />} 
 
+    <Modal
+      title={t('profile.admin.chat.messageDetails')}
+      open={isModalVisible}
+      onCancel={() => setIsModalVisible(false)}
+      footer={null}
+    >
+      {selectedMessage && (
+        <div>
+          <p><strong>{t('profile.admin.chat.sender')}:</strong> {selectedMessage.user?.name}</p>
+          <p><strong>{t('profile.admin.chat.room')}:</strong> {selectedMessage.room?.name}</p>
+          <p><strong>{t('profile.admin.chat.time')}:</strong> {new Date(selectedMessage.timeAdded).toLocaleString()}</p>
+          <p><strong>{t('profile.admin.chat.message')}:</strong></p>
+          <p>{selectedMessage.content}</p>
+        </div>
+      )}
+    </Modal>
         </>
   )
 }

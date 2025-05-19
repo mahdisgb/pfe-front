@@ -154,7 +154,7 @@ export const CourseDetail = () => {
 
             {/* Course? Lessons */}
             <div className="mb-8">
-              <Title level={3}>Course Content</Title>
+              <Title level={3}>{t('course.courseContent')}</Title>
               
               <Collapse accordion className="w-full bg-white" >
                  {lessons?.data?.map((lesson:any, index:any) => (
@@ -186,23 +186,8 @@ export const CourseDetail = () => {
               
             </div>
 
-            {/* FAQs */}
-            {/* <div className="mb-8">
-              <Title level={3}>Frequently Asked Questions</Title>
-              <Collapse accordion className="w-full bg-white">
-               {course?.faqs.map((faq:any, index:any) => (
-                  <Panel 
-                    key={`faq-${index}`} 
-                    header={faq.question}
-                  >
-                    <Paragraph className="text-gray-600">{faq.answer}</Paragraph>
-                  </Panel>
-                ))} 
-              </Collapse>
-            </div> */}
           </div>
 
-          {/* Sidebar - Right 1/3 */}
           <div>
             <Card className="mb-6">
               <div className="flex items-center space-x-4">
@@ -212,109 +197,6 @@ export const CourseDetail = () => {
                 </div>
               </div>
             </Card>
-
-            {/* <Card>
-              <Tabs defaultActiveKey="chat">
-                <TabPane 
-                  tab={
-                    <span>
-                      <MessageOutlined />
-                      Chat with Professor
-                    </span>
-                  } 
-                  key="chat"
-                >
-                  <Title level={4}>Ask a Question</Title>
-                  <Paragraph type="secondary">
-                  </Paragraph>
-                  <div className="space-y-4">
-                    <div 
-                      ref={chatRef}
-                      className="h-[200px] p-4 bg-gray-100 rounded-md overflow-auto"
-                    >
-                      {chatMessages.length === 0 ? (
-                        <div className="text-center text-gray-500 py-4">
-                          No messages yet. Ask a question to get started.
-                        </div>
-                      ) : (
-                        <div className="space-y-4">
-                          {chatMessages.map((msg, i) => (
-                            <div 
-                              key={i} 
-                              className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}
-                            >
-                              <div 
-                                className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                                  msg.sender === "You" 
-                                    ? "bg-blue-500 text-white" 
-                                    : "bg-gray-200"
-                                }`}
-                              >
-                                <p className="text-xs font-medium mb-1">{msg.sender}</p>
-                                <p className="text-sm">{msg.text}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="flex items-end gap-2">
-                      <TextArea 
-                        placeholder="Type your message here..." 
-                        autoSize={{ minRows: 3, maxRows: 5 }}
-                        value={messageText}
-                        onChange={(e) => setMessageText(e.target.value)}
-                        onPressEnter={(e) => {
-                          if (!e.shiftKey) {
-                            e.preventDefault();
-                          }
-                        }}
-                      />
-                      <Button 
-                        type="primary"
-                        shape="circle"
-                        icon={<SendOutlined />}
-                      />
-                    </div>
-                  </div>
-                </TabPane>
-                
-                <TabPane 
-                  tab={
-                    <span>
-                      <DownloadOutlined />
-                      Materials
-                    </span>
-                  } 
-                  key="materials"
-                >
-                  <Title level={4}>Course? Materials</Title>
-                  <Paragraph type="secondary">
-                    Download resources for this course?
-                  </Paragraph>
-                  <List
-                    // dataSource={course?.materials}
-                    renderItem={(material:any) => (
-                      <List.Item>
-                        <Button 
-                          type="default" 
-                          icon={<DownloadOutlined />}
-                          block
-                          onClick={() => handleDownload(material.name as any)}
-                        >
-                          {material.name}
-                        </Button>
-                      </List.Item>
-                    )}
-                  />
-                  <Divider />
-                  <Text type="secondary" className="text-xs">
-                    All materials are available for enrolled students
-                  </Text>
-                </TabPane>
-              </Tabs>
-            </Card> */}
           </div>
         </div>
       </Content>

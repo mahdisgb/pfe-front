@@ -153,19 +153,8 @@ export const CoursePlayer = () => {
       mode:"off"
     }
   })
-console.log(comments)
-  // const lessons = [
-  //   { id: 1, title: "المقدمة" },
-  //   { id: 2, title: "الوحدة: العملية" },
-  //   { id: 3, title: "الوحدة : التجارة الإلكترونية" },
-  //   { id: 4, title: "الوحدة : المتاجر الإلكترونية" },
-  //   { id: 5, title: "الوحدة : خبايا البحث عن منتجات" },
-  //   { id: 6, title: "الوحدة: ابدأ في تحقيق الارباح في دول الخليج" },
-  //   { id: 7, title: "الوحدة : إدارة المخزون" },
-  //   { id: 8, title: "الوحدة: أساسيات اعلانات الفيسبوك" },
-  //   { id: 9, title: "الوحدة: التسويق والبيع" },
-  //   { id: 10, title: "الوحدة : مؤشرات الأداء الرئيسية للدفع (COD KPIs) عند التسليم" }
-  // ];
+
+
   const menuItems : any= lessons?.data.map((lesson) => ({
     key: lesson.id,
     onClick: () => setCurrentLesson(lesson.id),
@@ -233,7 +222,7 @@ const handleAddComment = async ()=>{
 
           </div>
           <div className=" bg-[#eee] rounded-lg ">
-            <Typography.Title level={4}>Comments</Typography.Title>
+            <Typography.Title level={4}>{t('coursePlayer.comments')}</Typography.Title>
             <List
               itemLayout="horizontal"
               dataSource={comments?.data} 
@@ -248,9 +237,9 @@ const handleAddComment = async ()=>{
               )}
             />
             <div className="mt-4">
-              <Input.TextArea onChange={(e)=>e.target.value && setComment(e.target.value)} value={comment} rows={4} placeholder="Add a comment..." />
+              <Input.TextArea onChange={(e)=>e.target.value && setComment(e.target.value)} value={comment} rows={4} placeholder={t('coursePlayer.addComment')} />
               <Button onClick={handleAddComment} type="primary" className="mt-2">
-                Post Comment
+                {t('coursePlayer.postComment')}
               </Button>
             </div>
           </div>

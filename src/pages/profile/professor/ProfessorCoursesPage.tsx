@@ -1,7 +1,5 @@
-import Sider from '@/components/Sider'
 import React, { useState } from 'react'
-import SideBar from './Components/Sidebar'
-import { useCreate, useDelete, useGetIdentity, useList } from '@refinedev/core';
+import { useCreate, useDelete, useGetIdentity, useList, useTranslation } from '@refinedev/core';
 import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch } from 'antd';
 import { DeleteOutlined, InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import { CreateCourse } from './Components/CreateCourse';
@@ -9,6 +7,7 @@ import { TableRowSelection } from 'antd/es/table/interface';
 const { Dragger } = Upload;
 
 export const ProfessorCoursesPage = () => {
+  const {translate:t}=useTranslation();
   const [activePage, setActivePage] = useState('content');
   const [activeTab, setActiveTab] = useState('videos');
   const [createModal, setCreateModal] = useState(false);
@@ -130,7 +129,7 @@ export const ProfessorCoursesPage = () => {
       centered:true,
       title:"Delete Course",
       type:"error",
-      content:"Are you sure you want to delete this course? lessons related to this course will also be deleted",
+      content:t("modal.deleteCourse"),
       onOk:()=>{
         deleteCourse({
           resource:"courses",
@@ -157,18 +156,18 @@ export const ProfessorCoursesPage = () => {
         <Button
         onClick={()=>setCreateModal(true)}
         type='primary'
-        >Create New Course</Button>
+        >{t('forms.course.create')}</Button>
       </Col>
       <Col >
         <Button
         onClick={()=>{
           if(!selectedCourseId){
-            message.warning("Please select a course to edit")
+            message.warning(t("modal.selectCourse"))
             return
           }
           setCreateModal(true)
         }}
-        >Edit Course</Button>
+        >{t('forms.course.edit')}</Button>
       </Col>
     </Row>
 
@@ -194,115 +193,3 @@ export const ProfessorCoursesPage = () => {
   )
 }
  
-/**
- * 
- * import { useTranslation } from '@refinedev/core';
-import { Table, Button, Space, Tag } from 'antd';
-import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
-import { CreateCourse } from './Components/CreateCourse';
-import { useState } from 'react';
-import { ProfessorPageLayout } from '@/layouts/ProfessorPageLayout';
-
-export const ProfessorCoursesPage = () => {
-  const { translate: t } = useTranslation();
-  const [isCreateModalVisible, setIsCreateModalVisible] = useState(false);
-  const [selectedCourseId, setSelectedCourseId] = useState<number | undefined>(undefined);
-
-  const columns = [
-    {
-      title: t('forms.course.title'),
-      dataIndex: 'title',
-      key: 'title',
-    },
-    {
-      title: t('forms.course.category'),
-      dataIndex: 'category',
-      key: 'category',
-      render: (category: string) => (
-        <Tag color="blue">{category}</Tag>
-      ),
-    },
-    {
-      title: t('course.lessons'),
-      dataIndex: 'lessonCount',
-      key: 'lessonCount',
-    },
-    {
-      title: t('course.students'),
-      dataIndex: 'studentCount',
-      key: 'studentCount',
-    },
-    {
-      title: t('forms.course.price'),
-      dataIndex: 'price',
-      key: 'price',
-      render: (price: number) => `$${price}`,
-    },
-    {
-      title: t('common.actions'),
-      key: 'actions',
-      render: (record: any) => (
-        <Space>
-          <Button
-            icon={<EyeOutlined />}
-            onClick={() => }
-            >
-            {t('common.view')}
-          </Button>
-          <Button
-            icon={<EditOutlined />}
-            onClick={() => {
-              setSelectedCourseId(record.id);
-              setIsCreateModalVisible(true);
-            }}
-          >
-            {t('common.edit')}
-          </Button>
-          <Button
-            danger
-            icon={<DeleteOutlined />}
-            onClick={() =>}
-          >
-            {t('common.delete')}
-          </Button>
-        </Space>
-      ),
-    },
-  ];
-
-  return (
-    // <ProfessorPageLayout>
-      <div>
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">{t('profile.professor.courses')}</h1>
-          <Button
-            type="primary"
-            onClick={() => {
-              setSelectedCourseId(undefined);
-              setIsCreateModalVisible(true);
-            }}
-          >
-            {t('forms.course.create')}
-          </Button>
-        </div>
-
-        <Table
-          columns={columns}
-          dataSource={[]}
-          rowKey="id"
-        />
-
-        <CreateCourse
-          open={isCreateModalVisible}
-          onCancel={() => {
-            setIsCreateModalVisible(false);
-            setSelectedCourseId(undefined);
-          }}
-          selectedCourseId={selectedCourseId}
-        />
-      </div>
-    // </ProfessorPageLayout>
-  );
-};
- 
- */

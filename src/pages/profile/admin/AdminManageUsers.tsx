@@ -1,14 +1,16 @@
 import Sider from '@/components/Sider'
 import React, { useState } from 'react'
 import { useCreate, useDelete, useGetIdentity, useList } from '@refinedev/core';
-import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch } from 'antd';
-import { DeleteOutlined, InboxOutlined, UploadOutlined } from '@ant-design/icons';
+import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Space } from 'antd';
+import { DeleteOutlined, InboxOutlined, UploadOutlined, UserOutlined, EditOutlined } from '@ant-design/icons';
 // import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
 import { TableRowSelection } from 'antd/es/table/interface';
 import { ProcessRequestModal } from './components/ProcessRequestModal';
+import { useTranslation } from '@refinedev/core';
 const { Dragger } = Upload;
 
 export default function AdminManageUsers () {
+  const { translate: t } = useTranslation();
   const[selectedRequest,setSelectedRequest]=useState<any | undefined>(undefined);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const[processModal,setProcessModal]=useState<boolean>(false);
@@ -76,20 +78,17 @@ export default function AdminManageUsers () {
         )
       },
   ];
-  const handleDelete = (id:number) => {
-    Modal.confirm({
-      title: 'Delete User',
-      content: 'Are you sure you want to delete this user?',
-      onOk: () => {
-        deleteUser({
-          resource: `auth/user/${id}`,
-          id,
-          values: {
-            id
-          }
-        })   
-      }
-    })
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteUser({
+        resource: 'auth/users',
+        id,
+      });
+      message.success(t('profile.admin.users.deleteSuccess'));
+      refetch();
+    } catch (error) {
+      message.error(t('profile.admin.users.deleteError'));
+    }
   }
   
   return (
@@ -133,33 +132,6 @@ export default function AdminManageUsers () {
             </p>
           </div>
         )} */}
-      {/*  <div className=' w-full flex items-center justify-center'>
-        <div className="flex flex-col gap-4">
-           <Card 
-          style={{
-            // width:"500px",
-            // height:"500px",
-            display:"flex"
-            ,alignItems:"center",
-            justifyContent:"center"
-          }}
-          styles={{body:{
-            padding:0
-          }}}>
-          
-      <Dragger height={300} {...props}>
-    <p className="ant-upload-drag-icon">
-      <InboxOutlined />
-    </p>
-    <p className="ant-upload-text">Click or drag file to this area to upload</p>
-    <p className="ant-upload-hint">
-      Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-      banned files.
-    </p>
-  </Dragger>
-      </Card> 
-    </div>
-        </div>*/}
         </>
 
 

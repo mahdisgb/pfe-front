@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from '@refinedev/core';
 
-export default function Home() {
+export const Home = () => {
     const navigate = useNavigate();
     const { translate: t } = useTranslation();
 

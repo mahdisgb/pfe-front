@@ -39,15 +39,11 @@ import { AdminSettingsPage } from "./pages/profile/admin/AdminSettingsPage";
 import AdminRequestsPage from "./pages/profile/admin/AdminRequestsPage";
 import StudentCoursesPage from "./pages/profile/student/StudentCoursesPage";
 import "./i18n";
-import { PrivateLayout } from "./layouts/PrivateLayout";
 import AdminCoursesPage from "./pages/profile/admin/AdminCoursesPage";
 import AdminManageUsers from "./pages/profile/admin/AdminManageUsers";
 import { StudentDashboard } from "./pages/profile/student/StudentDashboard";
 import { Formation } from "./pages/formation";
 import AdminManageChat from "./pages/profile/admin/AdminManageChat";
-import GPT  from "./pages/home/GPT";
-import { Claude } from "./pages/home/Claude";
-import Lovable from "./pages/home/Lovable";
 function App() {
   const { i18nProvider } = i18nProviderContext();
   const resources = useResources();
@@ -109,9 +105,7 @@ function App() {
               </Authenticated>
             }
           >
-            {/* <Route path="/" element={<Home />} /> */}
-            <Route path="/" element={<GPT />} />
-
+            <Route path="/" element={<Home />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/course/:id" element={<CoursePage />} />
             <Route path="/enrollment/:courseId" element={<Enrollment />} />
@@ -136,8 +130,7 @@ function App() {
               </HomePageLayout>
             }
           >
-            {/* <Route path="/" element={<Home />} /> */}
-            <Route path="/" element={<GPT />} />
+            <Route path="/" element={<Home />} />
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/course/:id" element={<CoursePage />} />
             <Route path="/courseplayer/:id" element={<CoursePlayer />} />

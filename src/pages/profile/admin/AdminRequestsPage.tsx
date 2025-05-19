@@ -1,4 +1,3 @@
-import Sider from '@/components/Sider'
 import React, { useState } from 'react'
 import { useCreate, useDelete, useGetIdentity, useList, useUpdate } from '@refinedev/core';
 import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Space } from 'antd';

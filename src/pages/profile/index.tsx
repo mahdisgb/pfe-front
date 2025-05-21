@@ -3,6 +3,7 @@ import { useTranslation } from '@refinedev/core';
 import { StudentProfile } from './student';
 import { ProfessorCoursesPage } from './professor/ProfessorCoursesPage';
 import { ProfessorDashboard } from './professor/ProfessorDashboard';
+import { AdminDashboardPage } from './admin/AdminDashboardPage';
 
 export const ProfilePage = () => {
   const { id } = useParams();
@@ -26,13 +27,14 @@ export const ProfilePage = () => {
     return <StudentProfile />;
   } else if (user.roles.includes('professor')) {
     return <ProfessorDashboard />;
-  } else {
-    // Handle unknown roles
-    return (
-      <div className="p-4">
-        <h2>{t('profile.unknownRole.title')}: {user.roles}</h2>
-        <p>{t('profile.unknownRole.message')}</p>
-      </div>
-    );
+  } else if(user.roles.includes('admin')){
+    return <AdminDashboardPage />
   }
+    // Handle unknown roles
+    // return (
+    //   <div className="p-4">
+    //     <h2>{t('profile.unknownRole.title')}: {user.roles}</h2>
+    //     <p>{t('profile.unknownRole.message')}</p>
+    //   </div>
+    // );
 };

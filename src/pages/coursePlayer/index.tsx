@@ -215,7 +215,9 @@ const handleAddComment = async ()=>{
                 {lesson?.data?.description}
               </div>
               <Button
+              size='large'
               type='link'
+              style={{backgroundColor:"#2d1b69",color:"white"}}
               icon={<Download />}
               onClick={handleDownload}
               />

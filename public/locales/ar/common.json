@@ -109,7 +109,12 @@
             "showing": "عرض {{count}} دورات",
             "noCourses": "لم يتم العثور على دورات",
             "noCoursesDescription": "حاول تعديل الفلاتر أو مصطلحات البحث"
-        }
+        },
+        "search": "بحث",
+        "reset": "إعادة تعيين",
+        "selectCategory": "اختر الفئة",
+        "enroll": "سجل الآن",
+        "lessonsCount": "درس"
     },
     "course": {
         "lessons": "الدروس",
@@ -123,7 +128,8 @@
         "yourInstructor": "مدرسك",
         "download": {
             "success": "جاري التحميل."
-        }
+        },
+        "courseContent": "محتوى الدورة"
     },
     "footer": {
         "company": {
@@ -192,12 +198,44 @@
             "enrolledCourses": "الدورات المسجلة",
             "learningHours": "ساعات التعلم",
             "completedCourses": "الدورات المكتملة",
-            "noCourses": "لم يتم العثور على دورات"
+            "noCourses": "لم يتم العثور على دورات",
+            "courses": {
+                "title": "دوراتي المسجلة",
+                "lessons": "الدروس",
+                "tags": "العلامات",
+                "goToCourse": "الذهاب إلى الدورة",
+                "noCourses": "لم يتم العثور على دورات",
+                "category": "الفئة",
+                "rating": "التقييم",
+                "description": "الوصف",
+                "price": "السعر"
+            }
         },
         "professor": {
             "title": "لوحة تحكم الأستاذ",
-            "courses": "الدورات",
-            "lessons": "الدروس",
+            
+            "lessons": {
+                "table": {
+                    "index": "الترتيب",
+                    "thumbnail": "الصورة المصغرة",
+                    "title": "العنوان",
+                    "description": "الوصف",
+                    "course": "الدورة",
+                    "actions": "الإجراءات"
+                },
+                "actions": {
+                    "delete": "حذف الدرس",
+                    "toggleActive": "تفعيل/تعطيل",
+                    "on": "مفعل",
+                    "off": "معطل"
+                },
+                "messages": {
+                    "toggleSuccess": "تم تغيير حالة الدرس بنجاح",
+                    "toggleError": "فشل في تغيير حالة الدرس",
+                    "deleteSuccess": "تم حذف الدرس بنجاح",
+                    "deleteError": "فشل في حذف الدرس"
+                }
+            },
             "createNewLesson": "إنشاء درس جديد",
             "editLesson": "تعديل الدرس",
             "filterByCourse": "تصفية حسب الدورة",
@@ -215,7 +253,30 @@
             "dashboard": "لوحة تحكم الأستاذ",
             "totalCourses": "إجمالي الدورات",
             "totalStudents": "إجمالي الطلاب",
-            "totalRevenue": "إجمالي الإيرادات"
+            "totalRevenue": "إجمالي الإيرادات",
+            "courses": {
+                "table": {
+                    "index": "الترتيب",
+                    "thumbnail": "الصورة المصغرة",
+                    "title": "العنوان",
+                    "description": "الوصف",
+                    "category": "الفئة",
+                    "lessonsCount": "عدد الدروس",
+                    "actions": "الإجراءات"
+                },
+                "actions": {
+                    "delete": "حذف الدورة",
+                    "toggleActive": "تفعيل/تعطيل",
+                    "on": "مفعل",
+                    "off": "معطل"
+                },
+                "messages": {
+                    "toggleSuccess": "تم تغيير حالة الدورة بنجاح",
+                    "toggleError": "فشل في تغيير حالة الدورة",
+                    "deleteSuccess": "تم حذف الدورة بنجاح",
+                    "deleteError": "فشل في حذف الدورة"
+                }
+            }
         },
         "admin": {
             "title": "لوحة تحكم المسؤول",
@@ -246,7 +307,15 @@
                 "deleteConfirmMessage": "هل أنت متأكد من حذف هذا المستخدم؟",
                 "deleteSuccess": "تم حذف المستخدم بنجاح",
                 "deleteError": "فشل في حذف المستخدم",
-                "cancel": "إلغاء"
+                "cancel": "إلغاء",
+                "table": {
+                    "requestId": "رقم الطلب",
+                    "name": "الاسم",
+                    "email": "البريد الإلكتروني",
+                    "status": "الحالة",
+                    "roles": "الدور",
+                    "actions": "الإجراءات"
+                }
             },
             "courses": {
                 "title": "إدارة الدورات",
@@ -264,7 +333,12 @@
                 "deleteConfirmMessage": "هل أنت متأكد من حذف هذه الدورة؟",
                 "deleteSuccess": "تم حذف الدورة بنجاح",
                 "deleteError": "فشل في حذف الدورة",
-                "cancel": "إلغاء"
+                "cancel": "إلغاء",
+                "thumbnail": "الصورة المصغرة",
+                "price": "السعر",
+                "toggleActive": "تبديل الحالة",
+                "active": "مفعل",
+                "inactive": "غير مفعل"
             },
             "chat": {
                 "title": "إدارة المحادثة",
@@ -281,7 +355,15 @@
                 "deleteConfirmMessage": "هل أنت متأكد من حذف هذه الرسالة؟",
                 "deleteSuccess": "تم حذف الرسالة بنجاح",
                 "deleteError": "فشل في حذف الرسالة",
-                "cancel": "إلغاء"
+                "cancel": "إلغاء",
+                "table": {
+                    "index": "الرقم",
+                    "name": "الاسم",
+                    "email": "البريد الإلكتروني",
+                    "message": "الرسالة",
+                    "createdAt": "التاريخ",
+                    "actions": "الإجراءات"
+                }
             },
             "requests": {
                 "title": "إدارة الطلبات",
@@ -303,7 +385,30 @@
                 "approveError": "فشل في الموافقة على الطلب",
                 "rejectSuccess": "تم رفض الطلب بنجاح",
                 "rejectError": "فشل في رفض الطلب",
-                "cancel": "إلغاء"
+                "cancel": "إلغاء",
+                "table": {
+                    "requestId": "رقم الطلب",
+                    "name": "الاسم",
+                    "email": "البريد الإلكتروني",
+                    "status": "الحالة",
+                    "adminNotes": "الملاحظات الإدارية",
+                    "createdAt": "التاريخ",
+                    "actions": "الإجراءات"
+                },
+                "processRequest": "معالجة الطلب",
+                "processModal": {
+                    "title": "معالجة الطلب",
+                    "status": "الحالة",
+                    "statusPlaceholder": "اختر الحالة",
+                    "adminNotes": "الملاحظات الإدارية",
+                    "adminNotesPlaceholder": "أدخل الملاحظات الإدارية",
+                    "statusOptions": {
+                        "approved": "موافق",
+                        "rejected": "رفض"
+                    },
+                    "success": "تم معالجة الطلب بنجاح",
+                    "error": "فشل في معالجة الطلب"
+                }
             },
             "settings": {
                 "title": "إعدادات المنصة",
@@ -317,6 +422,29 @@
                 "invalidEmail": "الرجاء إدخال بريد إلكتروني صحيح",
                 "saveSuccess": "تم حفظ الإعدادات بنجاح",
                 "saveError": "فشل في حفظ الإعدادات"
+            },
+            "formations": {
+                "thumbnail": "الصورة المصغرة",
+                "title": "العنوان",
+                "description": "الوصف",
+                "category": "الفئة",
+                "lessonsCount": "عدد الدروس",
+                "actions": "الإجراءات",
+                "delete": "حذف التكوين",
+                "toggleActive": "تبديل الحالة",
+                "active": "مفعل",
+                "inactive": "غير مفعل",
+                "create": "إنشاء تكوين",
+                "edit": "تعديل التكوين",
+                "selectWarning": "الرجاء تحديد تكوين أولاً",
+                "deleteTitle": "حذف التكوين",
+                "deleteConfirm": "هل أنت متأكد من حذف هذا التكوين؟",
+                "deleteSuccess": "تم حذف التكوين بنجاح",
+                "deleteError": "فشل في حذف التكوين",
+                "toggleSuccess": "تم تحديث حالة التكوين بنجاح",
+                "toggleError": "فشل في تحديث حالة التكوين",
+                "location": "الموقع",
+                "status": "الحالة"
             }
         }
     },
@@ -327,16 +455,63 @@
             "title": "عنوان الدورة",
             "description": "وصف الدورة",
             "category": "الفئة",
-            "price": "السعر",
             "titleRequired": "الرجاء إدخال عنوان الدورة",
-            "descriptionRequired": "الرجاء إدخال وصف الدورة"
+            "descriptionRequired": "الرجاء إدخال وصف الدورة",
+            "titlePlaceholder": "أدخل عنوان الدورة",
+            "descriptionPlaceholder": "أدخل وصف الدورة",
+            "categoryPlaceholder": "اختر فئة",
+            "pricePlaceholder": "أدخل سعر الدورة",
+            "selectImage": "اختر صورة",
+            "price": "السعر",
+            "priceRequired": "الرجاء إدخال سعر الدورة"
         },
         "lesson": {
             "title": "أدخل عنوان الدرس",
             "description": "أدخل وصف الدرس",
             "course": "اختر الدورة",
             "thumbnail": "اختر الصورة",
-            "video": "اختر الفيديو"
+            "video": "اختر الفيديو",
+            "create": "إنشاء درس",
+            "edit": "تعديل الدرس",
+            "filterByCourse": "تصفية بالدورة"
+        },
+        "formation": {
+            "title": "عنوان التكوين",
+            "description": "وصف التكوين",
+            "category": "الفئة",
+            "thumbnail": "الصورة المصغرة",
+            "titleRequired": "الرجاء إدخال عنوان التكوين",
+            "descriptionRequired": "الرجاء إدخال وصف التكوين",
+            "categoryRequired": "الرجاء اختيار فئة",
+            "thumbnailRequired": "الرجاء اختيار صورة مصغرة",
+            "titlePlaceholder": "أدخل عنوان التكوين",
+            "descriptionPlaceholder": "أدخل وصف التكوين",
+            "categoryPlaceholder": "اختر فئة",
+            "pricePlaceholder": "أدخل سعر التكوين",
+            "selectImage": "اختر صورة",
+            "price": "السعر",
+            "priceRequired": "الرجاء إدخال سعر التكوين",
+            "location": "الموقع",
+            "locationRequired": "الرجاء إدخال موقع التكوين",
+            "locationPlaceholder": "أدخل موقع التكوين",
+            "lessonsCount": "عدد الدروس",
+            "actions": "الإجراءات",
+            "delete": "حذف التكوين",
+            "toggleActive": "تبديل الحالة",
+            "active": "مفعل",
+            "inactive": "غير مفعل",
+            "create": "إنشاء تكوين",
+            "edit": "تعديل التكوين",
+            "selectWarning": "الرجاء تحديد تكوين أولاً",
+            "deleteTitle": "حذف التكوين",
+            "deleteConfirm": "هل أنت متأكد من حذف هذا التكوين؟",
+            "deleteSuccess": "تم حذف التكوين بنجاح",
+            "deleteError": "فشل في حذف التكوين",
+            "toggleSuccess": "تم تحديث حالة التكوين بنجاح",
+            "toggleError": "فشل في تحديث حالة التكوين",
+            "date": "التاريخ",
+            "datePlaceholder": "اختر التاريخ والوقت",
+            "dateRequired": "الرجاء اختيار تاريخ"
         }
     },
     "search": {
@@ -347,7 +522,13 @@
     },
     "modal": {
         "cancel": "إلغاء",
-        "save": "حفظ"
+        "save": "حفظ",
+        "deleteCourse": "هل أنت متأكد من حذف هذه الدورة؟ سيتم حذف الدروس المرتبطة بهذه الدورة أيضًا",
+        "deleteLesson": "هل أنت متأكد من حذف هذا الدرس؟",
+        "deleteCourseConfirm": "حذف الدورة",
+        "deleteLessonConfirm": "حذف هذا الدرس",
+        "selectCourse": "الرجاء اختيار دورة",
+        "selectLesson": "الرجاء اختيار درس"
     },
     "coursePlayer": {
         "title": "مشغل الدورة",
@@ -364,7 +545,10 @@
         "unit6": "الوحدة 6",
         "unit7": "الوحدة 7",
         "unit8": "الوحدة 8",
-        "unit9": "الوحدة 9"
+        "unit9": "الوحدة 9",
+        "comments": "التعليقات",
+        "postComment": "إضافة تعليق",
+        "addComment": "إضافة تعليق"
     },
     "enrollment": {
         "title": "تسجيل الدورة",
@@ -443,7 +627,7 @@
             "enrollNow": "سجل الآن"
         },
         "howItWorks": {
-            "title": "كيف يعمل Classgap؟",
+            "title": "كيف يعمل Wajihni?",
             "steps": {
                 "findTeacher": {
                     "title": "1. ابحث عن مدرسك المثالي",
@@ -455,7 +639,7 @@
                 },
                 "learnFromHome": {
                     "title": "3. تعلم من غرفة المعيشة الخاصة بك",
-                    "description": "استخدم الفصل الدراسي الافتراضي لـ Classgap."
+                    "description": "استخدم الفصل الدراسي الافتراضي لـ Wajihni."
                 }
             }
         },
@@ -574,6 +758,18 @@
             "quantity": "الكمية",
             "price": "السعر",
             "toBuy": "للشراء"
-        }
+        },
+        "submit": "إرسال"
+    },
+    "sidebar": {
+        "myCourses": "الدورات الخاصة بي",
+        "myLessons": "الدروس الخاصة بي",
+        "myProfile": "الحساب الشخصي",
+        "mySettings": "الإعدادات",
+        "professorRequests": "طلبات المدرسين",
+        "manageCourses": "إدارة الدورات",
+        "manageUsers": "إدارة المستخدمين",
+        "manageChat": "إدارة الدردشة",
+        "manageFormations": "إدارة التكوينات"
     }
 }

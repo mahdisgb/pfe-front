@@ -117,11 +117,11 @@ const handleGetMax=async(value:any)=>{
           <span>{course.description}</span>
         </div>
         <div className="flex items-center text-sm text-gray-500 mb-2">
-          <span className="mr-3 block">{course.lessonCount} lessons</span>
+          <span className="mr-3 block">{course.lessonCount} {t('courses.lessonsCount')}</span>
         </div>
         </Link>
         <div className="flex justify-between items-center">
-          <span className="font-bold text-lg">${course.price}</span>
+          <span className="font-bold text-lg">{course.price} DZD </span>
           
           <Button 
             onClick={()=>navigate(`/course/${course.id}`)}
@@ -185,7 +185,7 @@ const handleGetMax=async(value:any)=>{
             <Select
             value={selectedCategory}
             onChange={(value)=>setSelectedCategory(value)}
-            placeholder="Select Category"
+            placeholder={t('courses.selectCategory')}
             allowClear
             >
               {categories?.data?.map((category:any)=>(
@@ -325,7 +325,7 @@ const handleGetMax=async(value:any)=>{
             </>
           :
           <>
-            <p className="text-gray-600 mb-6">{t('courses.showing', {count: courses?.data?.length})}</p>
+            <p className="text-gray-600 mb-6">{t('courses.results.showing', {count: courses?.data?.length})}</p>
             
             {courses?.data ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">

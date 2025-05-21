@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useCreate, useDelete, useGetIdentity, useList } from '@refinedev/core';
-import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Space } from 'antd';
+import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Space, Tag } from 'antd';
 import { DeleteOutlined, InboxOutlined, UploadOutlined, EyeOutlined, EditOutlined } from '@ant-design/icons';
 // import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
 import { TableRowSelection } from 'antd/es/table/interface';
@@ -25,7 +25,7 @@ export default function AdminCoursesPage () {
 
   
   const onSelectChange = (selectedRowKeys: React.Key[], selectedRows:any) => {
-    // setSelectedCourseId(selectedRowKeys[0] as number)
+    setSelectedCourse(selectedRows[0])
     setSelectedRowKeys(selectedRowKeys)
 
   }
@@ -41,7 +41,7 @@ export default function AdminCoursesPage () {
       render: (text, record, index) => index + 1,
     },
     {
-      title: 'Thumbnail',
+      title:t('profile.admin.courses.title'),
       key: 'thumbnail',
       render: (text, record) => (
         <img 
@@ -58,56 +58,39 @@ export default function AdminCoursesPage () {
     },
     {
       title: t('profile.admin.courses.professor'),
-      dataIndex: ['professor', 'name'],
+      dataIndex: 'professor',
       key: 'professor',
-    },
-    {
-      title: t('profile.admin.courses.enrollments'),
-      dataIndex: 'enrollmentCount',
-      key: 'enrollments',
+      render: (text, record) => record.professor?.firstName + " " + record.professor?.lastName,
     },
     {
       title: t('profile.admin.courses.status'),
-      dataIndex: 'status',
+      dataIndex: 'isActive',
       key: 'status',
+      render: (text, record) => record.isActive ? <Tag color="green">{t('profile.admin.courses.active')}</Tag> : <Tag color="red">{t('profile.admin.courses.inactive')}</Tag>,
     },
     {
       title: t('profile.admin.courses.actions'),
       key: 'actions',
       render: (_: any, record: any) => (
         <Space>
-          <Button
-            icon={<EyeOutlined />}
-            onClick={() => {
-              setSelectedCourse(record);
-              setIsModalVisible(true);
-            }}
-          >
-            {t('profile.admin.courses.view')}
-          </Button>
-          <Button
-            icon={<EditOutlined />}
-            onClick={() => {
-              // Handle edit
-            }}
-          >
-            {t('profile.admin.courses.edit')}
-          </Button>
-          <Button
-            danger
-            icon={<DeleteOutlined />}
-            onClick={() => {
-              Modal.confirm({
-                title: t('profile.admin.courses.deleteConfirm'),
-                content: t('profile.admin.courses.deleteConfirmMessage'),
-                okText: t('profile.admin.courses.delete'),
-                cancelText: t('profile.admin.courses.cancel'),
-                onOk: () => handleDelete(record.id),
-              });
-            }}
-          >
-            {t('profile.admin.courses.delete')}
-          </Button>
+          <Tooltip title="Delete Course">
+        <Button
+        type="text"
+        danger
+        icon={<DeleteOutlined/>}
+        onClick={() => handleDelete(record.id)}
+        size='large'
+        />
+    </Tooltip>
+    <Tooltip title="Toggle Active">
+      <Switch
+      size='small'
+       checkedChildren="On"
+       unCheckedChildren="Off"
+        checked={record.isActive}
+        onChange={(checked)=>handleToggleActive(record.id,checked)}
+      />
+    </Tooltip>
         </Space>
       ),
     },
@@ -138,14 +121,14 @@ export default function AdminCoursesPage () {
       message.error(t('profile.admin.courses.deleteError'));
     }
   };
-  
+  console.log(selectedCourse)
   return (
     <>
-    <Row style={{marginBottom:"20px"}} justify={"end"} gutter={16}>
+    {/* <Row style={{marginBottom:"20px"}} justify={"end"} gutter={16}>
       <Col >
         <Button
         onClick={()=>{
-          if(!selectedRequest){
+          if(!selectedCourse){
             message.warning("Please select a request to process")
             return
           }
@@ -153,12 +136,12 @@ export default function AdminCoursesPage () {
         }}
         >Process Request</Button>
       </Col>
-    </Row>
+    </Row> */}
 
     <Table
     dataSource={courses?.data}
     columns={columns}
-    rowSelection={rowSelectionObj}
+    // rowSelection={rowSelectionObj}
     rowKey="id"
     />
    {processModal && 
@@ -167,10 +150,10 @@ export default function AdminCoursesPage () {
     onCancel={()=>{
       setProcessModal(false)
       refetch()
-      setSelectedRequest(undefined)
+      setSelectedCourse(undefined)
       setSelectedRowKeys([])
     }}
-    selectedRequest={selectedRequest}
+    selectedRequest={selectedCourse}
     />} 
 
     <Modal

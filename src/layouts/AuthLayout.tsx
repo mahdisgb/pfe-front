@@ -75,6 +75,30 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
       //   onClick: () => navigate('/profile')
       // },
       {
+        key: 'profile',
+        icon: <BookOutlined />,
+        label: 'Profile',
+        onClick: () => navigate('/profile/student-dashboard')
+      },
+      {
+        key: 'my-courses',
+        icon: <PlayCircleOutlined />,
+        label: t('sidebar.myCourses'),
+        onClick: () => navigate('/profile/my-courses')
+      },
+      {
+        key: 'courses',
+        icon: <PlayCircleOutlined />,
+        label: t('sidebar.myCourses'),
+        onClick: () => navigate('/profile/courses')
+      },
+      {
+        key: 'lessons',
+        icon: <FormOutlined />,
+        label: t('sidebar.myLessons'),
+        onClick: () => navigate('/profile/lessons')
+      },
+      {
         key: 'dashboard',
         icon: <DashboardOutlined />,
         label: 'Dashboard',
@@ -104,7 +128,13 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
           label: t('sidebar.manageChat'),
           onClick: () => navigate('/profile/manage-chat')
         },
-     
+        {
+          key: 'manage-formations',
+          icon: <FormOutlined />,
+          label: t('sidebar.manageFormations'),
+          onClick: () => navigate('/profile/manage-formations')
+        }
+        
     ];
 
     if (user?.roles?.includes('admin')) {
@@ -117,7 +147,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
   };
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ minHeight: '100vh' }} dir='ltr'>
       <Sider width={250} theme="light">
      
         <Menu

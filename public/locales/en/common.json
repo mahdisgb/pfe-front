@@ -27,7 +27,10 @@
         "delete": "Delete",
         "profile": "Profile",
         "submit": "Submit",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "formationSummary": "Formation Summary",
+        "backToFormations": "Back to Formations",
+        "formation": "Formation"
     },
     "courses": {
         "filters": {
@@ -145,7 +148,8 @@
         "loginSuccess": "Successfully logged in",
         "loginError": "Failed to log in",
         "registerSuccess": "Successfully registered",
-        "registerError": "Failed to register"
+        "registerError": "Failed to register",
+        "mineur": "Mineur"
     },
     "profile": {
         "title": "Profile",
@@ -154,13 +158,24 @@
             "title": "Student Profile",
             "role": "Student",
             "tabs": {
-                "enrolledCourses": "Enrolled Courses",
-                "achievements": "Achievements",
+            "enrolledCourses": "Enrolled Courses",
+            "achievements": "Achievements",
                 "history": "History"
             },
             "courseProgress": "{{progress}}% completed",
             "completionDate": "Completed on {{date}}",
-            "grade": "Grade: {{grade}}%"
+            "grade": "Grade: {{grade}}%",
+            "courses": {
+                "title": "My Enrolled Courses",
+                "lessons": "lessons",
+                "tags": "Tags",
+                "goToCourse": "Go to Course",
+                "noCourses": "No courses found",
+                "category": "Category",
+                "rating": "Rating",
+                "description": "Description",
+                "price": "Price"
+            }
         },
         "professor": {
             "title": "Professor Dashboard",
@@ -177,6 +192,51 @@
                 "email": "Email",
                 "currentPassword": "Current Password",
                 "newPassword": "New Password"
+            },
+            "courses": {
+                "table": {
+                    "index": "Index",
+                    "thumbnail": "Thumbnail",
+                    "title": "Title",
+                    "description": "Description",
+                    "category": "Category",
+                    "lessonsCount": "Lessons Count",
+                    "actions": "Actions"
+                },
+                "actions": {
+                    "delete": "Delete Course",
+                    "toggleActive": "Toggle Active",
+                    "on": "On",
+                    "off": "Off"
+                },
+                "messages": {
+                    "toggleSuccess": "Course active status toggled successfully",
+                    "toggleError": "Failed to toggle course active status",
+                    "deleteSuccess": "Course deleted successfully",
+                    "deleteError": "Failed to delete course"
+                }
+            },
+            "lessons": {
+                "table": {
+                    "index": "Index",
+                    "thumbnail": "Thumbnail",
+                    "title": "Title",
+                    "description": "Description",
+                    "course": "Course",
+                    "actions": "Actions"
+                },
+                "actions": {
+                    "delete": "Delete Lesson",
+                    "toggleActive": "Toggle Active",
+                    "on": "On",
+                    "off": "Off"
+                },
+                "messages": {
+                    "toggleSuccess": "Lesson active status toggled successfully",
+                    "toggleError": "Failed to toggle lesson active status",
+                    "deleteSuccess": "Lesson deleted successfully",
+                    "deleteError": "Failed to delete lesson"
+                }
             }
         },
         "admin": {
@@ -205,10 +265,18 @@
                 "deleteConfirmMessage": "Are you sure you want to delete this user?",
                 "deleteSuccess": "User deleted successfully",
                 "deleteError": "Failed to delete user",
-                "cancel": "Cancel"
+                "cancel": "Cancel",
+                "table": {
+                    "requestId": "Request ID",
+                    "name": "Name",
+                    "email": "Email",
+                    "status": "Status",
+                    "roles": "Roles",
+                    "actions": "Actions"
+                }
             },
             "courses": {
-                "title": "Manage Courses",
+                "title": "Title",
                 "professor": "Professor",
                 "enrollments": "Enrollments",
                 "status": "Status",
@@ -223,7 +291,12 @@
                 "deleteConfirmMessage": "Are you sure you want to delete this course?",
                 "deleteSuccess": "Course deleted successfully",
                 "deleteError": "Failed to delete course",
-                "cancel": "Cancel"
+            "cancel": "Cancel",
+                "active": "Active",
+                "inactive": "Inactive",
+                "thumbnail": "الصورة المصغرة",
+                "price": "السعر",
+                "toggleActive": "تبديل الحالة"
             },
             "chat": {
                 "title": "Manage Chat",
@@ -240,7 +313,15 @@
                 "deleteConfirmMessage": "Are you sure you want to delete this message?",
                 "deleteSuccess": "Message deleted successfully",
                 "deleteError": "Failed to delete message",
-                "cancel": "Cancel"
+                "cancel": "Cancel",
+                "table": {
+                    "index": "Index",
+                    "name": "Name",
+                    "email": "Email",
+                    "message": "Chat Message",
+                    "createdAt": "Created At",
+                    "actions": "Actions"
+                }
             },
             "requests": {
                 "title": "Manage Requests",
@@ -262,7 +343,30 @@
                 "approveError": "Failed to approve request",
                 "rejectSuccess": "Request rejected successfully",
                 "rejectError": "Failed to reject request",
-                "cancel": "Cancel"
+                "cancel": "Cancel",
+                "table": {
+                    "requestId": "Request ID",
+                    "name": "Name",
+                    "email": "Email",
+                    "status": "Status",
+                    "adminNotes": "Admin Notes",
+                    "createdAt": "Created At",
+                    "actions": "Actions"
+                },
+                "processRequest": "Process Request",
+                "processModal": {
+                    "title": "Process Request",
+                    "status": "Status",
+                    "statusPlaceholder": "Select Status",
+                    "adminNotes": "Admin Notes",
+                    "adminNotesPlaceholder": "Enter Admin Notes",
+                    "statusOptions": {
+                        "approved": "Approved",
+                        "rejected": "Rejected"
+                    },
+                    "success": "Request processed successfully",
+                    "error": "Failed to process request"
+                }
             },
             "settings": {
                 "title": "Platform Settings",
@@ -276,6 +380,30 @@
                 "invalidEmail": "Please enter a valid email",
                 "saveSuccess": "Settings saved successfully",
                 "saveError": "Failed to save settings"
+            },
+            "formations": {
+                "thumbnail": "Thumbnail",
+                "title": "Title",
+                "description": "Description",
+                "category": "Category",
+                "lessonsCount": "Lessons Count",
+                "actions": "Actions",
+                "delete": "Delete Formation",
+                "toggleActive": "Toggle Active Status",
+                "active": "On",
+                "inactive": "Off",
+                "create": "Create Formation",
+                "edit": "Edit Formation",
+                "selectWarning": "Please select a formation first",
+                "deleteTitle": "Delete Formation",
+                "deleteConfirm": "Are you sure you want to delete this formation?",
+                "deleteSuccess": "Formation deleted successfully",
+                "deleteError": "Failed to delete formation",
+                "toggleSuccess": "Formation status updated successfully",
+                "toggleError": "Failed to update formation status",
+                "location": "Location",
+                "date": "Date",
+                "datePlaceholder": "Select date and time"
             }
         },
         "unknownRole": {
@@ -294,8 +422,11 @@
             "titleRequired": "Please enter course title",
             "descriptionRequired": "Please enter course description",
             "selectImage": "Select Image",
-            "priceRequired": "Please enter course price"
-
+            "priceRequired": "Please enter course price",
+            "titlePlaceholder": "Enter course title",
+            "descriptionPlaceholder": "Enter course description",
+            "categoryPlaceholder": "Select a category",
+            "pricePlaceholder": "Enter course price"
         },
         "lesson": {
             "title": "Enter lesson title",
@@ -306,6 +437,44 @@
             "create": "Create Lesson",
             "edit": "Edit Lesson",
             "filterByCourse": "Filter by course"
+        },
+        "formation": {
+            "title": "Formation Title",
+            "description": "Formation Description",
+            "category": "Category",
+            "thumbnail": "Thumbnail",
+            "titleRequired": "Please enter formation title",
+            "descriptionRequired": "Please enter formation description",
+            "categoryRequired": "Please select a category",
+            "thumbnailRequired": "Please select a thumbnail image",
+            "titlePlaceholder": "Enter formation title",
+            "descriptionPlaceholder": "Enter formation description",
+            "categoryPlaceholder": "Select a category",
+            "pricePlaceholder": "Enter formation price",
+            "selectImage": "Select Image",
+            "price": "Price",
+            "priceRequired": "Please enter formation price",
+            "location": "Location",
+            "locationRequired": "Please enter formation location",
+            "locationPlaceholder": "Enter formation location",
+                "lessonsCount": "Lessons Count",
+                "actions": "Actions",
+                "delete": "Delete Formation",
+                "toggleActive": "Toggle Active Status",
+                "active": "On",
+                "inactive": "Off",
+                "create": "Create Formation",
+                "edit": "Edit Formation",
+                "selectWarning": "Please select a formation first",
+                "deleteTitle": "Delete Formation",
+                "deleteConfirm": "Are you sure you want to delete this formation?",
+                "deleteSuccess": "Formation deleted successfully",
+                "deleteError": "Failed to delete formation",
+                "toggleSuccess": "Formation status updated successfully",
+                "toggleError": "Failed to update formation status",
+                "date": "Date",
+                "datePlaceholder": "Select date and time",
+                "dateRequired": "Please select a date"
         }
     },
     "search": {
@@ -421,7 +590,7 @@
             "enrollNow": "Enroll Now"
         },
         "howItWorks": {
-            "title": "How does Classgap work?",
+            "title": "How does Wajihni work?",
             "steps": {
                 "findTeacher": {
                     "title": "1. Find your ideal teacher",
@@ -433,7 +602,7 @@
                 },
                 "learnFromHome": {
                     "title": "3. Learn from your living room",
-                    "description": "Use Classgap's virtual classroom."
+                    "description": "Use Wajihni's virtual classroom."
                 }
             }
         },
@@ -442,11 +611,11 @@
             "testimonials": {
                 "david": {
                     "text": "The English class with my teacher was super motivating. I highly recommend it!",
-                    "name": "David"
+                    "name": "Hussain"
                 },
                 "fatima": {
                     "text": "Practical and intuitive, the course videos helped me progress quickly.",
-                    "name": "Fatima"
+                    "name": "Jamal"
                 }
             }
         },
@@ -510,6 +679,7 @@
         "professorRequests": "Professor Requests",
         "manageCourses": "Manage Courses",
         "manageUsers": "Manage Users",
-        "manageChat": "Manage Chat"
+        "manageChat": "Manage Chat",
+        "manageFormations": "Manage Formations"
     }
 }

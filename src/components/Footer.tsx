@@ -5,16 +5,15 @@ const Footer = () => {
   
   return (
     <div className="text-center">
-      <div>{t('common.copyright')}</div>
            
-      <footer className="bg-gray-800 text-white py-12 mt-16">
+      <footer className="bg-gray-800 text-white py-12 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center mb-4">
-                <h3 className="ml-2 text-lg font-bold">EduLearn Academy</h3>
+                <h3 className="ml-2 text-lg font-bold">Wajihni Academy</h3>
               </div>
-              <p className="text-gray-400">Empowering learners worldwide with quality education and accessible courses.</p>
+              <p className="text-gray-400">Wajihni learners worldwide with quality education and accessible courses.</p>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-4">Company</h3>
@@ -50,7 +49,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
-            <p>© 2025 EduLearn Academy. All rights reserved.</p>
+            <p>© 2025 Wajihni Academy. All rights reserved.</p>
           </div>
         </div>
       </footer> 

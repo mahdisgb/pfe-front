@@ -1,6 +1,5 @@
 import { useGetIdentity, useList, useTranslation } from '@refinedev/core'
 import { Button, Col, Empty, Row } from 'antd'
-import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const StudentCoursesPage = () => {

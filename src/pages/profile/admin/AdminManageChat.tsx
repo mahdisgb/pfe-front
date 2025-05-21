@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import { useCreate, useDelete, useGetIdentity, useList } from '@refinedev/core';
-import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Space } from 'antd';
-import { DeleteOutlined, InboxOutlined, UploadOutlined, EyeOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
+import { useDelete, useGetIdentity, useList } from '@refinedev/core';
+import { Button, message, Modal, Space, Table, TableColumnType, Tooltip, Upload } from 'antd';
+import React, { useState } from 'react';
 // import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
-import { TableRowSelection } from 'antd/es/table/interface';
-import { ProcessRequestModal } from './components/ProcessRequestModal';
 import { useTranslation } from '@refinedev/core';
+import { ProcessRequestModal } from './components/ProcessRequestModal';
 const { Dragger } = Upload;
 
 export default function AdminManageChat () {
@@ -20,12 +19,12 @@ export default function AdminManageChat () {
   const {data:user}=useGetIdentity<any>();
   const {data:messages,refetch} = useList({
     resource:"chat/room/course-1",
-    pagination:{
-        mode:"off",
-    },
-    meta:{
-      enabled:!!user?.id
-    },
+    // pagination:{
+    //     mode:"off",
+    // },
+    // meta:{
+    //   enabled:!!user?.id
+    // },
   })
 
   
@@ -38,11 +37,18 @@ export default function AdminManageChat () {
   const handleDelete = async (id: number) => {
     try {
       await deleteCourse({
-        resource: 'messages',
+        resource: `chat/message/${id}`,
         id,
+      },{
+        onSuccess:()=>{
+          message.success(t('profile.admin.chat.deleteSuccess'));
+          refetch();
+        },
+        onError:()=>{
+          message.error(t('profile.admin.chat.deleteError'));
+        }
       });
-      message.success(t('profile.admin.chat.deleteSuccess'));
-      refetch();
+    
     } catch (error) {
       message.error(t('profile.admin.chat.deleteError'));
     }
@@ -50,60 +56,45 @@ export default function AdminManageChat () {
 
   const columns:TableColumnType<any>[] = [
     {
-      title: '-',
+      title: t('profile.admin.chat.table.index'),
       key: 'id',
       render: (text, record,idx) => idx+1,
     },
     {
-      title: 'Name',
+      title: t('profile.admin.chat.table.name'),
       key: 'name',
       render: (text, record) => `${record.user.firstName} ${record.user.lastName}`,
     },
     {
-      title: 'Email',
+      title: t('profile.admin.chat.table.email'),
       dataIndex: ['user', 'email'],
       key: 'email',
     },
     {
-      title: 'Chat Message',
+      title: t('profile.admin.chat.table.message'),
       dataIndex: 'content',
       key: 'content',
     },
     {
-      title: 'Created At',
+      title: t('profile.admin.chat.table.createdAt'),
       dataIndex: 'createdAt',
       key: 'createdAt',
       render: (text) => new Date(text).toLocaleDateString(),
     },
     {
-      title: 'Actions',
+      title: t('profile.admin.chat.table.actions'),
       key: 'actions',
       render: (_: any, record: any) => (
         <Space>
-          <Button
-            icon={<EyeOutlined />}
-            onClick={() => {
-              setSelectedMessage(record);
-              setIsModalVisible(true);
-            }}
-          >
-            {t('profile.admin.chat.view')}
-          </Button>
-          <Button
-            danger
-            icon={<DeleteOutlined />}
-            onClick={() => {
-              Modal.confirm({
-                title: t('profile.admin.chat.deleteConfirm'),
-                content: t('profile.admin.chat.deleteConfirmMessage'),
-                okText: t('profile.admin.chat.delete'),
-                cancelText: t('profile.admin.chat.cancel'),
-                onOk: () => handleDelete(record.id),
-              });
-            }}
-          >
-            {t('profile.admin.chat.delete')}
-          </Button>
+          <Tooltip title={t('profile.admin.chat.delete')}>
+            <Button
+              type="text"
+              danger
+              icon={<DeleteOutlined/>}
+              onClick={() => handleDelete(record.id)}
+              size='large'
+            />
+          </Tooltip>
         </Space>
       ),
     },

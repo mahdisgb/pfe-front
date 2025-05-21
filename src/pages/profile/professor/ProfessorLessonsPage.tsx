@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { DeleteOutlined } from '@ant-design/icons';
 import { useCreate, useDelete, useGetIdentity, useList, useTranslation } from '@refinedev/core';
-import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Select } from 'antd';
-import { DeleteOutlined, InboxOutlined, UploadOutlined } from '@ant-design/icons';
+import { Button, Col, message, Modal, Row, Select, Switch, Table, TableColumnType, Tooltip, Upload } from 'antd';
 import { TableRowSelection } from 'antd/es/table/interface';
+import React, { useState } from 'react';
 import { CreateLesson } from './Components/CreateLesson';
 const { Dragger } = Upload;
 
@@ -21,9 +21,7 @@ export const ProfessorLessonsPage = () => {
   const {mutate :toggleLesson } =useCreate();
   const {data:lessons,refetch} = useList({
     resource:`lessons/professor`,
-    // pagination:{
-    //   mode:"client"
-    // },
+   
     filters:[{
       field:"professorId",
       operator:"eq",
@@ -63,12 +61,12 @@ export const ProfessorLessonsPage = () => {
   }
   const columns:TableColumnType<any>[] = [
     {
-      title: '-',
+      title: t('profile.professor.lessons.table.index'),
       key: 'index',
       render: (text, record, index) => index + 1,
     },
     {
-      title: 'Thumbnail',
+      title: t('profile.professor.lessons.table.thumbnail'),
       key: 'thumbnail',
       render: (text, record) => (
         <img 
@@ -79,26 +77,26 @@ export const ProfessorLessonsPage = () => {
       ),
     },
     {
-      title: 'Title',
+      title: t('profile.professor.lessons.table.title'),
       dataIndex: 'title',
       key: 'title',
     },
     {
-      title: 'Description',
+      title: t('profile.professor.lessons.table.description'),
       dataIndex: 'description',
       key: 'description',
     },
     {
-      title: 'Course',
+      title: t('profile.professor.lessons.table.course'),
       dataIndex: ['course', 'title'],
       key: 'course',
     },
     {
-      title: 'Actions',
+      title: t('profile.professor.lessons.table.actions'),
       key: 'actions',
       render: (text, record) => (
         <>
-        <Tooltip title="Delete Course">
+        <Tooltip title={t('profile.professor.lessons.actions.delete')}>
         <Button
         type="text"
         danger
@@ -107,11 +105,11 @@ export const ProfessorLessonsPage = () => {
         size='large'
         />
     </Tooltip>
-    <Tooltip title="Toggle Active">
+    <Tooltip title={t('profile.professor.lessons.actions.toggleActive')}>
       <Switch
       size='small'
-       checkedChildren="On"
-       unCheckedChildren="Off"
+       checkedChildren={t('profile.professor.lessons.actions.on')}
+       unCheckedChildren={t('profile.professor.lessons.actions.off')}
         checked={record.isActive}
         onChange={(checked)=>handleToggleActive(record.id,checked)}
       />
@@ -119,8 +117,6 @@ export const ProfessorLessonsPage = () => {
         </>
       )
     },
-    
-    
   ];
   const handleToggleActive = (id:number,isActive:boolean) => {
     toggleLesson({
@@ -128,11 +124,11 @@ export const ProfessorLessonsPage = () => {
       values:{id,isActive}
     },{
       onSuccess:()=>{
-        message.success("Course active status toggled successfully")
+        message.success(t('profile.professor.lessons.messages.toggleSuccess'))
         refetch()
       },
       onError:()=>{
-        message.error("Failed to toggle lesson active status")
+        message.error(t('profile.professor.lessons.messages.toggleError'))
       }
     })
   }
@@ -151,11 +147,11 @@ export const ProfessorLessonsPage = () => {
           }
         }, {
           onSuccess:()=>{
-            message.success("Lesson deleted successfully")
+            message.success(t('profile.professor.lessons.messages.deleteSuccess'))
             refetch()
           },
           onError:()=>{
-            message.error("Failed to delete lesson")
+            message.error(t('profile.professor.lessons.messages.deleteError'))
           }
         })
       }

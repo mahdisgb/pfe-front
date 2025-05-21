@@ -1,120 +1,115 @@
-import { ArrowRightOutlined, UserOutlined } from '@ant-design/icons';
-import { useCreate, useTranslation, useUpdate } from '@refinedev/core';
-import { Avatar, Button, Col, Form, Input,Modal, Select, Row, Typography, Tag, message } from 'antd'
+import { UserOutlined } from '@ant-design/icons';
+import { useTranslation, useUpdate } from '@refinedev/core';
+import { Avatar, Button, Col, Form, Input, Modal, Row, Select, Tag, Typography, message } from 'antd';
 import dayjs from 'dayjs';
-import { cp } from 'fs';
-import React from 'react'
+
 type ProcessRequestModalProps = {
   open: boolean,
   onCancel: () => void,
   selectedRequest: any | undefined
 };
-export const ProcessRequestModal = ({open,onCancel,selectedRequest}:ProcessRequestModalProps) => {
-  const {translate:t}=useTranslation();
+
+export const ProcessRequestModal = ({open, onCancel, selectedRequest}: ProcessRequestModalProps) => {
+  const {translate: t} = useTranslation();
   const [form] = Form.useForm();
-  const{mutateAsync:processRequest}=useUpdate()
+  const {mutateAsync: processRequest} = useUpdate()
+
   const handleSubmit = async() => {
     try {
-      const values=await form.getFieldsValue();
+      const values = await form.getFieldsValue();
       
       await processRequest({
-        resource:`admin/professor-requests/${selectedRequest.id}`,
-        meta:{
-          requestId:selectedRequest.id
+        resource: `admin/professor-requests/${selectedRequest.id}`,
+        meta: {
+          requestId: selectedRequest.id
         },
-        id:selectedRequest.id,
-        values:{
-        ...values
+        id: selectedRequest.id,
+        values: {
+          ...values
         }
-      },{
-          onSuccess:()=>{
-            message.success("Request processed successfully")
-            onCancel()
-          },
-          onError:(error)=>{
-            message.error("Failed to process request")
-          }
+      }, {
+        onSuccess: () => {
+          message.success(t('profile.admin.requests.processModal.success'))
+          onCancel()
+        },
+        onError: (error) => {
+          message.error(t('profile.admin.requests.processModal.error'))
+        }
       })
     } catch (error) {
-      
+      message.error(t('profile.admin.requests.processModal.error'))
     }
   }
-  const statusColor={
-    approved:"green",
-    rejected:"red",
-    pending:"blue"
+
+  const statusColor = {
+    approved: "green",
+    rejected: "red",
+    pending: "blue"
   }
+
   return (
     <Modal
-     open={open}
-     onCancel={onCancel}
-     footer={[
-      <div className="flex items-center justify-end gap-2">
-      <Button type="default" onClick={onCancel}>{t('modal.cancel')}</Button>
-      <Button type="primary" onClick={handleSubmit}>{t('modal.submit')}</Button>
-  </div>
-     ]}
-     maskClosable={false}
-    centered
-    title="Process Request"
-> 
-<div style={{
-  padding:"10px"
-}}>
-
-     <Row style={{
-      border:"2px solid #f0f0f0",
-      backgroundColor:"#f9f9f9",
-      borderRadius:"10px",
-      padding:"10px"
-     }}>
-      <Col span={4}>
-                <Avatar
-                  size={60}
-                  icon={
-                   <UserOutlined />
-                  }
-                  style={{ backgroundColor: "#1890ff" }}
-                />
-              </Col>
-              <Col span={20}>
-              <div className="flex items-start justify-between w-full">
+      open={open}
+      onCancel={onCancel}
+      footer={[
+        <div className="flex items-center justify-end gap-2">
+          <Button type="default" onClick={onCancel}>{t('modal.cancel')}</Button>
+          <Button type="primary" onClick={handleSubmit}>{t('modal.submit')}</Button>
+        </div>
+      ]}
+      maskClosable={false}
+      centered
+      title={t('profile.admin.requests.processModal.title')}
+    > 
+      <div style={{ padding: "10px" }}>
+        <Row style={{
+          border: "2px solid #f0f0f0",
+          backgroundColor: "#f9f9f9",
+          borderRadius: "10px",
+          padding: "10px"
+        }}>
+          <Col span={4}>
+            <Avatar
+              size={60}
+              icon={<UserOutlined />}
+              style={{ backgroundColor: "#1890ff" }}
+            />
+          </Col>
+          <Col span={20}>
+            <div className="flex items-start justify-between w-full">
               <div>
                 <Typography.Title level={5} style={{ marginBottom: 0 }}>
-                 {selectedRequest.user.firstName} {selectedRequest.user.lastName}
+                  {selectedRequest.user.firstName} {selectedRequest.user.lastName}
                 </Typography.Title>
-                
-                <p  style={{ marginBottom: 2 }}>
-                {selectedRequest.user.email}
+                <p style={{ marginBottom: 2 }}>
+                  {selectedRequest.user.email}
                 </p>
-               
-                <div>
-                </div>
-                  </div>
-                  <Typography.Text type="secondary">
-                  {dayjs(selectedRequest.createdAt).format("DD-MM-YYYY")}
-                </Typography.Text>
-              <Tag color={statusColor[selectedRequest.status as keyof typeof statusColor]} >{selectedRequest.status} </Tag>
-                  </div>
-              </Col>
-     </Row>
+              </div>
+              <Typography.Text type="secondary">
+                {dayjs(selectedRequest.createdAt).format("DD-MM-YYYY")}
+              </Typography.Text>
+              <Tag color={statusColor[selectedRequest.status as keyof typeof statusColor]}>
+                {selectedRequest.status}
+              </Tag>
+            </div>
+          </Col>
+        </Row>
 
-        <Form form={form} layout="vertical" style={{
-         marginTop:20
-}}>
-
-          <Form.Item label="Status" name="status">
+        <Form form={form} layout="vertical" style={{ marginTop: 20 }}>
+          <Form.Item label={t('profile.admin.requests.processModal.status')} name="status">
             <Select 
-            placeholder="Select Status"
-            options={[{label:"Approved",value:"approved"},{label:"Rejected",value:"rejected"}]} />
-
+              placeholder={t('profile.admin.requests.processModal.statusPlaceholder')}
+              options={[
+                { label: t('profile.admin.requests.processModal.statusOptions.approved'), value: "approved" },
+                { label: t('profile.admin.requests.processModal.statusOptions.rejected'), value: "rejected" }
+              ]} 
+            />
           </Form.Item>
-            <Form.Item  label="Admin Notes" name="adminNotes">
-                <Input.TextArea placeholder="Enter Admin Notes" />
-            </Form.Item>
+          <Form.Item label={t('profile.admin.requests.processModal.adminNotes')} name="adminNotes">
+            <Input.TextArea placeholder={t('profile.admin.requests.processModal.adminNotesPlaceholder')} />
+          </Form.Item>
         </Form>
-</div>
-
+      </div>
     </Modal>
   )
 }

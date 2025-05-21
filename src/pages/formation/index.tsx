@@ -1,12 +1,13 @@
 import React from 'react'
-import { useLogin, useRegister } from "@refinedev/core";
+import { useList, useLogin, useRegister } from "@refinedev/core";
 import { useEffect, useState } from "react";
-import { Avatar, Button, Card, Col, Divider, Form, Input, Radio, Row,Tag,  Select, message, Typography } from "antd"
+import { Avatar, Button, Card, Col, Divider, Form, Input, Radio, Row,Tag,  Select, message, Typography, Collapse } from "antd"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from '@refinedev/core';
 import dayjs from 'dayjs';
 import { CheckCircleOutlined, UserOutlined, CreditCardOutlined, ClockCircleOutlined, BookOutlined } from '@ant-design/icons';
 const { Title, Text } = Typography;
+const { Panel } = Collapse;
 export const Formation = () => {
     const { translate: t } = useTranslation();
     const { mutate: register } = useRegister();
@@ -14,6 +15,12 @@ export const Formation = () => {
     const navigate = useNavigate();
       const [isLoading, setIsLoading] = useState(false);
       const[payMethod, setPayMethod] = useState<'cash' | 'card'>('cash');
+      const{data:formations}=useList({
+        resource:"formations",
+        pagination:{
+          mode:"off"
+        }
+      })
     const handleSubmit = async () => {
         try {
           setIsLoading(true);
@@ -36,30 +43,27 @@ export const Formation = () => {
     };
     return (
         <div className='flex items-center justify-center min-h-[90vh]'>
-            <div className='flex flex-col gap-16 bg-white rounded-lg p-10'>
-          <Card>
-        <div className='flex items-center'>
+            <div className='flex flex-col gap-4 rounded-lg p-10'>
+              {formations ? formations?.data?.map((formation:any)=>
+          <Card style={{width:"600px"}}>
+        <div className='flex items-end gap-3 w-full'>
           <div>
-      <img src="logo.jpeg" alt="" className='w-[100px] rounded-full' />
+      <img src={formation.thumbnail} alt="" className='img max-w-[200px]' />
           </div>
           <div>
-          <h1>Formation</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-
-          <div>
-            au location exacte de locaux
-          </div>
-          <div style={{float: 'right'}}>
-            le :
-            {dayjs().format('DD/MM/YYYY')}
-          </div>
+          <h1>{formation.title}</h1>
+          <p>{formation.description}</p>
+            <p>{formation.location}</p>
+          <p>{dayjs(formation.date).format('DD/MM/YYYY HH:mm')}</p>
           </div>
         </div>
-          </Card>
+          <Button style={{float:"right"}} type='primary' onClick={()=>navigate(`/formation-enrollment/${formation.id}`)}>Enrol</Button>
+          </Card>)
+          :null}
                   {/* <div>
                     <img src="logo.jpeg" alt="" />
                 </div> */}
-      <Form
+      {/* <Form
       form={form}
       onFinish={handleSubmit}
       layout="vertical"
@@ -217,9 +221,13 @@ export const Formation = () => {
           {t('auth.register')}
         </Button>
       </Form.Item>
-    </Form>
+    </Form> */}
     </div>
-
+    {/* <Collapse>
+                <Panel key={} header={}>
+                </Panel>
+    </Collapse> */}
+    
     </div>
     )
 }

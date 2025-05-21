@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import { useCreate, useDelete, useGetIdentity, useList, useUpdate } from '@refinedev/core';
-import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Space } from 'antd';
-import { DeleteOutlined, InboxOutlined, UploadOutlined, CheckOutlined, CloseOutlined, EyeOutlined } from '@ant-design/icons';
+import { useGetIdentity, useList, useUpdate } from '@refinedev/core';
+import { Button, Col, message, Row, Table, TableColumnType, Upload } from 'antd';
+import React, { useState } from 'react';
 // import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
+import { useTranslation } from '@refinedev/core';
 import { TableRowSelection } from 'antd/es/table/interface';
 import { ProcessRequestModal } from './components/ProcessRequestModal';
-import { useTranslation } from '@refinedev/core';
 const { Dragger } = Upload;
 
 export default function AdminRequestsPage () {
@@ -39,43 +38,40 @@ export default function AdminRequestsPage () {
   }
   const columns:TableColumnType<any>[] = [
     {
-      title: 'Request ID',
+      title: t('profile.admin.requests.table.requestId'),
       key: 'id',
       render: (text, record) => record.id,
     },
     {
-      title: 'Name',
+      title: t('profile.admin.requests.table.name'),
       key: 'name',
       render: (text, record) => `${record.user.firstName} ${record.user.lastName}`,
     },
     {
-      title: 'Email',
+      title: t('profile.admin.requests.table.email'),
       dataIndex: ['user', 'email'],
       key: 'email',
     },
     {
-      title: 'Status',
+      title: t('profile.admin.requests.table.status'),
       dataIndex: 'status',
       key: 'status',
     },
     {
-      title: 'Admin Notes',
+      title: t('profile.admin.requests.table.adminNotes'),
       dataIndex: 'adminNotes',
       key: 'adminNotes',
     },
     {
-      title: 'Created At',
+      title: t('profile.admin.requests.table.createdAt'),
       dataIndex: 'createdAt',
       key: 'createdAt',
       render: (text) => new Date(text).toLocaleDateString(),
     },
     {
-      title: 'Actions',
+      title: t('profile.admin.requests.table.actions'),
       key: 'actions',
-      
-    },
-    
-    
+    }
   ];
   
   const handleApprove = async (id: number) => {
@@ -118,7 +114,7 @@ export default function AdminRequestsPage () {
           }
           setProcessModal(true)
         }}
-        >Process Request</Button>
+        >{t('profile.admin.requests.processRequest')}</Button>
       </Col>
     </Row>
 

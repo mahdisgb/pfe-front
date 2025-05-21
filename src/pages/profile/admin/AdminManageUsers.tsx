@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { useCreate, useDelete, useGetIdentity, useList } from '@refinedev/core';
-import { Upload, Button, message, Card, UploadProps, Table, TableColumnType, Col, Row, Tooltip, Modal, Switch, Space } from 'antd';
-import { DeleteOutlined, InboxOutlined, UploadOutlined, UserOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
+import { useDelete, useGetIdentity, useList } from '@refinedev/core';
+import { Button, message, Table, TableColumnType, Tooltip, Upload } from 'antd';
+import React, { useState } from 'react';
 // import ProfessorPageLayout from '@/layouts/ProfessorPageLayout';
+import { useTranslation } from '@refinedev/core';
 import { TableRowSelection } from 'antd/es/table/interface';
 import { ProcessRequestModal } from './components/ProcessRequestModal';
-import { useTranslation } from '@refinedev/core';
 const { Dragger } = Upload;
 
 export default function AdminManageUsers () {
@@ -34,57 +34,63 @@ export default function AdminManageUsers () {
   }
   const columns:TableColumnType<any>[] = [
     {
-      title: 'Request ID',
+      title: t('profile.admin.users.table.requestId'),
       key: 'id',
       render: (text, record) => record.id,
     },
     {
-      title: 'Name',
+      title: t('profile.admin.users.table.name'),
       key: 'name',
       render: (text, record) => `${record.firstName} ${record.lastName}`,
     },
     {
-      title: 'Email',
+      title: t('profile.admin.users.table.email'),
       dataIndex: 'email',
       key: 'email',
     },
     {
-      title: 'Status',
+      title: t('profile.admin.users.table.status'),
       dataIndex: 'status',
       key: 'status',
     },
     {
-      title: 'Roles',
+      title: t('profile.admin.users.table.roles'),
       dataIndex: 'roles',
       key: 'roles',
       render: (text, record) => record.roles.join(', ')
     },
-      {
-        title: 'Actions',
-        key: 'actions',
-        render: (text, record) => (
-          <>
-          <Tooltip title="Delete Course">
-          <Button
-          type="text"
-          danger
-          icon={<DeleteOutlined/>}
-          onClick={() => handleDelete(record.id)}
-          size='large'
-          />
-      </Tooltip>
-          </>
-        )
-      },
+    {
+      title: t('profile.admin.users.table.actions'),
+      key: 'actions',
+      render: (text, record) => (
+        <>
+          <Tooltip title={t('profile.admin.users.delete')}>
+            <Button
+              type="text"
+              danger
+              icon={<DeleteOutlined/>}
+              onClick={() => handleDelete(record.id)}
+              size='large'
+            />
+          </Tooltip>
+        </>
+      )
+    }
   ];
   const handleDelete = async (id: number) => {
     try {
       await deleteUser({
-        resource: 'auth/users',
+        resource: `auth/user/${id}`,
         id,
+      },{
+        onSuccess:()=>{
+          message.success(t('profile.admin.users.deleteSuccess'));
+          refetch();
+        },
+        onError:()=>{
+          message.error(t('profile.admin.users.deleteError'));
+        }
       });
-      message.success(t('profile.admin.users.deleteSuccess'));
-      refetch();
     } catch (error) {
       message.error(t('profile.admin.users.deleteError'));
     }
@@ -92,7 +98,7 @@ export default function AdminManageUsers () {
   
   return (
     <>
-    <Row style={{marginBottom:"20px"}} justify={"end"} gutter={16}>
+    {/* <Row style={{marginBottom:"20px"}} justify={"end"} gutter={16}>
       <Col >
         <Button
         onClick={()=>{
@@ -104,12 +110,12 @@ export default function AdminManageUsers () {
         }}
         >Process Request</Button>
       </Col>
-    </Row>
+    </Row> */}
 
     <Table
     dataSource={users?.data}
     columns={columns}
-    rowSelection={rowSelectionObj}
+    // rowSelection={rowSelectionObj}
     rowKey="id"
     />
    {processModal && 

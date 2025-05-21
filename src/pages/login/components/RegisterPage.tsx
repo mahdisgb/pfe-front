@@ -80,6 +80,7 @@ export const RegisterPage = () => {
       >
         <Select.Option value="student">{t('auth.student')}</Select.Option>
         <Select.Option value="professor">{t('auth.professor')}</Select.Option>
+        <Select.Option value="mineur">{t('auth.mineur')}</Select.Option>
       </Select>
     </Form.Item>
 

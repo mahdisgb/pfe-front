@@ -44,6 +44,8 @@ import AdminManageUsers from "./pages/profile/admin/AdminManageUsers";
 import { StudentDashboard } from "./pages/profile/student/StudentDashboard";
 import { Formation } from "./pages/formation";
 import AdminManageChat from "./pages/profile/admin/AdminManageChat";
+import {AdminManageFormations} from "./pages/profile/admin/AdminManageFormations";
+import { FormationEnroll } from "./pages/formationEnroll";
 function App() {
   const { i18nProvider } = i18nProviderContext();
   const resources = useResources();
@@ -90,6 +92,7 @@ function App() {
             <Route path="/profile/manage-courses" element={<AdminCoursesPage />} />
             <Route path="/profile/manage-users" element={<AdminManageUsers />} />
             <Route path="/profile/manage-chat" element={<AdminManageChat />} />
+            <Route path="/profile/manage-formations" element={<AdminManageFormations />} />
           </Route>
 
           {/* Other authenticated routes with HomePageLayout */}
@@ -109,6 +112,7 @@ function App() {
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/course/:id" element={<CoursePage />} />
             <Route path="/enrollment/:courseId" element={<Enrollment />} />
+            <Route path="/formation-enrollment/:formationId" element={<FormationEnroll />} />
             <Route path="*" element={<Page403 />} />
           </Route>
           <Route

@@ -1,57 +1,50 @@
 import { DeleteOutlined } from '@ant-design/icons';
 import { useCreate, useDelete, useGetIdentity, useList, useTranslation } from '@refinedev/core';
-import { Button, Col, message, Modal, Row, Switch, Table, TableColumnType, Tooltip, Upload } from 'antd';
+import { Button, Col, message, Modal, Row, Switch, Table, TableColumnType, Tag, Tooltip, Upload } from 'antd';
 import { TableRowSelection } from 'antd/es/table/interface';
 import React, { useState } from 'react';
-import { CreateCourse } from './Components/CreateCourse';
+import { CreateFormation } from './components/CreateFormation';
 const { Dragger } = Upload;
 
-export const ProfessorCoursesPage = () => {
-  const {translate: t} = useTranslation();
+export const AdminManageFormations = () => {
+  const {translate:t}=useTranslation();
   const [activePage, setActivePage] = useState('content');
   const [activeTab, setActiveTab] = useState('videos');
   const [createModal, setCreateModal] = useState(false);
-  const [selectedCourseId, setSelectedCourseId] = useState<number | undefined>(undefined);
+  const[selectedFormationId,setSelectedFormationId]=useState<number | undefined>(undefined);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
-  const {data: user} = useGetIdentity<any>();
-  const {mutate: uploadVideo} = useCreate();
-  const {mutate: deleteCourse} = useDelete();
-  const {mutate: toggleCourse} = useCreate();
-  const {data: courses, refetch} = useList({
-    resource: "courses/professor/",
-    pagination: {
-      mode: "client"
-    },
-    filters: [{
-      field: "professorId",
-      operator: "eq",
-      value: user?.id
-    }],
-    meta: {
-      enabled: !!user?.id
+  const {data:user}=useGetIdentity<any>();
+  const {mutate :uploadVideo } =useCreate();
+  const {mutate :deleteFormation } =useDelete();
+  const {mutate :toggleFormation } =useCreate();
+  const {data:formations,refetch} = useList({
+    resource:"formations",
+   
+    meta:{
+      enabled:!!user?.id
     }
   })
 
-  const onSelectChange = (selectedRowKeys: React.Key[], selectedRows: any) => {
-    setSelectedCourseId(selectedRowKeys[0] as number)
+  
+  const onSelectChange = (selectedRowKeys: React.Key[], selectedRows:any) => {
+    setSelectedFormationId(selectedRowKeys[0] as number)
     setSelectedRowKeys(selectedRowKeys)
-  }
 
+  }
   const rowSelectionObj: TableRowSelection<any> = {
     type: "radio",
     onChange: onSelectChange,
     selectedRowKeys: selectedRowKeys
   }
-
-  const columns: TableColumnType<any>[] = [
+  const columns:TableColumnType<any>[] = [
     {
-      title: t('profile.professor.courses.table.index'),
+      title: '-',
       key: 'index',
       render: (text, record, index) => index + 1,
     },
     {
-      title: t('profile.professor.courses.table.thumbnail'),
+      title: t('profile.admin.formations.thumbnail'),
       key: 'thumbnail',
       render: (text, record) => (
         <img 
@@ -62,64 +55,65 @@ export const ProfessorCoursesPage = () => {
       ),
     },
     {
-      title: t('profile.professor.courses.table.title'),
+      title: t('profile.admin.formations.title'),
       dataIndex: 'title',
       key: 'title',
     },
     {
-      title: t('profile.professor.courses.table.description'),
+      title: t('profile.admin.formations.description'),
       dataIndex: 'description',
       key: 'description',
     },
     {
-      title: t('profile.professor.courses.table.category'),
-      dataIndex: ['category', 'name'],
-      key: 'category',
+      title: t('profile.admin.formations.location'),
+      dataIndex: 'location',
+      key: 'location',
     },
     {
-      title: t('profile.professor.courses.table.lessonsCount'),
-      dataIndex: 'lessonCount',
-      key: 'lessonCount',
+      title: t('profile.admin.requests.status'),
+      dataIndex: 'isActive',
+      key: 'status',
+      render: (text, record) => record.isActive ? <Tag color="green">{t('profile.admin.courses.active')}</Tag> : <Tag color="red">{t('profile.admin.courses.inactive')}</Tag>,
     },
     {
-      title: t('profile.professor.courses.table.actions'),
+      title: t('profile.admin.formations.actions'),
       key: 'actions',
       render: (text, record) => (
         <>
-          <Tooltip title={t('profile.professor.courses.actions.delete')}>
+          <Tooltip title={t('profile.admin.formations.delete')}>
             <Button
               type="text"
               danger
-              icon={<DeleteOutlined/>}
+              icon={<DeleteOutlined />}
               onClick={() => handleDelete(record.id)}
               size='large'
             />
           </Tooltip>
-          <Tooltip title={t('profile.professor.courses.actions.toggleActive')}>
+          <Tooltip title={t('profile.admin.formations.toggleActive')}>
             <Switch
               size='small'
-              checkedChildren={t('profile.professor.courses.actions.on')}
-              unCheckedChildren={t('profile.professor.courses.actions.off')}
+              checkedChildren={t('profile.admin.formations.active')}
+              unCheckedChildren={t('profile.admin.formations.inactive')}
               checked={record.isActive}
               onChange={(checked) => handleToggleActive(record.id, checked)}
             />
           </Tooltip>
         </>
       )
-    }
+    },
   ];
 
   const handleToggleActive = (id: number, isActive: boolean) => {
-    toggleCourse({
-      resource: "courses/toggle",
-      values: {id, isActive}
+    toggleFormation({
+      resource: "formations/toggle",
+      values: { id, isActive }
     }, {
       onSuccess: () => {
-        message.success(t('profile.professor.courses.messages.toggleSuccess'))
+        message.success(t('profile.admin.formations.toggleSuccess'))
         refetch()
       },
       onError: () => {
-        message.error(t('profile.professor.courses.messages.toggleError'))
+        message.error(t('profile.admin.formations.toggleError'))
       }
     })
   }
@@ -127,23 +121,23 @@ export const ProfessorCoursesPage = () => {
   const handleDelete = (id: number) => {
     Modal.confirm({
       centered: true,
-      title: t('profile.professor.courses.actions.delete'),
+      title: t('profile.admin.formations.deleteTitle'),
       type: "error",
-      content: t("modal.deleteCourse"),
+      content: t('profile.admin.formations.deleteConfirm'),
       onOk: () => {
-        deleteCourse({
-          resource: "courses",
+        deleteFormation({
+          resource: "formations",
           id,
           values: {
             id
           }
         }, {
           onSuccess: () => {
-            message.success(t('profile.professor.courses.messages.deleteSuccess'))
+            message.success(t('profile.admin.formations.deleteSuccess'))
             refetch()
           },
           onError: () => {
-            message.error(t('profile.professor.courses.messages.deleteError'))
+            message.error(t('profile.admin.formations.deleteError'))
           }
         })
       }
@@ -152,46 +146,46 @@ export const ProfessorCoursesPage = () => {
 
   return (
     <>
-      <Row style={{marginBottom: "20px"}} justify={"end"} gutter={16}>
+      <Row style={{ marginBottom: "20px" }} justify={"end"} gutter={16}>
         <Col>
           <Button
             onClick={() => setCreateModal(true)}
             type='primary'
           >
-            {t('forms.course.create')}
+            {t('profile.admin.formations.create')}
           </Button>
         </Col>
-        <Col>
+        {/* <Col>
           <Button
             onClick={() => {
-              if(!selectedCourseId) {
-                message.warning(t("modal.selectCourse"))
+              if (!selectedFormationId) {
+                message.warning(t('profile.admin.formations.selectWarning'))
                 return
               }
               setCreateModal(true)
             }}
           >
-            {t('forms.course.edit')}
+            {t('profile.admin.formations.edit')}
           </Button>
-        </Col>
+        </Col> */}
       </Row>
 
       <Table
-        dataSource={courses?.data}
+        dataSource={formations?.data}
         columns={columns}
         rowSelection={rowSelectionObj}
         rowKey="id"
       />
       {createModal && 
-        <CreateCourse
+        <CreateFormation
           open={createModal}
           onCancel={() => {
             setCreateModal(false)
             refetch()
-            setSelectedCourseId(undefined)
+            setSelectedFormationId(undefined)
             setSelectedRowKeys([])
           }}
-          selectedCourseId={selectedCourseId}
+          selectedFormationId={selectedFormationId}
         />
       }
     </>

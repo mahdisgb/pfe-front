@@ -68,36 +68,6 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
     ];
 
     const adminItems = [
-      // {
-      //   key: 'profile',
-      //   icon: <BookOutlined />,
-      //   label: 'Profile',
-      //   onClick: () => navigate('/profile')
-      // },
-      {
-        key: 'profile',
-        icon: <BookOutlined />,
-        label: 'Profile',
-        onClick: () => navigate('/profile/student-dashboard')
-      },
-      {
-        key: 'my-courses',
-        icon: <PlayCircleOutlined />,
-        label: t('sidebar.myCourses'),
-        onClick: () => navigate('/profile/my-courses')
-      },
-      {
-        key: 'courses',
-        icon: <PlayCircleOutlined />,
-        label: t('sidebar.myCourses'),
-        onClick: () => navigate('/profile/courses')
-      },
-      {
-        key: 'lessons',
-        icon: <FormOutlined />,
-        label: t('sidebar.myLessons'),
-        onClick: () => navigate('/profile/lessons')
-      },
       {
         key: 'dashboard',
         icon: <DashboardOutlined />,

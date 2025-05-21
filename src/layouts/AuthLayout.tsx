@@ -53,6 +53,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
         label: 'Profile',
         onClick: () => navigate('/profile')
       },
+      ...(user?.roles?.includes('professor') && user?.status === 'active' ? [
       {
         key: 'courses',
         icon: <PlayCircleOutlined />,
@@ -65,7 +66,8 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
         label: t('sidebar.myLessons'),
         onClick: () => navigate('/profile/lessons')
       }
-    ];
+    ] : [])
+  ]
 
     const adminItems = [
       {

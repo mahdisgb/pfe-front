@@ -12,6 +12,7 @@ export const RegisterPage = () => {
   const [registerForm] = Form.useForm();
   const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const [isStudent, setIsStudent] = useState(false);
   const handleSubmit = async () => {
       try {
         setIsLoading(true);
@@ -77,12 +78,27 @@ export const RegisterPage = () => {
       <Select
         placeholder={t('auth.selectUserType')}
         size="large"
+        onChange={(value) => setIsStudent(value === 'student')}
       >
         <Select.Option value="student">{t('auth.student')}</Select.Option>
         <Select.Option value="professor">{t('auth.professor')}</Select.Option>
-        <Select.Option value="mineur">{t('auth.mineur')}</Select.Option>
       </Select>
     </Form.Item>
+
+    {isStudent && (
+      <Form.Item
+        // name="school"
+        rules={[{ required: true, message: "Student type is required" }]}
+      >
+        <Select
+        placeholder={t('auth.selectUserType')}
+        size="large"
+      >
+        <Select.Option value="mineur">Mineur</Select.Option>
+        <Select.Option value="majeur">Majeur</Select.Option>
+      </Select>
+      </Form.Item>
+    )}
 
     <Form.Item>
       <Button

@@ -114,9 +114,16 @@ export default function AdminCoursesPage () {
       await deleteCourse({
         resource: 'courses',
         id,
+        values:{id}
+      },{
+        onSuccess:()=>{
+          message.success(t('profile.admin.courses.deleteSuccess'));
+          refetch();
+        },
+        onError:()=>{
+          message.error(t('profile.admin.courses.deleteError'));
+        }
       });
-      message.success(t('profile.admin.courses.deleteSuccess'));
-      refetch();
     } catch (error) {
       message.error(t('profile.admin.courses.deleteError'));
     }

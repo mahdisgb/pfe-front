@@ -59,7 +59,9 @@
         "postComment": "Post Comment",
         "tryAdjustingFiltersOrSearchTerms": "Try adjusting your filters or search terms",
         "noCoursesFound": "No courses found",
-        "showing": "Showing {{count}} courses"
+        "showing": "Showing {{count}} courses",
+        "selectCategory": "Select Category",
+        "lessonsCount": "lessons"
     },
     "course": {
         "notFound": {
@@ -294,9 +296,9 @@
             "cancel": "Cancel",
                 "active": "Active",
                 "inactive": "Inactive",
-                "thumbnail": "الصورة المصغرة",
-                "price": "السعر",
-                "toggleActive": "تبديل الحالة"
+                "thumbnail": "Thumbnail",
+                "price": "Price",
+                "toggleActive": "Toggle Active"
             },
             "chat": {
                 "title": "Manage Chat",
@@ -539,7 +541,8 @@
         "cvvRequired": "Please enter CVV",
         "cvvInvalid": "CVV must be 3 digits",
         "completeEnrollment": "Complete Enrollment",
-        "termsAgreement": "By completing your enrollment, you agree to our Terms of Service and Privacy Policy"
+        "termsAgreement": "By completing your enrollment, you agree to our Terms of Service and Privacy Policy",
+        "formationSummary": "Formations Summary"
     },
     "videoPlayer": {
         "loading": "Loading video..."

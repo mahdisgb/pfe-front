@@ -187,6 +187,8 @@ const handleGetMax=async(value:any)=>{
             onChange={(value)=>setSelectedCategory(value)}
             placeholder={t('courses.selectCategory')}
             allowClear
+            showSearch
+            optionFilterProp='children'
             >
               {categories?.data?.map((category:any)=>(
                 <Select.Option value={category.id}>{category.name}</Select.Option>

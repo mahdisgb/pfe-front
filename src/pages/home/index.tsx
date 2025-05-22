@@ -86,11 +86,11 @@ export const Home = () => {
                         </div>
                     ))}
                 </div>
-                <div className="mt-8">
+                {/* <div className="mt-8">
                     <Button onClick={() => user ? navigate("/courses") : navigate("/login")} className="w-[200px]" type="primary" size="large">
                         {t('home.features.enrollNow')}
                     </Button>
-                </div>
+                </div> */}
             </section>
 
             {/* How It Works */}

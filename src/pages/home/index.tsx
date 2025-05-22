@@ -1,12 +1,12 @@
 import { Button } from "antd";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from '@refinedev/core';
+import { useGetIdentity, useTranslation } from '@refinedev/core';
 
 export const Home = () => {
     const navigate = useNavigate();
     const { translate: t } = useTranslation();
-
+    const{data:user}=useGetIdentity<any>();
     return (
         <div className="text-gray-800 font-sans">
             {/* Hero */}
@@ -15,7 +15,7 @@ export const Home = () => {
                     <h1 className="text-3xl font-bold mb-4 text-start max-w-[30ch]">
                         {t('home.hero.title')}
                     </h1>
-                    <Button onClick={() => navigate("/courses")} type="primary" size="large">
+                    <Button onClick={() => user ? navigate("/courses") : navigate("/login")} type="primary" size="large">
                         {t('home.hero.startNow')}
                     </Button>
                     <p className="text-md mt-2">{t('home.hero.subjects')}</p>
@@ -43,7 +43,7 @@ export const Home = () => {
                     </div>
                 </div>
                 <div className="mt-10">
-                    <Button onClick={() => navigate("/courses")} className="w-[200px]" type="primary" size="large">
+                    <Button onClick={() => user ? navigate("/courses") : navigate("/login")} className="w-[200px]" type="primary" size="large">
                         {t('home.languageCourses.enrollNow')}
                     </Button>
                 </div>
@@ -84,7 +84,7 @@ export const Home = () => {
                     ))}
                 </div>
                 <div className="mt-8">
-                    <Button onClick={() => navigate("/courses")} className="w-[200px]" type="primary" size="large">
+                    <Button onClick={() => user ? navigate("/courses") : navigate("/login")} className="w-[200px]" type="primary" size="large">
                         {t('home.features.enrollNow')}
                     </Button>
                 </div>

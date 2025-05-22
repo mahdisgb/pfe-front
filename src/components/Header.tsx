@@ -181,8 +181,8 @@ const Header = () => {
           <div className="logo">
             <Link to="#">
               <img
-                className="w-[45px] rounded-full"
-                src="/logo.jpeg"
+                className="w-[45px] h-[45px] rounded-full"
+                src="/small.png"
                 alt="Wajihni"
               />
             </Link>

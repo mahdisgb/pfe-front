@@ -24,7 +24,7 @@ export const Home = () => {
                     <p className="text-md mt-2">{t('home.hero.subjects')}</p>
                 </div>
                 <div>
-                    <img src="logo.jpeg" alt="" />
+                    <img src="bg2.png" className="w-[300px] h-[300px]" alt="" />
                 </div>
             </section>
 

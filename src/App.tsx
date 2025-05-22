@@ -108,11 +108,14 @@ function App() {
               </Authenticated>
             }
           >
-            <Route path="/" element={<Home />} />
-            <Route path="/courses" element={<CoursesPage />} />
+            {/* <Route path="/" element={<Home />} /> */}
+            {/* <Route path="/courses" element={<CoursesPage />} /> */}
             <Route path="/course/:id" element={<CoursePage />} />
             <Route path="/enrollment/:courseId" element={<Enrollment />} />
             <Route path="/formation-enrollment/:formationId" element={<FormationEnroll />} />
+            <Route path="/formation" element={<Formation />} /> 
+            <Route path="/courseplayer/:id" element={<CoursePlayer />} />
+
             <Route path="*" element={<Page403 />} />
           </Route>
           <Route
@@ -134,11 +137,11 @@ function App() {
               </HomePageLayout>
             }
           >
-            <Route path="/" element={<Home />} />
+            <Route index element={<Home />} />
             <Route path="/courses" element={<CoursesPage />} />
-            <Route path="/course/:id" element={<CoursePage />} />
+            {/* <Route path="/course/:id" element={<CoursePage />} />
             <Route path="/courseplayer/:id" element={<CoursePlayer />} />
-            <Route path="/formation" element={<Formation />} />
+            <Route path="/formation" element={<Formation />} /> */}
           </Route>
 
           <Route

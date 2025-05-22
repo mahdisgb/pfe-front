@@ -139,6 +139,7 @@ function App() {
           >
             <Route index element={<Home />} />
             <Route path="/courses" element={<CoursesPage />} />
+            <Route path="/formation" element={<Formation />} /> 
             {/* <Route path="/course/:id" element={<CoursePage />} />
             <Route path="/courseplayer/:id" element={<CoursePlayer />} />
             <Route path="/formation" element={<Formation />} /> */}

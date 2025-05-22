@@ -86,7 +86,7 @@ const handleGetMax=async(value:any)=>{
 }
   // Course card component
   const CourseCard = ({ course }:any) => (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 min-h-[300px]">
        <Link to={`/course/${course.id}`}>
       
          {course.thumbnail && <img 
@@ -299,7 +299,7 @@ const handleGetMax=async(value:any)=>{
           {searchResults ? 
             <>
             {searchResults?.courses && searchResults?.courses.length>0 ? searchResults?.courses ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+              <div className="grid grid-cols-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
                 {searchResults?.courses?.map((course:any) => (
                   <CourseCard key={course.id} course={course} />
                 ))}
@@ -311,7 +311,7 @@ const handleGetMax=async(value:any)=>{
               </div>
             ): null}
             {searchResults?.lessons && searchResults?.lessons.length>0 ? searchResults?.lessons ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+              <div className="grid grid-cols-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
                 {searchResults?.lessons?.map((lesson:any) => (
                   <CourseCard key={lesson.id} course={lesson} />
                 ))}
@@ -330,7 +330,7 @@ const handleGetMax=async(value:any)=>{
             <p className="text-gray-600 mb-6">{t('courses.results.showing', {count: courses?.data?.length})}</p>
             
             {courses?.data ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+              <div className="grid grid-cols-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
                 {courses?.data?.map(course => (
                   <CourseCard key={course.id} course={course} />
                 ))}

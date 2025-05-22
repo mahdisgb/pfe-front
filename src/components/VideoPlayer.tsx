@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 type VideoPlayerProps={
-    url:string
+    url?:string | undefined
 }
 export const VideoPlayer = ({url}:VideoPlayerProps)=>{
     useEffect(() => {
@@ -18,7 +18,8 @@ export const VideoPlayer = ({url}:VideoPlayerProps)=>{
             height: '100%',
             autoplay: true,
             muted: true,
-            controls:true
+            controls:true,
+            preload:true
           });
     
           // Instructor player
@@ -28,7 +29,8 @@ export const VideoPlayer = ({url}:VideoPlayerProps)=>{
             width: '100%',
             height: '100%',
             autoplay: true,
-            muted: true
+            muted: true,
+            preload:true
           });
         };
     

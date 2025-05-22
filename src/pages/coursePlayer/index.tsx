@@ -1,14 +1,12 @@
-import { Avatar, Button, Input, Layout, List, Progress, Segmented, Typography } from 'antd';
-import { CaretRightOutlined, ExpandOutlined, SoundOutlined, SettingOutlined, LeftOutlined } from '@ant-design/icons';
-import React, { useState, useEffect } from 'react';
-import { Menu } from 'antd';
-import type { MenuProps } from 'antd';
-import ReactPlayer from 'react-player';
-import { useCreate, useGetIdentity, useList, useOne, useTranslation } from '@refinedev/core';
-import { Link, useParams } from 'react-router-dom';
-import { VideoPlayer } from '@/components/VideoPlayer';
 import Header from '@/components/Header';
+import { VideoPlayer } from '@/components/VideoPlayer';
+import { CaretRightOutlined, ExpandOutlined, LeftOutlined, SettingOutlined, SoundOutlined } from '@ant-design/icons';
+import { useCreate, useGetIdentity, useList, useTranslation } from '@refinedev/core';
+import type { MenuProps } from 'antd';
+import { Avatar, Button, Input, Layout, List, Menu, Typography } from 'antd';
 import { Download } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 declare global {
   interface Window {
@@ -122,6 +120,8 @@ export const CoursePlayer = () => {
   const { id } = useParams();
   const{mutateAsync:createComment}=useCreate()
   const {data:user}=useGetIdentity<any>()
+  const[lessonsList,setLessonsList]=useState<any[]>([])
+  const[lesson,setLesson]=useState<any>()
   const {data:lessons,isFetched:lessonsFetched} = useList({
     resource:"lessons/course/",
     pagination:{
@@ -135,13 +135,15 @@ export const CoursePlayer = () => {
   })
   useEffect(()=>{
     if(lessonsFetched && lessons){
+      setLessonsList(lessons?.data)
+      setLesson(lessons?.data[0])
       setCurrentLesson(lessons?.data[0]?.id)
     }
   },[lessons])
-  const {data: lesson,isLoading:vidLoading}=useOne({
-    resource:"lessons",
-    id:currentLesson,
-  })
+  // const {data: lesson,isLoading:vidLoading}=useOne({
+  //   resource:"lessons",
+  //   id:currentLesson,
+  // })
   useEffect(()=>{
     if(lesson){
       setCurrentVideo(lesson?.data?.videoUrl)
@@ -157,7 +159,7 @@ export const CoursePlayer = () => {
 
   const menuItems : any= lessons?.data.map((lesson) => ({
     key: lesson.id,
-    onClick: () => setCurrentLesson(lesson.id),
+    onClick: () => setLesson(lesson),
     label: (
       <div className="flex items-center">
         <div className="flex-1">{lesson.title}</div>
@@ -169,13 +171,22 @@ export const CoursePlayer = () => {
 ));
 
 const handleDownload =async  () => {
-  if (!currentVideo || !lesson?.data?.title) return;
- const type = await fetch(currentVideo, { method: "HEAD" })
+  if (!lesson || !lesson?.title) return;
+ const type = await fetch(lesson?.videoUrl, { method: "HEAD" })
   .then(r =>r.headers.get("Content-Type"))
+  // const extension = type?.split("/")[1] || "mp4";
+  // console.log(extension)
+  // console.log(type)
+  // const response = await fetch(lesson.videoUrl);
+  // const blob = await response.blob();
+  // const blobUrl = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = currentVideo; 
-  a.download = `${lesson.data.title}.${type}`; 
+  a.href = lesson?.videoUrl; 
+  // a.href = blobUrl; 
+  a.download = `${lesson.title}.mp4`; 
   a.style.display = 'none';
+  // a.target="_blank"
+  a.rel = 'noreferrer';
 
   document.body.appendChild(a);
   a.click();
@@ -188,7 +199,7 @@ const handleAddComment = async ()=>{
       values:{
         userId:user?.id, 
         content :comment,
-         lessonId:currentLesson,
+         lessonId:lesson?.id,
         //  courseId:id
       }
     })
@@ -199,35 +210,37 @@ const handleAddComment = async ()=>{
   }
 }
   return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-[#f9f9f9]">
       <Header />
 <div className='relative flex'>
-        <div className="flex-1 flex flex-col items-between px-4 py-4 lg:h-[150vh]">
-          <div className="flex-1">
-            <div className="relative">
-            {!vidLoading ? 
-           <VideoPlayer url={currentVideo}/>
-           :null}
-           </div>
+            {/* <CloudinaryVidPlayer id="player" publicId={"pus3p33msbszba16oimz"}/> */}
+        <div className="flex-1 flex flex-col items-between ">
+          <div>
+            {lesson ? 
+           <video src={lesson?.videoUrl} style={{minHeight:"500px",minWidth:"800px"}} width={"100%"} height={"100%"} preload='auto' controls/>
+           :<video/>}
           </div>
-          <div className='flex items-center justify-between bg-[#eee] p-4 rounded-lg '>
+          <div className='flex items-center justify-between bg-[#eee] p-4'>
+        
               <div className="h-fit w-full">
-                {lesson?.data?.description}
+                {lesson?.title} <br /><br />
+                {lesson?.description}
               </div>
               <Button
               size='large'
-              type='link'
-              style={{backgroundColor:"#2d1b69",color:"white"}}
+              // type='link'
+              style={{backgroundColor:"#1e55a9",color:"white",width:"100px"}}
               icon={<Download />}
               onClick={handleDownload}
               />
 
           </div>
-          <div className=" bg-[#eee] rounded-lg ">
+          <div className=" bg-[#eee] rounded-lg p-4">
             <Typography.Title level={4}>{t('coursePlayer.comments')}</Typography.Title>
             <List
               itemLayout="horizontal"
               dataSource={comments?.data} 
+              style={{maxHeight:"50vh",overflowY:"auto"}}
               renderItem={(item) => (
                 <List.Item>
                   <List.Item.Meta
@@ -248,29 +261,30 @@ const handleAddComment = async ()=>{
         </div>
         <Sider 
           width={384} 
-        style={{backgroundColor:"#eee",
+        style={{backgroundColor:"#1e55a9",
           height:"100%",
-          minHeight:"100vh",
-          padding:"0",
+          // minHeight:"100vh",
+          paddingBottom:"20px",
           margin:"0"
         }}
         >
-          <div className="p-4 border-b">
+          <div className="p-4">
             <Link to={`/course/${id}`}>
             <div className="flex items-center mb-4">
               <LeftOutlined className="h-4 w-4" />
-              <span className="mr-2">{t('coursePlayer.backToCourse')}</span>
+              <span className="mr-2 text-white">{t('coursePlayer.backToCourse')}</span>
             </div>
             </Link>
-            <Typography.Title level={4} style={{ textAlign: 'right' }}>
-              {lesson?.data?.title}
+            <Typography.Title level={4} style={{ textAlign: 'right',color:"white" }}>
+              {lesson?.title}
             </Typography.Title>
           </div>
 
           <Menu
             // mode="inline"
-            selectedKeys={[currentLesson?.toString()]}
-            items={menuItems}
+            style={{backgroundColor:"inherit",border:"none"}}
+            selectedKeys={[lesson?.id?.toString()]}
+            items={menuItems} 
           />
         </Sider>
 

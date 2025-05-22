@@ -438,7 +438,8 @@
             "video": "Select Video",
             "create": "Create Lesson",
             "edit": "Edit Lesson",
-            "filterByCourse": "Filter by course"
+            "filterByCourse": "Filter by course",
+            "selectVideo": "Select Video"
         },
         "formation": {
             "title": "Formation Title",
@@ -493,7 +494,8 @@
         "deleteCourseConfirm": "Delete Course",
         "deleteLessonConfirm": "Delete This Lesson",
         "selectCourse": "Please select a course",
-        "selectLesson": "Please select a lesson"
+        "selectLesson": "Please select a lesson",
+        "create": "Create"
     },
     "coursePlayer": {
         "title": "Course Content",
@@ -513,7 +515,8 @@
         "unit9": "Unit 9",
         "comments": "Comments",
         "addComment": "Add Comment",
-        "commentPlaceholder": "Add a comment..."
+        "commentPlaceholder": "Add a comment...",
+        "postComment": "Post Comment"
     },
     "enrollment": {
         "title": "Enroll in Course",

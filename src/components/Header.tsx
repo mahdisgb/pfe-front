@@ -170,7 +170,7 @@ const Header = () => {
     <header>
       <nav 
       style={{ 
-        background: "linear-gradient(135deg, #1e55a9 0%, #0e3b7c 100%)",
+        background: "#1e55a9",
         display:"flex",
         height:"65px",
         justifyContent:"space-around",

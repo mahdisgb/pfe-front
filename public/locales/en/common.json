@@ -481,7 +481,7 @@
         }
     },
     "search": {
-        "placeholder": "Search courses and lessons...",
+        "placeholder": "Search...",
         "noResults": "No results found",
         "courses": "Courses",
         "lessons": "Lessons"
@@ -495,7 +495,8 @@
         "deleteLessonConfirm": "Delete This Lesson",
         "selectCourse": "Please select a course",
         "selectLesson": "Please select a lesson",
-        "create": "Create"
+        "create": "Create",
+        "submit": "Submit"
     },
     "coursePlayer": {
         "title": "Course Content",
@@ -545,7 +546,8 @@
         "cvvInvalid": "CVV must be 3 digits",
         "completeEnrollment": "Complete Enrollment",
         "termsAgreement": "By completing your enrollment, you agree to our Terms of Service and Privacy Policy",
-        "formationSummary": "Formations Summary"
+        "formationSummary": "Formations Summary",
+        "formation": "Formation"
     },
     "videoPlayer": {
         "loading": "Loading video..."
@@ -553,6 +555,7 @@
     "home": {
         "hero": {
             "title": "Learn with online private courses from anywhere in the world",
+            "description": "The WAJJIHNI academy, an Algerian educational institution created in 2025, specializing in supporting the search for online and face-to-face training",
             "startNow": "Start Now",
             "subjects": "Mathematics · English · Physics · Programming"
         },

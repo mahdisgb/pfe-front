@@ -173,7 +173,8 @@ const Header = () => {
         background: "#1e55a9",
         display:"flex",
         height:"65px",
-        justifyContent:"space-around",
+        paddingInline:20,
+        justifyContent:"space-between",
         alignItems:"center"
       }}>
                 <div className="flex items-center gap-3">
@@ -186,7 +187,7 @@ const Header = () => {
               />
             </Link>
           </div>
-          <ul className="flex gap-2 ">
+          <ul className="flex gap-4 ">
             <li>
               <NavLink
                 className={({ isActive }) => 

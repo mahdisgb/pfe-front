@@ -122,7 +122,9 @@
       "postComment": "Publier un commentaire",
       "tryAdjustingFiltersOrSearchTerms": "Essayez d'ajuster vos filtres ou termes de recherche",
       "noCoursesFound": "Aucun cours trouvé",
-      "showing": "Affichage de {{count}} cours"
+      "showing": "Affichage de {{count}} cours",
+      "selectCategory": "Sélectionner une catégorie"
+
   },
   "course": {
       "notFound": {
@@ -537,7 +539,7 @@
       }
   },
   "search": {
-      "placeholder": "Rechercher des cours et des leçons...",
+      "placeholder": "Rechercher...",
       "noResults": "Aucun résultat trouvé",
       "courses": "Cours",
       "lessons": "Leçons"
@@ -598,7 +600,9 @@
       "cvvRequired": "Veuillez entrer le CVV",
       "cvvInvalid": "Le CVV doit contenir 3 chiffres",
       "completeEnrollment": "Finaliser l'inscription",
-      "termsAgreement": "En finalisant votre inscription, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité"
+      "termsAgreement": "En finalisant votre inscription, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité",
+      "formationSummary": "Formations Summary"
+
   },
   "videoPlayer": {
       "loading": "Chargement de la vidéo..."
@@ -606,6 +610,7 @@
   "home": {
       "hero": {
           "title": "Apprenez avec des cours en ligne privés depuis n'importe où dans le monde",
+          "description": "L’académie WAJJIHNI institution éducative algérienne, créée en 2025, spécialisée dans l’accompagnement à la recherche de formation en ligne et en présentiel",
           "startNow": "Commencer maintenant",
           "subjects": "Mathématiques · Anglais · Physique · Programmation"
       },

@@ -114,7 +114,8 @@ function App() {
             <Route path="/enrollment/:courseId" element={<Enrollment />} />
             <Route path="/formation-enrollment/:formationId" element={<FormationEnroll />} />
             <Route path="/formation" element={<Formation />} /> 
-            <Route path="/courseplayer/:id" element={<CoursePlayer />} />
+          {/* <Route path="/courseplayer/:id" element={<CoursePlayer />} /> */}
+
 
             <Route path="*" element={<Page403 />} />
           </Route>
@@ -126,7 +127,8 @@ function App() {
               >
                   <Outlet />
               </Authenticated>}>
-          <Route path="/courseplayer/:id" element={<CoursePlayer />} />
+              <Route path="/courseplayer/:id" element={<CoursePlayer />} />
+
           </Route>
 
           {/* public routes */}

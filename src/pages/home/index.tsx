@@ -15,6 +15,9 @@ export const Home = () => {
                     <h1 className="text-3xl font-bold mb-4 text-start max-w-[30ch]">
                         {t('home.hero.title')}
                     </h1>
+                    <p className="text-lg mb-4 text-start max-w-[49ch]">
+                        {t('home.hero.description')}
+                    </p>
                     <Button onClick={() => user ? navigate("/courses") : navigate("/login")} type="primary" size="large">
                         {t('home.hero.startNow')}
                     </Button>

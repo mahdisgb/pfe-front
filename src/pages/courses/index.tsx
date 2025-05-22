@@ -238,57 +238,7 @@ const handleGetMax=async(value:any)=>{
    
         <div className="flex flex-col lg:flex-row">
         
-          {/* <div className="lg:hidden mb-4">
-            <button 
-              className="w-full flex items-center justify-between p-3 border border-gray-300 rounded-md bg-white shadow-sm"
-              onClick={() => setShowMobileFilters(!showMobileFilters)}
-            >
-              <div className="flex items-center">
-                <Filter className="w-5 h-5 text-gray-500 mr-2" />
-                <span>Filters</span>
-              </div>
-              <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${showMobileFilters ? 'transform rotate-180' : ''}`} />
-            </button>
-          </div>
- 
-          <div className={`lg:w-64 lg:pr-8 ${showMobileFilters ? 'block' : 'hidden'} lg:block`}>
-            <div className="sticky top-4 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold text-gray-800">Filters</h2>
-                <button
-                  // onClick={resetFilters}
-                  className="text-sm text-gray-600 hover:text-gray-900"
-                >
-                  Reset all
-                </button>
-              </div>
-              
-              <div className="mb-6">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search courses..."
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                  <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                </div>
-              </div>
-              
-              <div className="space-y-6">
-                <FilterSection 
-                  title="Category" 
-                  options={categories?.data} 
-                  selected={selectedCategory} 
-                  setSelected={setSelectedCategory} 
-                  icon={Tag}
-                />
-             
-              </div>
-            </div>
-          </div>
-           */}
+      
           <div className="flex-1">
             {searchClick && !results ? 
              <div className="container mx-auto py-12 px-4 text-center">

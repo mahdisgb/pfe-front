@@ -34,11 +34,13 @@ export const RegisterPage = () => {
       }
   };
   return (
+    <div className="flex flex-col items-center ">
+    <h1 style={{fontSize: "2rem", fontWeight: "bold", color: "#003366"}}>Sign Up</h1>
     <Form
     form={registerForm}
     onFinish={handleSubmit}
     layout="vertical"
-    className="mt-8 space-y-6"
+    className="mt-6 "
   >
     <Form.Item
       name="firstName"
@@ -108,12 +110,13 @@ export const RegisterPage = () => {
         block
         loading={isLoading}
         disabled={isLoading}
-        className="bg-blue-600 hover:bg-blue-700"
+        className="bg-[#003366] hover:bg-blue-700"
       >
         {t('auth.register')}
       </Button>
     </Form.Item>
   </Form>
+  </div>
   )
 }
 

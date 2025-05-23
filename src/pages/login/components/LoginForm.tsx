@@ -33,6 +33,8 @@ export const LoginForm = () => {
           }
 };
   return (
+    <div className="flex flex-col items-center justify-center">
+      <h1 style={{fontSize: "2rem", fontWeight: "bold", color: "#003366"}}>Login</h1>
     <Form
             form={loginForm}
             onFinish={handleSubmit}
@@ -64,11 +66,12 @@ export const LoginForm = () => {
                 block
                 loading={isLoading}
                 disabled={isLoading}
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-[#003366] hover:bg-blue-700"
               >
                 {t('auth.login')}
               </Button>
             </Form.Item>
           </Form>
+          </div>
   )
 }

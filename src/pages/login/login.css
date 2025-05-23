@@ -1,3 +1,7 @@
+*{
+  font-family: 'Segoe UI', sans-serif;
+  /* text-decoration: underline; */
+}
 .auth-page {
     min-height: 100vh;
     background: linear-gradient(135deg, #bbb 0%, #003366 100%);
@@ -167,6 +171,7 @@
     top: 0;
     height: 100%;
     width: 50%;
+    gap: 10px;
     transition: transform 0.6s ease-in-out;
   }
   

@@ -119,10 +119,10 @@
     "navigation": {
         "home": "Home",
         "categories": "Categories",
-        "courses": "Courses",
+        "courses": "Formations Online",
         "lessons": "Lessons",
         "profile": "Profile",
-        "formation": "Formation"
+        "formation": "Formations on site"
     },
     "errors": {
         "404": "404",

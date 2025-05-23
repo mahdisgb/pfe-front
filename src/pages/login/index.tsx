@@ -46,7 +46,7 @@ export const Login = () => {
                   onClick={switchToSignIn}
                   className="overlay-button"
                 >
-                  Sign In
+                  Sign Up
                 </Button>
               </div>
 
@@ -63,7 +63,7 @@ export const Login = () => {
                   onClick={switchToSignUp}
                   className="overlay-button"
                 >
-                  Sign Up
+                  Sign In
                 </Button>
               </div>
             </div>

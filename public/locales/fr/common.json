@@ -182,10 +182,10 @@
   "navigation": {
       "home": "Accueil",
       "categories": "Catégories",
-      "courses": "Cours",
+      "courses": "Formations en ligne",
       "lessons": "Leçons",
       "profile": "Profil",
-      "formation": "Formation"
+      "formation": "Formations sur site"
   },
   "errors": {
       "404": "404",

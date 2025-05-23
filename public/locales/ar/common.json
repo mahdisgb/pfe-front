@@ -160,10 +160,10 @@
     "navigation": {
         "home": "الرئيسية",
         "categories": "التصنيفات",
-        "courses": "الدورات",
+        "courses": "التكوينات الإلكترونية",
         "lessons": "الدروس",
         "profile": "الملف الشخصي",
-        "formation": "التكوين"
+        "formation": "التكوينات الحضورية"
     },
     "errors": {
         "404": "404",

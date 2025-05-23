@@ -49,11 +49,14 @@
 #main-player{
   /* height: 20px !important; */
 }
-
+*{
+font-family: 'Segoe UI', sans-serif !important;
+}
 }
 @layer base {
   html{
-    @apply font-[sans] text-base;
+    /* @apply font-[sans] text-base;*/
+  font-family: 'Segoe UI', sans-serif !important;
   }
   
 }

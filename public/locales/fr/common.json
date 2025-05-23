@@ -222,6 +222,7 @@
       "student": {
           "title": "Profil étudiant",
           "role": "Étudiant",
+              "enrolledCourses": "Cours inscrits",
           "tabs": {
               "enrolledCourses": "Cours inscrits",
               "achievements": "Réalisations",

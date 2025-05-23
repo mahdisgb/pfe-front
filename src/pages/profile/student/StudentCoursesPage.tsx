@@ -63,7 +63,7 @@ const StudentCoursesPage = () => {
                     </Col>
                 )) : (
                     <Empty 
-                    description={t('profile.student.noCourses')} 
+                    // description={t('profile.student.noCourses')} 
                     style={{ backgroundColor: "white", width: "100%", padding: "50px 0" }} 
                     />
                 )}

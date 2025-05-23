@@ -159,6 +159,7 @@
         "student": {
             "title": "Student Profile",
             "role": "Student",
+            "enrolledCourses": "Enrolled Courses",
             "tabs": {
             "enrolledCourses": "Enrolled Courses",
             "achievements": "Achievements",

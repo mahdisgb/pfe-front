@@ -13,7 +13,7 @@ export const AdminDashboardPage = () => {
           <Card>
             <Statistic
               title={t('profile.admin.dashboard.totalStudents')}
-              value={1234}
+              value={32}
               prefix={<UserOutlined />}
             />
           </Card>
@@ -22,7 +22,7 @@ export const AdminDashboardPage = () => {
           <Card>
             <Statistic
               title={t('profile.admin.dashboard.totalCourses')}
-              value={56}
+              value={9}
               prefix={<BookOutlined />}
             />
           </Card>
@@ -31,7 +31,7 @@ export const AdminDashboardPage = () => {
           <Card>
             <Statistic
               title={t('profile.admin.dashboard.totalProfessors')}
-              value={23}
+              value={6}
               prefix={<TeamOutlined />}
             />
           </Card>
@@ -40,7 +40,7 @@ export const AdminDashboardPage = () => {
           <Card>
             <Statistic
               title={t('profile.admin.dashboard.activeEnrollments')}
-              value={789}
+              value={16}
               prefix={<ShoppingCartOutlined />}
             />
           </Card>

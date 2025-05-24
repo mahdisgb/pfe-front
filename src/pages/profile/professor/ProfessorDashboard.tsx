@@ -152,7 +152,7 @@ export const ProfessorDashboard = () => {
           <Card>
             <Statistic
               title={t('profile.professor.totalStudents')}
-              value={456}
+              value={6}
               prefix={<UserOutlined />}
             />
           </Card>
@@ -161,8 +161,8 @@ export const ProfessorDashboard = () => {
           <Card>
             <Statistic
               title={t('profile.professor.totalRevenue')}
-              value={7890}
-              prefix={<DollarOutlined />}
+              value={25000}
+              // prefix={<DollarOutlined />}
               precision={2}
             />
           </Card>

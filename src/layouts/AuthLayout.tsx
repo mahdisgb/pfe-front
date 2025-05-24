@@ -32,12 +32,6 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
 
     const studentItems = [
       {
-        key: 'dashboard',
-        icon: <DashboardOutlined />,
-        label: 'Dashboard',
-        onClick: () => navigate('/profile/dashboard')
-      },
-      {
         key: 'profile',
         icon: <BookOutlined />,
         label: 'Profile',
@@ -53,12 +47,6 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
     ];
 
     const professorItems = [
-      {
-        key: 'dashboard',
-        icon: <DashboardOutlined />,
-        label: 'Dashboard',
-        onClick: () => navigate('/profile/dashboard')
-      },
       {
         key: 'profile',
         icon: <BookOutlined />,
